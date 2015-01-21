@@ -27,8 +27,40 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <div id="pre_loader">
+        <style>
+            .pre-load-container {
+                height: 100vh;
+                padding-top: 40vh;
+            }
+            .pre-loader,
+            .pre-loader::before {
+                font-size: 1.4em;
+                letter-spacing: 0.4em;
+            }
+            .pre-loader {
+                position: relative;
+                text-align: center;
+                color: rgba(175, 175, 175, 0.60);
+            }
+            .pre-loader::before {
+                position: absolute;
+                overflow: hidden;
+                width: 0;
+                color: #000000;
+                content: "TRILO";
+                text-align: left;
+                white-space: nowrap;
+            }
+            /* TODO get rid of this when percent counter is done */
+            .pre-loader.animate::before {
+                width: 100%;
+                -webkit-transition: width 10s;
+                transition: width 10s ;
+            }
+        </style>
 
+        <div class="pre-load-container">
+            <h1 class="pre-loader">TRILO</h1>
         </div>
 
         <main>
