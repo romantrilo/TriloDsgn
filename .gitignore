@@ -1,4 +1,3 @@
-.idea
 node_modules
 dist
 test/temp
@@ -6,3 +5,14 @@ test/temp
 app/bower_components
 .tmp
 test/bower_components/
+
+
+#webstorm files and folders
+.idea
+.name
+scopes
+encodings.xml
+misc.xml
+modules.xml
+TriloDsgn.iml
+vcs.xml
