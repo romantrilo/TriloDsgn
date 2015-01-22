@@ -27,47 +27,117 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
+        <script data-pace-options='{ "restartOnPushState": false }' src="scripts/vendor/pace.js"></script>
+
         <style>
-            .pre-load-container {
+            .pre-load.outer.container {
                 height: 100vh;
                 padding-top: 40vh;
             }
-            .pre-loader,
-            .pre-loader::before {
+            .pre-load.inner.container {
+                position: relative;
+                width: 150px;
                 font-size: 1.4em;
                 letter-spacing: 0.4em;
-            }
-            .pre-loader {
-                position: relative;
                 text-align: center;
+            }
+            .pre-load.text {
+                width: 100%;
+                position: absolute;
+                left: 0;
                 color: rgba(175, 175, 175, 0.60);
             }
-            .pre-loader::before {
+            .pre-load.background {
                 position: absolute;
+                left: 0;
                 overflow: hidden;
                 width: 0;
                 color: #000000;
-                content: "TRILO";
-                text-align: left;
+                text-align: center;
                 white-space: nowrap;
+                -webkit-transition: width 1s;
+                transition: width 1s ;
             }
             /* TODO get rid of this when percent counter is done */
             .pre-loader.animate::before {
                 width: 100%;
-                -webkit-transition: width 10s;
-                transition: width 10s ;
             }
+
+            .pace {
+                -webkit-pointer-events: none;
+                pointer-events: none;
+
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                user-select: none;
+            }
+
+            .pace.pace-inactive .pace-progress {
+                display: none;
+            }
+
+            .pace .pace-progress {
+                position: fixed;
+                z-index: 2000;
+                top: 0;
+                right: 0;
+                height: 5rem;
+                width: 5rem;
+
+                -webkit-transform: translate3d(0, 0, 0) !important;
+                -ms-transform: translate3d(0, 0, 0) !important;
+                transform: translate3d(0, 0, 0) !important;
+            }
+
+            .pace .pace-progress:after {
+                display: block;
+                position: absolute;
+                top: 0;
+                right: .5rem;
+                content: attr(data-progress-text);
+                font-family: "Helvetica Neue", sans-serif;
+                font-weight: 100;
+                font-size: 5rem;
+                line-height: 1;
+                text-align: right;
+                color: rgba(0, 0, 0, 0.19999999999999996);
+            }
+
         </style>
 
-        <div class="pre-load-container">
-            <h1 class="pre-loader">TRILO</h1>
+        <div class="pre-load outer container">
+            <div class="pre-load inner container">
+                <h1 class="pre-load background">TRILO</h1>
+                <h1 class="pre-load text">TRILO</h1>
+            </div>
         </div>
 
+        <script>
+            (function () {
+                var repeatInterval,
+                    body = document.getElementsByTagName('body')[0],
+                    progressElements = document.getElementsByClassName('pace-progress'),
+                    preLoader = document.querySelectorAll('.pre-load.background')[0];
+
+                function watchProgress () {
+                    if (body.classList.contains("pace-done")) {
+                        preLoader.style.width = '100%';
+                        clearInterval(repeatInterval);
+                        return;
+                    }
+
+                    var perCent = progressElements && progressElements[0] && progressElements[0].getAttribute('data-progress-text') || 0;
+
+                    preLoader.style.width = perCent;
+                }
+
+                repeatInterval = setInterval(watchProgress, 50);
+            })();
+        </script>
+
         <main>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="com-xs-12">Hello</div>
-                </div>
+            <div>
+                hello
             </div>
         </main>
 
