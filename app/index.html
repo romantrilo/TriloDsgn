@@ -46,18 +46,28 @@
                 height: 100vh;
                 background-color: #ffffff;
                 z-index: 100;
+                -webkit-transition: all 0.5s 1s;
+                -moz-transition: all 0.5s 1s;
+                -o-transition: all 0.5s 1s;
+                transition: all 0.5s 1s;
+            }
+
+            .pre-load.fade-out {
+                visibility: hidden;
+                opacity: 0;
             }
 
             .pre-load.inner {
                 position: relative;
-                top: 46vh;
-                left: 46vw;
                 width: 74px;
-                letter-spacing: 0.5em;
+                margin: 0 auto;
             }
 
             .pre-load p {
+                line-height: 100vh;
                 text-align: right;
+                letter-spacing: 0.5em;
+                font-weight: bold;
             }
 
             .pre-load.text {
@@ -104,11 +114,8 @@
                     if (body.classList.contains("pace-done")) {
                         preLoader.style.width = '100%';
                         clearInterval(repeatInterval);
-
-
-                        //  TODO fade away preloader
-
-
+                        var preLoadContainer = document.getElementsByClassName('outer')[0];
+                        preLoadContainer.className = preLoadContainer.className + ' fade-out';
                         return;
                     }
 
