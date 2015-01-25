@@ -1,19 +1,17 @@
 .logo, .menu-btn, .key-words, .contacts {
-    @include transition(transform, 1s);
+    @include transition(all, 1s);
     @include transition-delay(0.5s);
     padding: 1em 2em;
 }
 
-body {
-    &.pace-done {
-        & .logo, & .menu-btn, & .key-words, & .contacts {
-            @include translate3d(0, 0, 0);
-        }
+body.pace-done {
+    & .logo, & .menu-btn, & .key-words, & .contacts {
+        @include translate(0, 0);
     }
 }
 
 .logo {
-    @include translate3d(-50px, -50px, 0);
+    @include translate(-180px, -75px);
     font-family: FuturaDemiC;
     & h1 {
         margin: 0;
@@ -25,7 +23,7 @@ body {
 }
 
 .menu-btn {
-    @include translate3d(50px, -50px, 0);
+    @include translate(60px, -35px);
     padding-right: 2.3em;
     color: $main-color;
     & i {
@@ -34,7 +32,7 @@ body {
 }
 
 .key-words {
-    @include translate3d(-50px, 50px, 0);
+    @include translate(-90px, 80px);
     font-family: CrimsonTextItalic;
     font-size: $base-font-size;
     & p {
@@ -43,7 +41,7 @@ body {
 }
 
 .contacts {
-    @include translate3d(50px, 50px, 0);
+    @include translate(115px, 75px);
     text-align: right;
     font-family: FuturaDemiC;
     font-size: $base-font-size;

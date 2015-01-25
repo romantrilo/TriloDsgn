@@ -2,7 +2,8 @@
 <html class="no-js">
     <head>
 
-        <!-- Script below monitors page load status so it is important to download it at the very beginning -->
+        <!-- Script below monitors page load status -->
+        <!-- Keep it at the very top so counter begins execution as early as possible -->
         <script src="scripts/non_bower_vendor/pace.js"></script>
 
         <title>Roman Trilo | Clear Web Design</title>
@@ -18,13 +19,16 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta name="author" content="Illia Abdullaiev | illia.abdullaiev@gmail.com">
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
         <!-- build:js scripts/vendor/modernizr.js -->
-        <script src="bower_components/modernizr/modernizr.js"></script>
+
+        <!--//TODO delete if unneeded-->
+        <!--<script src="bower_components/modernizr/modernizr.js"></script>-->
         <!-- endbuild -->
     </head>
     <body>
@@ -32,9 +36,17 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
+        <!-- Styles below make pleasant view of pre-loader -->
+        <!-- Keep inline -->
+
         <style>
-            body {
+            body, header {
                 height: 100vh;
+            }
+
+            header {
+                position: relative;
+                overflow: hidden;
             }
 
             main {
@@ -70,6 +82,7 @@
                 text-align: right;
                 letter-spacing: 0.5em;
                 font-weight: bold;
+                text-transform: uppercase;
             }
 
             .pre-load.text {
@@ -98,8 +111,8 @@
 
         <div class="pre-load outer">
             <div class="pre-load inner">
-                <p class="pre-load background">TRILO</p>
-                <p class="pre-load text">TRILO</p>
+                <p class="pre-load background">trilo</p>
+                <p class="pre-load text">trilo</p>
             </div>
         </div>
 
