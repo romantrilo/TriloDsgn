@@ -260,7 +260,8 @@ module.exports = function (grunt) {
         },
         copy: {
             dist: {
-                files: [{
+                files: [
+                    {
                     expand: true,
                     dot: true,
                     cwd: '<%= yeoman.app %>',
@@ -269,12 +270,14 @@ module.exports = function (grunt) {
                         '*.{ico,txt}',
                         'images/{,*/}*.{webp,gif}',
                         'styles/fonts/{,*/}*.*',
-                        'bower_components/sass-bootstrap/fonts/*.*'
+                        'bower_components/sass-bootstrap/fonts/*.*',
+                        'scripts/non_bower_vendor/*.*'
                     ]
-                }, {
-                    src: 'node_modules/apache-server-configs/dist/.htaccess',
-                    dest: '<%= yeoman.dist %>/.htaccess'
-                }]
+                    }, {
+                        src: 'node_modules/apache-server-configs/dist/.htaccess',
+                        dest: '<%= yeoman.dist %>/.htaccess'
+                    }
+                ]
             }
         },
         bower: {

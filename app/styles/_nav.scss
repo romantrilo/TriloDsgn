@@ -1,0 +1,53 @@
+.logo, .menu-btn, .key-words, .contacts {
+    @include transition(transform, 1s);
+    @include transition-delay(0.5s);
+    padding: 1em 2em;
+}
+
+body {
+    &.pace-done {
+        & .logo, & .menu-btn, & .key-words, & .contacts {
+            @include translate3d(0, 0, 0);
+        }
+    }
+}
+
+.logo {
+    @include translate3d(-50px, -50px, 0);
+    font-family: FuturaDemiC;
+    & h1 {
+        margin: 0;
+    }
+    & p {
+        font-size: 1.3em;
+        margin: 0;
+    }
+}
+
+.menu-btn {
+    @include translate3d(50px, -50px, 0);
+    padding-right: 2.3em;
+    color: $main-color;
+    & i {
+        @include scale(2, 1.5);
+    }
+}
+
+.key-words {
+    @include translate3d(-50px, 50px, 0);
+    font-family: CrimsonTextItalic;
+    font-size: $base-font-size;
+    & p {
+        margin: 0.3em;
+    }
+}
+
+.contacts {
+    @include translate3d(50px, 50px, 0);
+    text-align: right;
+    font-family: FuturaDemiC;
+    font-size: $base-font-size;
+    & p {
+        margin: 0.3em;
+    }
+}

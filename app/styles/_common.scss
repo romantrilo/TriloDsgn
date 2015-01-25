@@ -1,0 +1,49 @@
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+a {
+    text-decoration: none;
+    &, &:visited {
+        color: $main-color;
+    }
+}
+
+.absolute {
+    position: absolute;
+    &.top {
+        top: 0;
+    }
+    &.right {
+        right: 0
+    }
+    &.bottom {
+        bottom: 0;
+    }
+    &.left {
+        left: 0;
+    }
+}
+
+.upper {
+    text-transform: uppercase;
+}
+
+.letter-spacing {
+    &.small {
+        letter-spacing: 0.2em;
+    }
+    &.middle {
+        letter-spacing: 0.3em;
+    }
+    &.wide {
+        letter-spacing: 0.35em;
+    }
+}
+
+.side-color {
+    color: $side-color;
+}

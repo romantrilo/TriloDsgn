@@ -1,10 +1,14 @@
 <!doctype html>
 <html class="no-js">
     <head>
+
+        <!-- Script below monitors page load status so it is important to download it at the very beginning -->
+        <script src="scripts/non_bower_vendor/pace.js"></script>
+
         <title>Roman Trilo | Clear Web Design</title>
+
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>TriloDsgn</title>
         <meta name="language" content="english">
         <meta name="description" content="I design minimalist memorable websites,
             which can impress and sell your product.">
@@ -18,6 +22,7 @@
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <!-- build:js scripts/vendor/modernizr.js -->
         <script src="bower_components/modernizr/modernizr.js"></script>
         <!-- endbuild -->
@@ -27,16 +32,12 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <script data-pace-options='{ "restartOnPushState": false }' src="scripts/vendor/pace.js"></script>
-
         <style>
             body {
                 height: 100vh;
-                padding: 0;
             }
 
             main {
-                position: absolute;
                 z-index: 50;
             }
 
@@ -46,10 +47,10 @@
                 height: 100vh;
                 background-color: #ffffff;
                 z-index: 100;
-                -webkit-transition: all 0.5s 1s;
-                -moz-transition: all 0.5s 1s;
-                -o-transition: all 0.5s 1s;
-                transition: all 0.5s 1s;
+                -webkit-transition: all 0.5s 0.5s;
+                -moz-transition: all 0.5s 0.5s;
+                -o-transition: all 0.5s 0.5s;
+                transition: all 0.5s 0.5s;
             }
 
             .pre-load.fade-out {
@@ -59,11 +60,12 @@
 
             .pre-load.inner {
                 position: relative;
-                width: 74px;
+                width: 80px;
                 margin: 0 auto;
             }
 
             .pre-load p {
+                margin: 0;
                 line-height: 100vh;
                 text-align: right;
                 letter-spacing: 0.5em;
@@ -114,12 +116,16 @@
                     if (body.classList.contains("pace-done")) {
                         preLoader.style.width = '100%';
                         clearInterval(repeatInterval);
-                        var preLoadContainer = document.getElementsByClassName('outer')[0];
-                        preLoadContainer.className = preLoadContainer.className + ' fade-out';
+                        onDownload();
                         return;
                     }
 
                     preLoader.style.width = perCent;
+                }
+
+                function onDownload () {
+                    var preLoadContainer = document.getElementsByClassName('outer')[0];
+                    preLoadContainer.className = preLoadContainer.className + ' fade-out';
                 }
 
                 repeatInterval = setInterval(watchProgress, 50);
@@ -127,9 +133,33 @@
         </script>
 
         <main>
-            <div>
-                hello
-            </div>
+            <header>
+                <div class="logo absolute top left">
+                    <a href="/">
+                        <h1 class="upper letter-spacing wide">trilo.</h1>
+                        <p class="upper letter-spacing middle side-color">dsgn</p>
+                    </a>
+                </div>
+                <div class="menu-btn absolute top right">
+                    <i class="fa fa-bars"></i>
+                </div>
+                <div class="key-words absolute bottom left">
+                    <p class="side-color">web.</p>
+                    <p class="side-color">interaction.</p>
+                    <p class="side-color">design.</p>
+                </div>
+                <div class="contacts absolute bottom right">
+                    <p>
+                        <a href="mailto:trilo.roman@gmail.com?Subject=Hi" class="upper letter-spacing small">email</a>
+                    </p>
+                    <p>
+                        <a href="https://www.linkedin.com/in/trilo" class="upper letter-spacing small">linkedin</a>
+                    </p>
+                    <p>
+                        <a href="https://www.behance.net/trilo" class="upper letter-spacing small">behance</a>
+                    </p>
+                </div>
+            </header>
         </main>
 
         <!-- build:js scripts/main.js -->
