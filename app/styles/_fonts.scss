@@ -1,9 +1,16 @@
 @font-face {
     font-family: FuturaDemiC;
-    src: url("/styles/fonts/FuturaDemic.ttf");
+    src: url('/styles/fonts/futurademic/futurademic-webfont.eot'); /* IE9 Compat Modes */
+        src: url('/styles/fonts/futurademic/futurademic-webfontwoff2') format('woff2'), /* Super Modern Browsers */
+        url('/styles/fonts/futurademic/futurademic-webfont.woff') format('woff'), /* Pretty Modern Browsers */
+        url('/styles/fonts/futurademic/futurademic-webfont.ttf')  format('truetype'); /* Safari, Android, iOS */
 }
 
 @font-face {
     font-family: CrimsonTextItalic;
-    src: url("/styles/fonts/CrimsonText-Italic.ttf");
+//    src: url("/styles/fonts/CrimsonText-Italic.ttf");
+    src: url('/styles/fonts/crimsontextitalic/crimsontext-italic-webfont.eot'); /* IE9 Compat Modes */
+    src: url('/styles/fonts/crimsontextitalic/crimsontext-italicwebfontwoff2') format('woff2'), /* Super Modern Browsers */
+    url('/styles/fonts/crimsontextitalic/crimsontext-italic-webfont.woff') format('woff'), /* Pretty Modern Browsers */
+    url('/styles/fonts/crimsontextitalic/crimsontext-italic-webfont.ttf')  format('truetype'); /* Safari, Android, iOS */
 }
