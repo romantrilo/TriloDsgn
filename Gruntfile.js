@@ -272,7 +272,7 @@ module.exports = function (grunt) {
                         'images/{,*/}*.{webp,gif}',
                         'styles/fonts/{,*/}*.*',
                         'bower_components/sass-bootstrap/fonts/*.*',
-                        //'scripts/non_bower_vendor/*.*'
+                        'scripts/vendor/*.*'
                     ]
                     }, {
                         src: 'node_modules/apache-server-configs/dist/.htaccess',
