@@ -4,7 +4,10 @@
 
         <!-- Script below monitors page load status -->
         <!-- Keep it at the very top so counter begins execution as early as possible -->
-        <script src="scripts/non_bower_vendor/pace.js"></script>
+
+        <!-- build:js scripts/vendor/pace.min.js -->
+        <script src="bower_components/pace/pace.min.js"></script>
+        <!-- endbuild -->
 
         <title>Roman Trilo | Clear Web Design</title>
 
@@ -25,11 +28,6 @@
         <!-- endbuild -->
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-        <!-- build:js scripts/vendor/modernizr.js -->
-
-        <!--//TODO delete if unneeded-->
-        <!--<script src="bower_components/modernizr/modernizr.js"></script>-->
-        <!-- endbuild -->
     </head>
     <body>
         <!--[if lt IE 10]>

@@ -12,6 +12,7 @@ require.config
     backbone: '../bower_components/backbone/backbone'
     underscore: '../bower_components/lodash/dist/lodash'
     bootstrap: '../bower_components/sass-bootstrap/dist/js/bootstrap'
+    itemslide: 'non_bower_vendor/itemslide'
 
 require [
   'backbone'
