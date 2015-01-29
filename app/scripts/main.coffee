@@ -8,13 +8,12 @@ require.config
       exports: 'jquery'
   }
   paths:
-    jquery: '../bower_components/jquery/dist/jquery'
+    jquery: '../bower_components/jquery/dist/jquery.min'
     backbone: '../bower_components/backbone/backbone'
-    underscore: '../bower_components/lodash/dist/lodash'
-    bootstrap: '../bower_components/sass-bootstrap/dist/js/bootstrap'
+    underscore: '../bower_components/underscore/underscore-min'
     itemslide: 'vendor/itemslide'
 
 require [
-  'backbone'
-], (Backbone) ->
-  Backbone.history.start()
+  'application'
+], (App) ->
+  new App().start()
