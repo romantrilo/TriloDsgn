@@ -1,7 +1,7 @@
 .logo, .menu-btn, .key-words, .contacts {
     @include transition(all, 1s);
     @include transition-delay(0.5s);
-    padding: 1em 2em;
+    padding: $base-font-size*1.2 $base-font-size*2;
 }
 
 body.pace-done {
@@ -26,8 +26,63 @@ body.pace-done {
 
 .menu-btn {
     @include translate(60px, -35px);
-    padding-right: 2.3em;
-    color: $main-color;
+    padding-right: $base-font-size*1.5;
+    color: $base-color;
+    & .lines-button {
+        display: inline-block;
+        padding-bottom: 0.3em;
+        transition: all $base-transition linear;
+        cursor: pointer;
+        user-select: none;
+        border-radius: $button-size/7;
+        background: none;
+        border: none;
+        &:hover {
+            opacity: 1;
+        }
+        &:active {
+            transition: 0;
+            background: rgba(0,0,0,.1);
+        }
+        & .lines {
+            @include line;
+            position: relative;
+            &:before, &:after {
+                @include line;
+                @include transform-origin(center);
+                position: absolute;
+                left:0;
+                content: '';
+            }
+            &:before {
+                top: $button-size/4;
+            }
+            &:after {
+                top: -$button-size/4;
+            }
+            &.close {
+                &:before, &:after{
+                    transform: none;
+                    width: $button-size;
+                    top:0;
+                }
+                &.x {
+                    background: transparent;
+                    &:before, &:after{
+                        @include transform-origin(50%);
+                        top:0;
+                        width: $button-size;
+                    }
+                    &:before{
+                        transform: rotate3d(0,0,1,45deg);
+                    }
+                    &:after{
+                        transform: rotate3d(0,0,1,-45deg);
+                    }
+                }
+            }
+        }
+    }
 }
 
 .key-words {

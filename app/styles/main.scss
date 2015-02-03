@@ -1,8 +1,9 @@
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap/_normalize";
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap/mixins";
 
-@import "fonts";
 @import "variables";
+@import "mixins";
+@import "fonts";
 
 @import "common";
 @import "nav";
