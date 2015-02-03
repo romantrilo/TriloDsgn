@@ -1,6 +1,6 @@
 define [
 
-    'backbone',
+    'backbone'
     'views/timeline'
     'text!../templates/app.html'
 
@@ -44,13 +44,14 @@ define [
                 _.delay addX, 500
 
 
-        updateTimeline: (url) ->
+        updateTimeline: (index) ->
             if not @timeline
                 @initTimeline()
-            else if url
-                @timeline.update url
+            if index
+                @timeline.update index
             else
-                @timeline.toBeginning()
+                @timeline.update 0
+            return
 
         showContacts: ->
 

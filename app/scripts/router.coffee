@@ -25,7 +25,7 @@ define [
 
         updateTimeline: (url) ->
             if url == '' or _.contains @urls, url
-                @app.updateTimeline url
+                @app.updateTimeline _.indexOf @urls, url
             else
                 @goTo404()
 

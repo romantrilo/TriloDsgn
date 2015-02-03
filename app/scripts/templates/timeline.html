@@ -6,12 +6,18 @@
         <% if (!item.isProject) { %>
             <p class="font italic base side-color subtitle"><%= item.subtitle %></p>
         <% } %>
-        <% var titleClassName = item.isProject ? 'extra-large' : 'small' %>
-        <p class="font regular upper <%= titleClassName %>"><%= item.title %></p>
+        <% var titleClassName = item.isProject ? 'extra-large middle' : 'small' %>
+        <p class="font regular upper letter-spacing <%= titleClassName %>"><%= item.title %></p>
         <p class="font italic base side-color"><%= item.description %></p>
     </div>
 <% }) %>
 </div>
 
 <div class="covers">
+    <% _.each(items, function(item) { %>
+        <div class="cover">
+            <div class="content"></div>
+            <button class="view-item">view <%= item.isProject ? 'casestudy' : 'about'%></button>
+        </div>
+    <% }) %>
 </div>

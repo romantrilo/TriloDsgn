@@ -1,9 +1,10 @@
 define [
 
     'backbone'
+    'slick'
     'text!../templates/timeline.html'
 
-], (Backbone, template) ->
+], (Backbone, Slick, template) ->
 
     'use strict'
 
@@ -13,6 +14,10 @@ define [
 
         id: 'timeline'
 
+        events: {
+            'beforeChange .timeline': '_updateCovers'
+        }
+
         template: _.template template
 
         initialize: ->
@@ -20,20 +25,50 @@ define [
 
         render: ->
             @$el.html @template {items: @model}
-            @initTimeline()
             @initCovers()
+            @initTimeline()
+            #            this is the fix for slick messed up slider on initial load
+            $(window).trigger 'resize'
             return @
 
         initTimeline: ->
             @timeline = @$el.find '.timeline'
-#            TODO
+            options = {
+                centerMode: true
+                focusOnSelect: true
+                infinite: false
+                slidesToShow: 3
+                speed: 1000
+                swipeToSlide: true
+                respondTo: 'slider'
+                responsive: [
+                    {
+                        breakpoint: 1200
+                        settings: {
+                            slidesToShow: 1
+                        }
+                    }
+                ]
+                touchThreshold: 10
+            }
+            @timeline.slick options
 
         initCovers: ->
+            options = {
+                infinite: false
+                slidesToShow: 1
+                slidesToScroll: 1
+                speed: 1000
+                asNavFor: '.timeline'
+                touchThreshold: 10
+            }
             @covers = @$el.find '.covers'
-#            TODO
+            @covers.slick options
 
-        update: (url) ->
+        update: (index) ->
+            @timeline.slick('slickGoTo', index)
 
-        toBeginning: ->
+        _updateCovers: (event, slick, currentSlide, nextSlide) ->
+            @covers.slick('slickGoTo', nextSlide)
 
     }

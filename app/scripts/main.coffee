@@ -7,11 +7,11 @@ require.config
     backbone: '../bower_components/backbone/backbone'
     underscore: '../bower_components/underscore/underscore-min'
     text: '../bower_components/text/text'
-    slick: '../bower_components/slick.js/slick/slick.min'
+    slick: '../bower_components/slick/slick/slick.min'
 
   shim: {
       'slick': {
-          'deps': 'jquery'
+          'deps': ['jquery']
           'exports': 'slick'
       }
   }

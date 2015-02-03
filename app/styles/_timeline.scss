@@ -5,3 +5,10 @@
 .timeline .subtitle {
     text-transform: capitalize;
 }
+
+.content {
+    width: calc(100vw - 250px);
+    margin: 0 auto;
+    height: 200px;
+    border: 1px solid #000000;
+}
