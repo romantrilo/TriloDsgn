@@ -68,9 +68,11 @@ body.pace-done {
                     width: $button-size;
                     top:0;
                 }
-                &.x {
+                &.minus {
                     background: transparent;
                     @include transition(background 0s);
+                }
+                &.x {
                     &:before, &:after{
                         @include transform-origin(50%);
                         top:0;

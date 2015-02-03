@@ -19,8 +19,10 @@ define [
             $lines = $btn.find('.lines')
 
             removeClose = ->
+                $lines.removeClass 'minus'
                 $lines.removeClass 'close'
             addX = ->
+                $lines.addClass 'minus'
                 $lines.addClass 'x'
 
             if $lines.hasClass 'x'
