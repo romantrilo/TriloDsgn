@@ -37,12 +37,14 @@ body.pace-done {
         border-radius: $button-size/7;
         background: none;
         border: none;
+        &:focus {
+            outline: none;
+        }
         &:hover {
             opacity: 1;
         }
         &:active {
             transition: 0;
-            background: rgba(0,0,0,.1);
         }
         & .lines {
             @include line;
@@ -68,6 +70,7 @@ body.pace-done {
                 }
                 &.x {
                     background: transparent;
+                    @include transition(background 0s);
                     &:before, &:after{
                         @include transform-origin(50%);
                         top:0;

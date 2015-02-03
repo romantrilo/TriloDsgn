@@ -24,6 +24,7 @@ define [], ->
             date: 'Jan 2014'
             subtitle: 'experience'
             title: 'vintage web production'
+            urlAddition: 'start'
             description: 'start working as a web designer'
 
         }
@@ -46,6 +47,7 @@ define [], ->
             date: 'Jul 2014'
             subtitle: 'experience'
             title: 'vintage web production'
+            urlAddition: 'finish'
             description: 'finish working as a web designer'
         }
         {
