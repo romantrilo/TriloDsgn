@@ -37,13 +37,19 @@ a {
         letter-spacing: 0.2em;
     }
     &.middle {
-        letter-spacing: 0.35em;
+        letter-spacing: 0.3em;
     }
     &.wide {
-        letter-spacing: 0.6em;
+        letter-spacing: 0.4em;
     }
 }
 
 .side-color {
     color: $side-color;
+}
+
+#content {
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
 }

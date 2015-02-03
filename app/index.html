@@ -37,17 +37,15 @@
         <!-- Keep inline -->
 
         <style>
-            body, header {
+            body, main {
+                width: 100vw;
                 height: 100vh;
-            }
-
-            header {
-                position: relative;
-                overflow: hidden;
             }
 
             main {
                 z-index: 50;
+                position: relative;
+                overflow: hidden;
             }
 
             .pre-load.outer {
@@ -143,34 +141,6 @@
         </script>
 
         <main>
-            <header>
-                <div class="logo absolute top left">
-                    <a href="/">
-                        <h1 class="upper letter-spacing wide">trilo.</h1>
-                        <p class="upper letter-spacing middle side-color">dsgn</p>
-                    </a>
-                </div>
-                <div class="menu-btn absolute top right">
-                    <button class="lines-button" type="button" role="button" aria-label="Toggle Navigation">
-                        <span class="lines"></span>
-                    </button>
-                </div>
-                <div class="key-words absolute bottom left">
-                    <span class="side-color">web.</span>
-                    <br>
-                    <span class="side-color">interaction.</span>
-                    <br>
-                    <span class="side-color">design.</span>
-                </div>
-                <div class="contacts absolute bottom right">
-                    <a href="mailto:trilo.roman@gmail.com?Subject=Hi" class="upper letter-spacing small">email</a>
-                    <br>
-                    <a href="https://www.linkedin.com/in/trilo" class="upper letter-spacing small">linkedin</a>
-                    <br>
-                    <a href="https://www.behance.net/trilo" class="upper letter-spacing small">behance</a>
-                </div>
-            </header>
-            <div id="main_view"></div>
         </main>
 
         <!-- build:js scripts/main.js -->

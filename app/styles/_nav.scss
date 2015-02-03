@@ -1,3 +1,7 @@
+.nav {
+    z-index: 10;
+}
+
 .logo, .menu-btn, .key-words, .contacts {
     @include transition(all, 1s);
     @include transition-delay(0.5s);
@@ -18,8 +22,8 @@ body.pace-done {
         font-size: $big-font-size;
     }
     & p {
-        margin: 0.3em 0;
-        font-size: $base-font-size;
+        margin: 0.15em 0;
+        font-size: $mid-small-font-size;
         color: $grayish;
     }
 }
@@ -44,7 +48,7 @@ body.pace-done {
             opacity: 1;
         }
         &:active {
-            transition: 0;
+            transition: 0s;
         }
         & .lines {
             @include line;

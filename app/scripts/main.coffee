@@ -6,13 +6,11 @@ require.config
     jquery: '../bower_components/jquery/dist/jquery.min'
     backbone: '../bower_components/backbone/backbone'
     underscore: '../bower_components/underscore/underscore-min'
-    itemslide: 'vendor/itemslide'
-    jqueryScroll: 'vendor/jquery-scroll.js'
+    text: '../bower_components/text/text'
+    slick: '../bower_components/slick.js/slick/slick.min'
 
   shim: {
-      itemslide:
-          deps: ['jquery', 'jqueryScroll'],
-          exports: 'slider'
+
   }
 
 require [

@@ -1,8 +1,10 @@
 define [
 
-    'backbone'
+    'backbone',
+    'views/timeline'
+    'text!../templates/app.html'
 
-], (Backbone) ->
+], (Backbone, Timeline, template) ->
 
     'use strict'
 
@@ -10,9 +12,18 @@ define [
 
         el: $ 'main'
 
+        template: _.template(template)
+
         events: {
             'click .lines-button': 'toggleMenu'
         }
+
+        initialize: ->
+            @render()
+            @$content = @$el.find '#content'
+
+        render: ->
+            @$el.html @template()
 
         toggleMenu: () ->
             $btn = @$el.find '.lines-button'
@@ -33,7 +44,22 @@ define [
                 _.delay addX, 500
 
 
+        updateTimeline: (url) ->
+            if not @timeline
+                @initTimeline()
+            else if url
+                @timeline.update url
+            else
+                @timeline.toBeginning()
 
+        showContacts: ->
 
+        showAbout: ->
+
+        show404: ->
+
+        initTimeline: ->
+            @timeline = new Timeline {model: @model.get 'items'}
+            @$content.append @timeline.$el
 
     }
