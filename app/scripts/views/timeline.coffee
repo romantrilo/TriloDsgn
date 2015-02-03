@@ -49,7 +49,7 @@ define [
                         }
                     }
                 ]
-                touchThreshold: 10
+                touchThreshold: 20
             }
             @timeline.slick options
 
@@ -60,7 +60,7 @@ define [
                 slidesToScroll: 1
                 speed: 1000
                 asNavFor: '.timeline'
-                touchThreshold: 10
+                touchThreshold: 20
             }
             @covers = @$el.find '.covers'
             @covers.slick options

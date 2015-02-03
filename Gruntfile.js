@@ -187,11 +187,13 @@ module.exports = function (grunt) {
                     baseUrl: '.tmp/scripts',
                     optimize: 'none',
                     paths: {
-                        'templates': '../../.tmp/scripts/templates',
+                        //'templates': '../../.tmp/scripts/templates',
                         'jquery': '../../<%= yeoman.app %>/bower_components/jquery/dist/jquery',
-                        'underscore': '../../<%= yeoman.app %>/bower_components/lodash/dist/lodash',
+                        'underscore': '../../<%= yeoman.app %>/bower_components/underscore/underscore',
                         'backbone': '../../<%= yeoman.app %>/bower_components/backbone/backbone',
-                        'itemslide': '../../<%= yeoman.app %>/scripts/non_bower_vendor/itemslide'
+                        'text': '../../<%= yeoman.app %>/bower_components/text/text',
+                        'slick': '../../<%= yeoman.app %>/bower_components/slick/slick/slick'
+
                     },
                     // TODO: Figure out how to make sourcemaps work with grunt-usemin
                     // https://github.com/yeoman/grunt-usemin/issues/30
@@ -233,6 +235,8 @@ module.exports = function (grunt) {
                 files: {
                     '<%= yeoman.dist %>/styles/main.css': [
                         '.tmp/styles/{,*/}*.css',
+                        '<%= yeoman.app %>/bower_components/slick/slick/slick.css',
+                        '<%= yeoman.app %>/bower_components/slick/slick/slick-theme.css',
                         '<%= yeoman.app %>/styles/{,*/}*.css'
                     ]
                 }
@@ -270,12 +274,20 @@ module.exports = function (grunt) {
                     src: [
                         '*.{ico,txt}',
                         'images/{,*/}*.{webp,gif}',
-                        'styles/fonts/{,*/}*.*',
-                        'bower_components/sass-bootstrap/fonts/*.*'
+                        'styles/fonts/{,*/}*.*'
                     ]
-                    }, {
+                    },
+                    {
                         src: 'node_modules/apache-server-configs/dist/.htaccess',
                         dest: '<%= yeoman.dist %>/.htaccess'
+                    },
+                    {
+                        expand: true,
+                        cwd: '<%= yeoman.app %>',
+                        dest: '<%= yeoman.dist %>/../.tmp',
+                        src: [
+                            'scripts/templates/*.*'
+                        ]
                     }
                 ]
             }
@@ -377,13 +389,14 @@ module.exports = function (grunt) {
         'jst',
         'compass:dist',
         'useminPrepare',
+        'copy',
         'requirejs',
         'imagemin',
         'htmlmin',
         'concat',
         'cssmin',
         'uglify',
-        'copy',
+        //'copy',
         'rev',
         'usemin'
     ]);
