@@ -28,9 +28,6 @@ body.pace-done {
     @include translate(60px, -35px);
     padding-right: 2.3em;
     color: $main-color;
-    & i {
-        @include scale(2, 1.5);
-    }
 }
 
 .key-words {
