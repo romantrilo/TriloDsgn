@@ -53,3 +53,27 @@ a {
     height: 100vh;
     z-index: 0;
 }
+
+.font {
+    &.italic {
+        font-family: CrimsonTextItalic, serif;
+    }
+    &.regular {
+        font-family: FuturaDemiC, serif;
+    }
+    &.small {
+        font-size: $small-font-size;
+    }
+    &.mid-small {
+        font-size: $mid-small-font-size;
+    }
+    &.base {
+        font-size: $base-font-size;
+    }
+    &.large {
+        font-size: $large-font-size;
+    }
+    &.extra-large {
+        font-size: $extra-large-font-size;
+    }
+}

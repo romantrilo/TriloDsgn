@@ -10,7 +10,10 @@ require.config
     slick: '../bower_components/slick.js/slick/slick.min'
 
   shim: {
-
+      'slick': {
+          'deps': 'jquery'
+          'exports': 'slick'
+      }
   }
 
 require [

@@ -16,14 +16,11 @@ body.pace-done {
 
 .logo {
     @include translate(-180px, -75px);
-    font-family: FuturaDemiC, serif;
     & h1 {
         margin: 0;
-        font-size: $big-font-size;
     }
     & p {
         margin: 0.15em 0;
-        font-size: $mid-small-font-size;
         color: $grayish;
     }
 }
@@ -96,15 +93,11 @@ body.pace-done {
 
 .key-words {
     @include translate(-90px, 80px);
-    font-family: CrimsonTextItalic, serif;
-    font-size: $base-font-size;
     line-height: $base-line-height;
 }
 
 .contacts {
     @include translate(115px, 75px);
     text-align: right;
-    font-family: FuturaDemiC, serif;
-    font-size: $small-font-size;
     line-height: $base-line-height;
 }

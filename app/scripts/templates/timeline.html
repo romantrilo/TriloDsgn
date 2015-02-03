@@ -1,4 +1,17 @@
-<ul class="timeline">
-</ul>
-<ul class="covers">
-</ul>
+<div class="timeline">
+<% _.each(items, function(item) { %>
+    <div class="item">
+        <p class="font italic base side-color"><%= item.date %></p>
+        <p>|</p>
+        <% if (!item.isProject) { %>
+            <p class="font italic base side-color subtitle"><%= item.subtitle %></p>
+        <% } %>
+        <% var titleClassName = item.isProject ? 'extra-large' : 'small' %>
+        <p class="font regular upper <%= titleClassName %>"><%= item.title %></p>
+        <p class="font italic base"><%= item.description %></p>
+    </div>
+<% }) %>
+</div>
+
+<div class="covers">
+</div>

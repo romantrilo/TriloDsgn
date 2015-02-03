@@ -13,13 +13,13 @@ define [
 
         id: 'timeline'
 
-        template: _.template(template)
+        template: _.template template
 
         initialize: ->
             @render()
 
         render: ->
-            @$el.html @template(@model)
+            @$el.html @template {items: @model}
             @initTimeline()
             @initCovers()
             return @
