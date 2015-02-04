@@ -11,6 +11,7 @@ define [
         initialize: (app) ->
             @app = app.appView
             @urls = @app.model.get('urls')
+            @listenTo @app, 'timeline-update', @updateTimelineUrl
 
         routes: {
             '': 'init'
@@ -28,6 +29,9 @@ define [
                 @app.updateTimeline _.indexOf @urls, url
             else
                 @goTo404()
+
+        updateTimelineUrl: (index) ->
+            @navigate "timeline/#{@urls[index]}", {trigger: false}
 
         goToContacts: ->
             @app.showContacts()

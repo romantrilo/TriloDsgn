@@ -27,8 +27,12 @@ define [
             @$el.html @template {items: @model}
             @initCovers()
             @initTimeline()
-            #            this is the fix for slick messed up slider on initial load
+            # this is the fix for slick messed up slider on initial load
             $(window).trigger 'resize'
+
+            # hack for focus
+#            @timeline.click()
+
             return @
 
         initTimeline: ->
@@ -69,6 +73,7 @@ define [
             @timeline.slick('slickGoTo', index)
 
         _updateCovers: (event, slick, currentSlide, nextSlide) ->
-            @covers.slick('slickGoTo', nextSlide)
+            @covers.slick 'slickGoTo', nextSlide
+            @trigger 'timeline-update', nextSlide
 
     }

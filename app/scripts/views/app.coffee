@@ -62,5 +62,10 @@ define [
         initTimeline: ->
             @timeline = new Timeline {model: @model.get 'items'}
             @$content.append @timeline.$el
+            @listenTo @timeline, 'timeline-update', @triggerTimelineUpdate
+
+        triggerTimelineUpdate: (index) ->
+            @trigger 'timeline-update', index
+
 
     }
