@@ -18,9 +18,9 @@
         }
         & .middle-line {
             position: absolute;
-            top: -4px;
+            top: -5px;
             display: inline-block;
-            height: $small-font-size;
+            height: $small-font-size + 1;
             border-left: 2px solid $base-color;
         }
     }
@@ -62,7 +62,7 @@
             height: 100%;
             & .content {
                 height: 100%;
-                background-color: #d4d4d4;
+                background-color: $grayish;
             }
             & a {
                 top: 40%;
@@ -76,5 +76,11 @@
                 background-color: $white;
             }
         }
+    }
+}
+
+@media screen and (max-width: $small-screen-max) {
+    .covers-wrapper {
+        width: 100%;
     }
 }

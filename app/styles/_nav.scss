@@ -101,3 +101,10 @@ body.pace-done {
     text-align: right;
     line-height: $base-line-height;
 }
+
+
+@media screen and (max-width: $small-screen-max) {
+    .key-words, .contacts {
+        display: none;
+    }
+}
