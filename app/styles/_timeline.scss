@@ -45,9 +45,36 @@
     visibility: hidden;
 }
 
-.content {
+.covers-wrapper {
     width: calc(100vw - 250px);
     margin: 0 auto;
-    height: 200px;
-    border: 1px solid #000000;
+    .covers {
+        //    viewport height left after timeline margin - timeline height - timeline margin-bottom
+        height: calc(70vh - 110px - 30px);
+        & .slick-list {
+            height: 100%;
+            & .slick-track {
+                height: 100%;
+            }
+        }
+        & .cover {
+            position: relative;
+            height: 100%;
+            & .content {
+                height: 100%;
+                background-color: #d4d4d4;
+            }
+            & a {
+                top: 40%;
+                display: inline-block;
+                width: 170px;
+                margin: 0 auto;
+                padding: 12px 10px 12px 15px;
+                text-align: center;
+                font-weight: normal;
+                line-height: $base-line-height;
+                background-color: $white;
+            }
+        }
+    }
 }

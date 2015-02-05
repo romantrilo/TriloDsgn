@@ -29,10 +29,6 @@ define [
             @initTimeline()
             # this is the fix for slick messed up slider on initial load
             $(window).trigger 'resize'
-
-            # hack for focus
-#            @timeline.click()
-
             return @
 
         initTimeline: ->

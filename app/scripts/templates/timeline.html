@@ -21,11 +21,16 @@
     <% }) %>
 </div>
 
-<div class="covers">
-    <% _.each(items, function(item) { %>
+<div class="covers-wrapper">
+    <div class="covers">
+        <% _.each(items, function(item) { %>
         <div class="cover draggable">
             <div class="content"></div>
-            <button class="view-item">view <%= item.isProject ? 'casestudy' : 'about'%></button>
+            <a href="#"
+               class="view-item absolute left right font regular mid-small upper letter-spacing middle">
+                <span>view <%= item.isProject ? 'casestudy' : 'about'%></span>
+            </a>
         </div>
-    <% }) %>
+        <% }) %>
+    </div>
 </div>
