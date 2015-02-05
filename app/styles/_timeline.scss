@@ -46,8 +46,6 @@
 }
 
 .covers-wrapper {
-    width: calc(100vw - 250px);
-    margin: 0 auto;
     .covers {
         //    viewport height left after timeline margin - timeline height - timeline margin-bottom
         height: calc(70vh - 110px - 30px);
@@ -59,6 +57,7 @@
         }
         & .cover {
             position: relative;
+            padding: 0 125px;
             height: 100%;
             & .content {
                 height: 100%;
