@@ -32,11 +32,13 @@
         &.date {
             margin-bottom: $base-font-size + 2;
         }
-        &.subtitle, &.title, &.project {
-            margin-bottom: $small-font-size - 4;
+        &.subtitle {
+            margin-bottom: $small-font-size - 5;
+        } &.title {
+            margin-bottom: $small-font-size - 8;
         }
         &.title.project {
-            margin-bottom: 2px;
+            margin-bottom: 0;
         }
     }
 }
@@ -48,7 +50,7 @@
 .covers-wrapper {
     .covers {
         //    viewport height left after timeline margin - timeline height - timeline margin-bottom
-        height: calc(70vh - 110px - 30px);
+        height: calc(70vh - 105px - 30px);
         & .slick-list {
             height: 100%;
             & .slick-track {

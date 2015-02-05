@@ -28,7 +28,7 @@ body.pace-done {
 
 .menu-btn {
     @include translate(60px, -35px);
-    padding-right: $base-font-size*1.5;
+    padding-right: $large-font-size;
     color: $base-color;
     & .lines-button {
         display: inline-block;
@@ -101,9 +101,13 @@ body.pace-done {
 .contacts {
     @include translate(115px, 75px);
     text-align: right;
-    line-height: $base-line-height;
-    & a {
-        @include transition(color, $base-transition);
+    padding-bottom: $large-font-size - 2;
+    & p {
+        margin: 0;
+        line-height: $base-line-height;
+        a {
+            @include transition(color, $base-transition);
+        }
     }
 }
 
@@ -142,4 +146,10 @@ body.menu-opened {
         color: $menu-background;
         background-color: $white;
     }
+
+//    .contacts a:not(:last-child) {
+//        -webkit-margin-before:0em;
+//        -webkit-margin-after:0em;
+//    }
+
 }
