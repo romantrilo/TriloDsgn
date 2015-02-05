@@ -28,6 +28,7 @@ body.pace-done {
 
 .menu-btn {
     @include translate(60px, -35px);
+    padding-top: $base-font-size;
     padding-right: $large-font-size;
     color: $base-color;
     & .lines-button {
