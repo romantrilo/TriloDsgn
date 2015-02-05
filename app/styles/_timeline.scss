@@ -2,8 +2,47 @@
     text-align: center;
 }
 
-.timeline .subtitle {
-    text-transform: capitalize;
+.timeline {
+    position: relative;
+    margin-top: 30vh;
+    & .subtitle {
+        text-transform: capitalize;
+    }
+    & .line-wrapper {
+        position: relative;
+        font-size: 0;
+        & .left-line, & .right-line {
+            display: inline-block;
+            width: 50%;
+            border-top: 1px solid $grayish;
+        }
+        & .middle-line {
+            position: absolute;
+            top: -4px;
+            display: inline-block;
+            height: $small-font-size;
+            border-left: 2px solid $base-color;
+        }
+    }
+    & .item-wrapper {
+        margin-top: $large-font-size + 4;
+    }
+    & p {
+        margin: 0;
+        &.date {
+            margin-bottom: $base-font-size + 2;
+        }
+        &.subtitle, &.title, &.project {
+            margin-bottom: $small-font-size - 4;
+        }
+        &.title.project {
+            margin-bottom: 2px;
+        }
+    }
+}
+
+.item:first-child .left-line, .item:last-child .right-line {
+    visibility: hidden;
 }
 
 .content {

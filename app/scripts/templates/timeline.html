@@ -1,21 +1,29 @@
 <div class="timeline">
-<% _.each(items, function(item) { %>
-    <div class="item">
-        <p class="font italic base side-color"><%= item.date %></p>
-        <p>|</p>
-        <% if (!item.isProject) { %>
-            <p class="font italic base side-color subtitle"><%= item.subtitle %></p>
-        <% } %>
-        <% var titleClassName = item.isProject ? 'extra-large middle' : 'small' %>
-        <p class="font regular upper letter-spacing <%= titleClassName %>"><%= item.title %></p>
-        <p class="font italic base side-color"><%= item.description %></p>
-    </div>
-<% }) %>
+    <% _.each(items, function(item) { %>
+        <div class="item draggable">
+            <p class="date font italic base side-color"><%= item.date %></p>
+            <div class="line-wrapper">
+                <div class="inner">
+                    <div class="left-line"></div>
+                    <div class="right-line"></div>
+                </div>
+                <span class="middle-line"></span>
+            </div>
+            <div class="item-wrapper">
+                <% if (!item.isProject) { %>
+                <p class="subtitle font italic base side-color subtitle"><%= item.subtitle %></p>
+                <% } %>
+                <% var titleClassName = item.isProject ? 'extra-large middle project' : 'small experience' %>
+                <p class="title font regular upper letter-spacing <%= titleClassName %>"><%= item.title %></p>
+                <p class=" description font italic base side-color"><%= item.description %></p>
+            </div>
+        </div>
+    <% }) %>
 </div>
 
 <div class="covers">
     <% _.each(items, function(item) { %>
-        <div class="cover">
+        <div class="cover draggable">
             <div class="content"></div>
             <button class="view-item">view <%= item.isProject ? 'casestudy' : 'about'%></button>
         </div>
