@@ -3,7 +3,7 @@
 }
 
 .logo, .menu-btn, .key-words, .contacts {
-    @include transition(all, 1s);
+    @include transition(all, $base-transition * 2);
     @include transition-delay(0.5s);
     padding: $large-font-size $extra-large-font-size;
 }
@@ -120,12 +120,16 @@ body.menu-opened {
 
 
 @media screen and (max-width: $small-screen-max) {
-    .key-words, .contacts {
+    .key-words span, .contacts p{
         visibility: hidden;
+        opacity: 0;
+        @include transition(all, $base-transition * 1.5);
+        @include transition-delay(0s);
     }
     body.menu-opened {
-        & .key-words, & .contacts {
+        & .key-words span, & .contacts p {
             visibility: visible;
+            opacity: 1;
         }
     }
 
@@ -146,10 +150,4 @@ body.menu-opened {
         color: $menu-background;
         background-color: $white;
     }
-
-//    .contacts a:not(:last-child) {
-//        -webkit-margin-before:0em;
-//        -webkit-margin-after:0em;
-//    }
-
 }

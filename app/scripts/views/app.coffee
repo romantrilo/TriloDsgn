@@ -2,9 +2,12 @@ define [
 
     'backbone'
     'views/timeline'
+    'views/header'
+    'views/footer'
+    'views/menu'
     'text!../templates/app.html'
 
-], (Backbone, Timeline, template) ->
+], (Backbone, Timeline, Header, Footer, Menu, template) ->
 
     'use strict'
 
@@ -20,10 +23,22 @@ define [
 
         initialize: ->
             @render()
+            @initHeader()
+            @initFooter()
+            @initMenu()
             @$content = @$el.find '#content'
 
         render: ->
             @$el.html @template()
+
+        initHeader: ->
+            @$el.append new Header().render().$el
+
+        initFooter: ->
+            @$el.append new Footer().render().$el
+
+        initMenu: ->
+            @$el.append new Menu().render().$el
 
         toggleMenu: () ->
             $body = $ 'body'

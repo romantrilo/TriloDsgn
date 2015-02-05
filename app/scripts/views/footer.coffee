@@ -1,22 +1,20 @@
 define [
 
     'backbone'
-    'views/footer'
-    'text!../templates/menu.html'
+    'text!../templates/footer.html'
 
-], (Backbone, Footer, template) ->
+], (Backbone, template) ->
 
     'use strict'
 
     Backbone.View.extend {
 
-        className: 'menu'
+        className: 'footer'
 
         template: _.template(template)
 
         render: ->
             @$el.html @template()
-#            @$el.append new Footer().render().$el
             @
 
     }
