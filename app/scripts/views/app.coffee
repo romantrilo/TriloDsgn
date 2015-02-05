@@ -26,8 +26,11 @@ define [
             @$el.html @template()
 
         toggleMenu: () ->
+            $body = $ 'body'
             $btn = @$el.find '.lines-button'
             $lines = $btn.find('.lines')
+
+            $body.toggleClass 'menu-opened'
 
             removeClose = ->
                 $lines.removeClass 'minus'
@@ -66,6 +69,5 @@ define [
 
         triggerTimelineUpdate: (index) ->
             @trigger 'timeline-update', index
-
 
     }

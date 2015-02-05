@@ -1,0 +1,42 @@
+#menu {
+    width: 0;
+    height: 100vh;
+    z-index: 5;
+    overflow: hidden;
+    background-color: $menu-background;
+    @include transition(width, $base-transition * 2);
+    & .menu-wrapper {
+        & a {
+            display: inline-block;
+            margin-bottom: $large-font-size;
+            color: $white;
+        }
+    }
+}
+
+body.menu-opened #menu {
+    width: 100vw;
+}
+
+@media screen and (max-width: $small-screen-max) {
+    body #menu .menu-wrapper {
+        margin: 25vh $extra-large-font-size;
+        & a {
+            font-size: $menu-mobile-font-sze;
+        }
+    }
+
+}
+
+@media screen and (min-width: $middle-screen-min) {
+    body #menu .menu-wrapper {
+        margin: 30vh 125px;
+        & a {
+            @include transition(all, $base-transition);
+            &:hover {
+                color: $menu-background;
+                background-color: $white;
+            }
+        }
+    }
+}

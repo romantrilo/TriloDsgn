@@ -76,6 +76,9 @@ a {
     &.extra-large {
         font-size: $extra-large-font-size;
     }
+    &.menu {
+        font-size: $menu-link-font-size;
+    }
 }
 
 .draggable {

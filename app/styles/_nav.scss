@@ -5,7 +5,7 @@
 .logo, .menu-btn, .key-words, .contacts {
     @include transition(all, 1s);
     @include transition-delay(0.5s);
-    padding: $base-font-size*1.2 $base-font-size*2;
+    padding: $large-font-size $extra-large-font-size;
 }
 
 body.pace-done {
@@ -18,6 +18,7 @@ body.pace-done {
     @include translate(-180px, -75px);
     & h1 {
         margin: 0;
+        @include transition(color, $base-transition * 2);
     }
     & p {
         margin: 0.15em 0;
@@ -75,9 +76,10 @@ body.pace-done {
                 }
                 &.x {
                     &:before, &:after{
-                        @include transform-origin(50%);
                         top:0;
                         width: $button-size;
+                        background-color: $white;
+                        @include transform-origin(50%);
                     }
                     &:before{
                         transform: rotate3d(0,0,1,45deg);
@@ -100,11 +102,44 @@ body.pace-done {
     @include translate(115px, 75px);
     text-align: right;
     line-height: $base-line-height;
+    & a {
+        @include transition(color, $base-transition);
+    }
+}
+
+
+body.menu-opened {
+    & .logo h1, & .contacts a {
+        color: $white;
+    }
 }
 
 
 @media screen and (max-width: $small-screen-max) {
     .key-words, .contacts {
-        display: none;
+        visibility: hidden;
+    }
+    body.menu-opened {
+        & .key-words, & .contacts {
+            visibility: visible;
+        }
+    }
+
+    .contacts {
+        right: auto !important;
+        left: 0;
+        // menu wrapper margin + menu wrapper height
+        top: calc(25vh + 225px) !important;
+        font-size: $base-font-size !important;
+        letter-spacing: 0.4em !important;
+        line-height: 24px !important;
+        text-align: left !important;
+    }
+}
+
+@media screen and (min-width: $middle-screen-min) {
+    body.menu-opened .contacts a:hover {
+        color: $menu-background;
+        background-color: $white;
     }
 }

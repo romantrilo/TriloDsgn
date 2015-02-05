@@ -16,7 +16,7 @@ define [
         routes: {
             '': 'init'
             'timeline/:item': 'updateTimeline'
-            'contacts': 'goToContacts'
+            'contact': 'goToContacts'
             'about': 'goToAbout'
             '*404': 'goTo404'
         }
@@ -25,8 +25,10 @@ define [
             @updateTimeline('')
 
         updateTimeline: (url) ->
-            if url == '' or _.contains @urls, url
-                @app.updateTimeline _.indexOf @urls, url
+            url = url.toLowerCase()
+            if _.contains(@urls, url) or url == ''
+                index = if url == '' then 0 else _.indexOf @urls, url
+                @app.updateTimeline index
             else
                 @goTo404()
 

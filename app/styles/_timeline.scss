@@ -79,7 +79,7 @@
 }
 
 @media screen and (max-width: $small-screen-max) {
-    .covers-wrapper {
-        width: 100%;
+    .cover {
+        padding: 0 !important;
     }
 }
