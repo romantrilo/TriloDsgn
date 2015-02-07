@@ -21,6 +21,7 @@
             Designer, web designer, Ukraine, Kyiv, Kiev, Ураина, Україна, Київ, Киев, портфолио">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
         <meta name="author" content="Illia Abdullaiev | illia.abdullaiev@gmail.com">
 
         <!-- build:css(.tmp) styles/main.css -->
@@ -56,10 +57,10 @@
                 height: 100vh;
                 background-color: #ffffff;
                 z-index: 100;
-                -webkit-transition: all 0.5s 0.5s;
-                -moz-transition: all 0.5s 0.5s;
-                -o-transition: all 0.5s 0.5s;
-                transition: all 0.5s 0.5s;
+                -webkit-transition: all 0.5s;
+                -moz-transition: all 0.5s;
+                -o-transition: all 0.5s;
+                transition: all 0.5s;
             }
 
             .pre-load.fade-out {
@@ -88,13 +89,15 @@
                 left: 0;
                 color: rgba(175, 175, 175, 0.60);
             }
+
             .pre-load.background {
                 position: absolute;
                 top: 0;
                 left: 0;
                 overflow: hidden;
+                z-index: 5;
                 width: 0;
-                color: #000000;
+                color: #333333;
                 white-space: nowrap;
                 -webkit-transition: width 0.2s;
                 transition: width 0.3s;
@@ -126,7 +129,7 @@
                     if (body.classList.contains("pace-done")) {
                         preLoader.style.width = '100%';
                         clearInterval(repeatInterval);
-                        onDownload();
+                        setTimeout(onDownload, 500);
                         return;
                     }
 
@@ -134,7 +137,10 @@
                 }
 
                 function onDownload () {
-                    var preLoadContainer = document.getElementsByClassName('outer')[0];
+                    var preLoadContainer = document.getElementsByClassName('outer')[0],
+                        body = document.getElementsByTagName('body')[0];
+
+                    body.className = body.className + ' loader-done';
                     preLoadContainer.className = preLoadContainer.className + ' fade-out';
                 }
 

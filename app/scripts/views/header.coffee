@@ -9,7 +9,7 @@ define [
 
     Backbone.View.extend {
 
-        className: 'header'
+        tagName: 'header'
 
         template: _.template(template)
 

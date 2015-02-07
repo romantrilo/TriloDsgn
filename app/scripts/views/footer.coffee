@@ -9,7 +9,7 @@ define [
 
     Backbone.View.extend {
 
-        className: 'footer'
+        tagName: 'footer'
 
         template: _.template(template)
 

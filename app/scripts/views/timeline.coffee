@@ -16,6 +16,7 @@ define [
 
         events: {
             'beforeChange .timeline': '_updateCovers'
+            'click .view-item': '_viewItem'
         }
 
         template: _.template template
@@ -71,5 +72,8 @@ define [
         _updateCovers: (event, slick, currentSlide, nextSlide) ->
             @covers.slick 'slickGoTo', nextSlide
             @trigger 'timeline-update', nextSlide
+
+        _viewItem: ->
+            @$el.find('.timeline').toggleClass 'fade-out'
 
     }

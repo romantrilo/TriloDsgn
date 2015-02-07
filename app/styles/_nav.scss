@@ -4,11 +4,10 @@
 
 .logo, .menu-btn, .key-words, .contacts {
     @include transition(all, $base-transition * 2);
-    @include transition-delay(0.5s);
     padding: $large-font-size $extra-large-font-size;
 }
 
-body.pace-done {
+body.loader-done {
     & .logo, & .menu-btn, & .key-words, & .contacts {
         @include translate(0, 0);
     }
@@ -26,74 +25,6 @@ body.pace-done {
     }
 }
 
-.menu-btn {
-    @include translate(60px, -35px);
-    padding-top: $base-font-size;
-    padding-right: $large-font-size;
-    color: $base-color;
-    & .lines-button {
-        display: inline-block;
-        padding-bottom: 0.3em;
-        transition: all $base-transition linear;
-        cursor: pointer;
-        user-select: none;
-        border-radius: $button-size/7;
-        background: none;
-        border: none;
-        &:focus {
-            outline: none;
-        }
-        &:hover {
-            opacity: 1;
-        }
-        &:active {
-            transition: 0s;
-        }
-        & .lines {
-            @include line;
-            position: relative;
-            &:before, &:after {
-                @include line;
-                @include transform-origin(center);
-                position: absolute;
-                left:0;
-                content: '';
-            }
-            &:before {
-                top: $button-size/4;
-            }
-            &:after {
-                top: -$button-size/4;
-            }
-            &.close {
-                &:before, &:after{
-                    transform: none;
-                    width: $button-size;
-                    top:0;
-                }
-                &.minus {
-                    background: transparent;
-                    @include transition(background 0s);
-                }
-                &.x {
-                    &:before, &:after{
-                        top:0;
-                        width: $button-size;
-                        background-color: $white;
-                        @include transform-origin(50%);
-                    }
-                    &:before{
-                        transform: rotate3d(0,0,1,45deg);
-                    }
-                    &:after{
-                        transform: rotate3d(0,0,1,-45deg);
-                    }
-                }
-            }
-        }
-    }
-}
-
 .key-words {
     @include translate(-90px, 80px);
     line-height: $base-line-height;
@@ -101,17 +32,13 @@ body.pace-done {
 
 .contacts {
     @include translate(115px, 75px);
-    text-align: right;
-    padding-bottom: $large-font-size - 2;
     & p {
         margin: 0;
-        line-height: $base-line-height;
         a {
             @include transition(color, $base-transition);
         }
     }
 }
-
 
 body.menu-opened {
     & .logo h1, & .contacts a {
@@ -135,14 +62,14 @@ body.menu-opened {
     }
 
     .contacts {
-        right: auto !important;
+        right: auto;
         left: 0;
         // menu wrapper margin + menu wrapper height
-        top: calc(25vh + 225px) !important;
-        font-size: $base-font-size !important;
-        letter-spacing: 0.4em !important;
-        line-height: 24px !important;
-        text-align: left !important;
+        top: calc(25vh + 225px);
+        font-size: $base-font-size;
+        letter-spacing: 0.4em;
+        line-height: 24px;
+        text-align: left;
     }
 }
 
@@ -150,5 +77,13 @@ body.menu-opened {
     body.menu-opened .contacts a:hover {
         color: $menu-background;
         background-color: $white;
+    }
+
+    .contacts {
+        text-align: right;
+        padding-bottom: $large-font-size - 2;
+        & p {
+            line-height: $base-line-height;
+        }
     }
 }

@@ -1,0 +1,67 @@
+.menu-btn {
+    @include translate(60px, -35px);
+    padding-top: $base-font-size;
+    padding-right: $large-font-size;
+    color: $base-color;
+    & .lines-button {
+        display: inline-block;
+        padding-bottom: 0.3em;
+        @include transition(all, $base-transition, linear);
+        cursor: pointer;
+        user-select: none;
+        border-radius: $button-size/7;
+        background: none;
+        border: none;
+        &:focus {
+            outline: none;
+        }
+        &:hover {
+            opacity: 1;
+        }
+        &:active {
+            transition: 0s;
+        }
+        & .lines {
+            @include line;
+            position: relative;
+            &:before, &:after {
+                @include line;
+                @include transform-origin(center);
+                position: absolute;
+                left:0;
+                content: '';
+            }
+            &:before {
+                top: $button-size/4;
+            }
+            &:after {
+                top: -$button-size/4;
+            }
+            &.close {
+                &:before, &:after{
+                    transform: none;
+                    width: $button-size;
+                    top:0;
+                }
+                &.minus {
+                    background: transparent;
+                    @include transition(background 0s);
+                }
+                &.x {
+                    &:before, &:after{
+                        top:0;
+                        width: $button-size;
+                        background-color: $white;
+                        @include transform-origin(center);
+                    }
+                    &:before{
+                        @include rotate(45deg);
+                    }
+                    &:after{
+                        @include rotate(-45deg);
+                    }
+                }
+            }
+        }
+    }
+}

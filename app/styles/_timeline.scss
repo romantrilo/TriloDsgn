@@ -2,9 +2,24 @@
     text-align: center;
 }
 
+body.loader-done .timeline {
+    opacity: 1;
+    @include scale(1);
+}
+
 .timeline {
     position: relative;
     margin-top: 30vh;
+    opacity: 0;
+    @include scale(3);
+    @include transition(all $base-transition * 2);
+    &.fade-out {
+        opacity: 0 !important;
+        -webkit-transform: scale(3) !important;
+        -ms-transform: scale(3) !important;
+        -o-transform: scale(3) !important;
+        transform: scale(3) !important;
+    }
     & .subtitle {
         text-transform: capitalize;
     }
