@@ -16,6 +16,7 @@ define [
 
         events: {
             'beforeChange .timeline': '_updateCovers'
+            'click .item': '_itemOnClick'
             'click .view-item': '_viewItem'
         }
 
@@ -75,5 +76,12 @@ define [
 
         _viewItem: ->
             @$el.find('.timeline').toggleClass 'fade-out'
+
+        _itemOnClick: (event) ->
+            $targetIndex = $(event.target).closest('.item').data 'slick-index'
+            $currentCenterIndex = @$el.find('.item.slick-center').data 'slick-index'
+
+            if $targetIndex != $currentCenterIndex
+                @timeline.slick 'slickGoTo', $targetIndex
 
     }
