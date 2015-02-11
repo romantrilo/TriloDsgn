@@ -17,6 +17,7 @@ define [
         events: {
             'beforeChange .timeline': '_updateCovers'
             'click .item': '_itemOnClick'
+            'click .slick-center': '_viewItem'
             'click .view-item': '_viewItem'
         }
 
@@ -70,18 +71,24 @@ define [
         update: (index) ->
             @timeline.slick('slickGoTo', index)
 
+        fadeIn: ->
+            @$el.find('.timeline').removeClass 'fade-out'
+
         _updateCovers: (event, slick, currentSlide, nextSlide) ->
             @covers.slick 'slickGoTo', nextSlide
             @trigger 'timeline-update', nextSlide
 
         _viewItem: ->
-            @$el.find('.timeline').toggleClass 'fade-out'
+            @$el.find('.timeline').addClass 'fade-out'
+#            TODO
 
         _itemOnClick: (event) ->
-            $targetIndex = $(event.target).closest('.item').data 'slick-index'
-            $currentCenterIndex = @$el.find('.item.slick-center').data 'slick-index'
+            $targetItem = $(event.target).closest('.item')
 
-            if $targetIndex != $currentCenterIndex
-                @timeline.slick 'slickGoTo', $targetIndex
+            if $targetItem.hasClass('slick-center')
+                return
+
+            $targetIndex = $targetItem.data 'slick-index'
+            @timeline.slick 'slickGoTo', $targetIndex
 
     }

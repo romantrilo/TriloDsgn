@@ -18,6 +18,7 @@ define [
         template: _.template(template)
 
         events: {
+            'click .logo-clickable': '_showTimeline'
             'click .lines-button': 'toggleMenu'
         }
 
@@ -85,4 +86,7 @@ define [
         triggerTimelineUpdate: (index) ->
             @trigger 'timeline-update', index
 
+
+        _showTimeline: ->
+            @timeline.fadeIn()
     }

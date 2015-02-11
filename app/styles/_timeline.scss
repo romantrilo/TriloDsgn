@@ -3,22 +3,22 @@
 }
 
 body.loader-done .timeline {
-    opacity: 1;
-    @include scale(1);
+    @include translate(0, 0);
 }
 
 .timeline {
     position: relative;
     margin-top: 30vh;
-    opacity: 0;
-    @include scale(3);
+    @include translate(0, calc(-30vh - 100%));
     @include transition(all $base-transition * 2);
     &.fade-out {
-        opacity: 0 !important;
-        -webkit-transform: scale(3) !important;
-        -ms-transform: scale(3) !important;
-        -o-transform: scale(3) !important;
-        transform: scale(3) !important;
+        -webkit-transform: translateY(calc(-30vh - 100%)) !important;
+        -ms-transform: translateY(calc(-30vh - 100%)) !important;
+        -o-transform: translateY(calc(-30vh - 100%)) !important;
+        transform: translateY(calc(-30vh - 100%)) !important;
+    }
+    & .item {
+        @include transition(width, $base-transition * 2);
     }
     & .subtitle {
         text-transform: capitalize;
@@ -62,7 +62,13 @@ body.loader-done .timeline {
     visibility: hidden;
 }
 
+.timeline.fade-out + .covers-wrapper {
+    @include translate(0, 100%);
+}
+
 .covers-wrapper {
+    @include translate(0, 0);
+    @include transition(all, $base-transition * 2);
     .covers {
         //    viewport height left after timeline margin - timeline height - timeline margin-bottom
         height: calc(70vh - 105px - 30px);
@@ -80,7 +86,7 @@ body.loader-done .timeline {
                 height: 100%;
                 background-color: $grayish;
             }
-            & a {
+            & p {
                 top: 40%;
                 display: inline-block;
                 width: 170px;
@@ -90,6 +96,7 @@ body.loader-done .timeline {
                 font-weight: normal;
                 line-height: $base-line-height;
                 background-color: $white;
+                cursor: pointer;
             }
         }
     }
