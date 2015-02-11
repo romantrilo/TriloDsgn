@@ -1,28 +1,14 @@
 @font-face {
     font-family: FuturaDemiC;
-    src: url('/styles/fonts/futurademic/futurademic-webfont-webfont.eot');
-    src: url('/styles/fonts/futurademic/futurademic-webfont-webfont.eot?#iefix') format('embedded-opentype'),
-    url('/styles/fonts/futurademic/futurademic-webfont-webfont.woff2') format('woff2'),
-    url('/styles/fonts/futurademic/futurademic-webfont-webfont.woff') format('woff'),
-    url('/styles/fonts/futurademic/futurademic-webfont-webfont.ttf') format('truetype'),
-    url('/styles/fonts/futurademic/futurademic-webfont-webfont.svg#futurademicregular') format('svg');
+    src: url('/styles/fonts/FuturaDemiC/FuturaDemiC.eot?#iefix') format('embedded-opentype'), url('/styles/fonts/FuturaDemiC/FuturaDemiC.woff') format('woff'), url('/styles/fonts/FuturaDemiC/FuturaDemiC.ttf')  format('truetype'), url('/styles/fonts/FuturaDemiC/FuturaDemiC.svg#FuturaDemiC') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
-
-
 
 
 @font-face {
     font-family: CrimsonTextItalic;
-    src: url('/styles/fonts/crimsontextitalic/crimsontext-italic-webfont-webfont.eot');
-    src: url('/styles/fonts/crimsontextitalic/crimsontext-italic-webfont-webfont.eot?#iefix') format('embedded-opentype'),
-    url('/styles/fonts/crimsontextitalic/crimsontext-italic-webfont-webfont.woff2') format('woff2'),
-    url('/styles/fonts/crimsontextitalic/crimsontext-italic-webfont-webfont.woff') format('woff'),
-    url('/styles/fonts/crimsontextitalic/crimsontext-italic-webfont-webfont.ttf') format('truetype'),
-    url('/styles/fonts/crimsontextitalic/crimsontext-italic-webfont-webfont.svg#crimson_textitalic') format('svg');
+    src: url('/styles/fonts/CrimsonText-Italic/CrimsonText-Italic.eot?#iefix') format('embedded-opentype'),  url('/styles/fonts/CrimsonText-Italic/CrimsonText-Italic.woff') format('woff'), url('/styles/fonts/CrimsonText-Italic/CrimsonText-Italic.ttf')  format('truetype'), url('/styles/fonts/CrimsonText-Italic/CrimsonText-Italic.svg#CrimsonText-Italic') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
