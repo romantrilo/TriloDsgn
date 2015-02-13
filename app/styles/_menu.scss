@@ -10,6 +10,7 @@
             display: inline-block;
             margin-bottom: $large-font-size;
             color: $white;
+            @include cursor-pointer;
         }
     }
 }

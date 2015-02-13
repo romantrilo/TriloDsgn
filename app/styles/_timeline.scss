@@ -101,7 +101,7 @@ body.loader-done {
                 font-weight: normal;
                 line-height: $base-line-height;
                 background-color: $white;
-                cursor: pointer;
+                @include cursor-pointer;
             }
         }
     }

@@ -6,3 +6,15 @@
     border-radius: $button-size/14;
     transition: $base-transition;
 }
+
+@mixin cursor-pointer {
+    cursor: url(../images/cursors/Pointer.png) 5 0, pointer;
+}
+
+@mixin cursor-drag {
+    cursor: url(../images/cursors/Drag1.png) 14 5, pointer;
+}
+
+@mixin cursor-dragging {
+    cursor: url(../images/cursors/Drag2.png) 14 5, pointer;
+}

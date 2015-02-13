@@ -6,12 +6,12 @@
     & .lines-button {
         display: inline-block;
         padding-bottom: 0.3em;
-        @include transition(all, $base-transition, linear);
-        cursor: pointer;
         user-select: none;
         border-radius: $button-size/7;
         background: none;
         border: none;
+        @include cursor-pointer;
+        @include transition(all, $base-transition, linear);
         &:focus {
             outline: none;
         }

@@ -16,7 +16,7 @@ body.loader-done {
 .logo {
     @include translate(-180px, -75px);
     & .logo-clickable {
-        cursor: pointer;
+        @include cursor-pointer;
         & h1 {
             margin: 0;
             @include transition(color, $base-transition * 2);
@@ -39,6 +39,7 @@ body.loader-done {
         margin: 0;
         a {
             @include transition(color, $base-transition);
+            @include cursor-pointer;
         }
     }
 }

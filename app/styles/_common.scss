@@ -86,10 +86,12 @@ a {
     cursor: grab;
     cursor: -moz-grab;
     cursor: -webkit-grab;
+    @include cursor-drag;
     &:active {
         cursor: grabbing;
         cursor: -moz-grabbing;
         cursor: -webkit-grabbing;
+        @include cursor-dragging;
     }
 }
 
