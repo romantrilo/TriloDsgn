@@ -8,7 +8,6 @@
     & .menu-wrapper {
         & a {
             display: inline-block;
-            margin-bottom: $large-font-size;
             color: $white;
             @include cursor-pointer;
         }
@@ -23,6 +22,7 @@ body.menu-opened #menu {
     body #menu .menu-wrapper {
         margin: 25vh $extra-large-font-size;
         & a {
+            margin-bottom: $large-font-size;
             font-size: $menu-mobile-font-sze;
         }
     }
@@ -31,8 +31,13 @@ body.menu-opened #menu {
 
 @media screen and (min-width: $middle-screen-min) {
     body #menu .menu-wrapper {
-        margin: 30vh 125px;
+        margin: 38vh 130px;
         & a {
+            height: 38px;
+            line-height: 47px;
+            margin-bottom: $extra-large-font-size;
+            padding-left: $menu-link-font-size / 2;
+            padding-right: $menu-link-font-size / 2;
             @include transition(all, $base-transition);
             &:hover {
                 color: $menu-background;

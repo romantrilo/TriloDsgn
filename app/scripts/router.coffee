@@ -15,6 +15,7 @@ define [
 
         routes: {
             '': 'init'
+            'work': 'showTimeline'
             'timeline/:item': 'updateTimeline'
             'contact': 'goToContacts'
             'about': 'goToAbout'
@@ -23,17 +24,27 @@ define [
 
         init: ->
             @updateTimeline('')
+            @_updateCurrentTimelineIndex 0
 
         updateTimeline: (url) ->
-            url = url.toLowerCase()
-            if _.contains(@urls, url) or url == ''
-                index = if url == '' then 0 else _.indexOf @urls, url
+            url = if url then url.toLowerCase()
+            if _.contains(@urls, url) or !url
+                index = if url then _.indexOf @urls, url else 0
                 @app.updateTimeline index
+                @_updateCurrentTimelineIndex index
             else
                 @goTo404()
 
         updateTimelineUrl: (index) ->
             @navigate "timeline/#{@urls[index]}", {trigger: false}
+            @_updateCurrentTimelineIndex index
+
+        showTimeline: ->
+            @app.showTimeline()
+            @updateTimelineUrl(@app.model.get 'currentTimelineItem')
+
+        _updateCurrentTimelineIndex: (index) ->
+            @app.model.set {'currentTimelineItem': index}
 
         goToContacts: ->
             @app.showContacts()

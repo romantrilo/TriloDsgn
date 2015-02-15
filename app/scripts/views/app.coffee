@@ -18,7 +18,7 @@ define [
         template: _.template(template)
 
         events: {
-            'click .logo-clickable': '_showTimeline'
+            'click .logo-clickable': 'showTimeline'
             'click .lines-button': 'toggleMenu'
         }
 
@@ -79,7 +79,8 @@ define [
         show404: ->
 
         initTimeline: ->
-            @timeline = new Timeline {model: @model.get 'items'}
+            @closeMenu()
+            @timeline = new Timeline {model: @model.get 'items', app: this}
             @$content.append @timeline.$el
             @listenTo @timeline, 'timeline-update', @triggerTimelineUpdate
 
@@ -87,6 +88,15 @@ define [
             @trigger 'timeline-update', index
 
 
-        _showTimeline: ->
+        showTimeline: ->
+            @closeMenu()
             @timeline.fadeIn()
+
+        _isMenuOpened: ->
+            $('body').hasClass('menu-opened')
+
+        closeMenu: ->
+            if @_isMenuOpened()
+                @toggleMenu()
+
     }
