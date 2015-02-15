@@ -36,8 +36,8 @@ body.menu-opened #menu {
             height: 38px;
             line-height: 47px;
             margin-bottom: $extra-large-font-size;
-            padding-left: $menu-link-font-size / 2;
-            padding-right: $menu-link-font-size / 2;
+            padding-left: $menu-link-font-size / 2.5;
+            padding-right: $menu-link-font-size / 3.9;
             @include transition(all, $base-transition);
             &:hover {
                 color: $menu-background;

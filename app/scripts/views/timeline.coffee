@@ -87,7 +87,6 @@ define [
 
             _.defer flagToDefault
 
-
         _viewItem: () ->
             unless @coversUpdated
                 @$el.find('.timeline').addClass 'fade-out'

@@ -19,7 +19,10 @@ body.loader-done {
         @include cursor-pointer;
         & h1 {
             margin: 0;
-            @include transition(color, $base-transition * 2);
+            @include transition(color, $base-transition / 2);
+            &.white {
+                color: $white;
+            }
         }
         & p {
             margin: 0.15em 0;
@@ -35,18 +38,15 @@ body.loader-done {
 
 .contacts {
     @include translate(115px, 75px);
+    &.white a {
+        color: $white;
+    }
     & p {
         margin: 0;
         a {
             @include transition(color, $base-transition);
             @include cursor-pointer;
         }
-    }
-}
-
-body.menu-opened {
-    & .logo h1, & .contacts a {
-        color: $white;
     }
 }
 

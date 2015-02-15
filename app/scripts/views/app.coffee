@@ -45,22 +45,36 @@ define [
             $body = $ 'body'
             $btn = @$el.find '.lines-button'
             $lines = $btn.find('.lines')
+            $logo = @$el.find '.logo h1'
+            $contacts = @$el.find '.contacts'
 
             $body.toggleClass 'menu-opened'
 
-            removeClose = ->
-                $lines.removeClass 'minus'
-                $lines.removeClass 'close'
-            addX = ->
+            onOpen = ->
                 $lines.addClass 'minus'
                 $lines.addClass 'x'
 
+            onClose = ->
+                $lines.removeClass 'minus'
+                $lines.removeClass 'close'
+
+            logoOnClose = ->
+                $logo.removeClass 'white'
+
+            contactOnOpen = ->
+                $contacts.addClass 'white'
+
             if $lines.hasClass 'x'
                 $lines.removeClass 'x'
-                _.delay removeClose, 500
+                $contacts.removeClass 'white'
+                _.delay onClose, 500
+                _.delay logoOnClose, 700
+
             else
+                $logo.addClass 'white'
                 $lines.addClass 'close'
-                _.delay addX, 500
+                _.delay onOpen, 500
+                _.delay contactOnOpen, 700
 
 
         updateTimeline: (index) ->
