@@ -16,7 +16,6 @@ define [
 
         events: {
             'beforeChange .timeline': '_updateCovers'
-            'click .item': '_itemOnClick'
             'click .slick-center': '_viewItem'
             'click .view-item': '_viewItem'
         }
@@ -75,20 +74,23 @@ define [
             @$el.find('.timeline').removeClass 'fade-out'
 
         _updateCovers: (event, slick, currentSlide, nextSlide) ->
+            if currentSlide == nextSlide
+                return
+
             @covers.slick 'slickGoTo', nextSlide
             @trigger 'timeline-update', nextSlide
 
-        _viewItem: ->
-            @$el.find('.timeline').addClass 'fade-out'
+            @coversUpdated = true
+
+            flagToDefault = =>
+                @coversUpdated = false
+
+            _.defer flagToDefault
+
+
+        _viewItem: () ->
+            unless @coversUpdated
+                @$el.find('.timeline').addClass 'fade-out'
 #            TODO
-
-        _itemOnClick: (event) ->
-            $targetItem = $(event.target).closest('.item')
-
-            if $targetItem.hasClass('slick-center')
-                return
-
-            $targetIndex = $targetItem.data 'slick-index'
-            @timeline.slick 'slickGoTo', $targetIndex
 
     }
