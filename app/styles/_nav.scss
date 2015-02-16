@@ -31,6 +31,25 @@ body.loader-done {
     }
 }
 
+.return {
+    right: 65px;
+    padding: 22px;
+    opacity: 0;
+    visibility: hidden;
+    @include transition(all, $base-transition);
+    &.visible {
+        opacity: 1;
+        visibility: visible;
+    }
+    & p {
+        margin: 0;
+        @include cursor-pointer;
+    }
+    &.white p {
+        color: $white;
+    }
+}
+
 .key-words {
     @include translate(-90px, 80px);
     line-height: $base-line-height;

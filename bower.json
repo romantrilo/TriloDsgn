@@ -9,7 +9,7 @@
     "requirejs-text": "~2.0.10",
     "pace": "~1.0.2",
     "text": "~2.0.13",
-    "slick.js": "~1.4.0"
+    "slick.js": "~1.4.1"
   },
   "devDependencies": {}
 }

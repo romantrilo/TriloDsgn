@@ -17,11 +17,6 @@ define [
 
         template: _.template(template)
 
-        events: {
-            'click .logo-clickable': 'showTimeline'
-            'click .lines-button': 'toggleMenu'
-        }
-
         initialize: ->
             @render()
             @initHeader()
@@ -33,48 +28,22 @@ define [
             @$el.html @template()
 
         initHeader: ->
-            @$el.append new Header().render().$el
+            @header = new Header {
+                app: @
+            }
+            @$el.append @header.render().$el
 
         initFooter: ->
-            @$el.append new Footer().render().$el
+            @footer = new Footer {
+                app: @
+            }
+            @$el.append @footer.render().$el
 
         initMenu: ->
-            @$el.append new Menu().render().$el
-
-        toggleMenu: () ->
-            $body = $ 'body'
-            $btn = @$el.find '.lines-button'
-            $lines = $btn.find('.lines')
-            $logo = @$el.find '.logo h1'
-            $contacts = @$el.find '.contacts'
-
-            $body.toggleClass 'menu-opened'
-
-            onOpen = ->
-                $lines.addClass 'minus'
-                $lines.addClass 'x'
-
-            onClose = ->
-                $lines.removeClass 'minus'
-                $lines.removeClass 'close'
-
-            logoOnClose = ->
-                $logo.removeClass 'white'
-
-            contactOnOpen = ->
-                $contacts.addClass 'white'
-
-            if $lines.hasClass 'x'
-                $lines.removeClass 'x'
-                $contacts.removeClass 'white'
-                _.delay onClose, 500
-                _.delay logoOnClose, 700
-
-            else
-                $logo.addClass 'white'
-                $lines.addClass 'close'
-                _.delay onOpen, 500
-                _.delay contactOnOpen, 700
+            @menu = new Menu {
+                app: @
+            }
+            @$el.append @menu.render().$el
 
         updateTimeline: (index) ->
             if not @timeline
@@ -92,24 +61,15 @@ define [
         show404: ->
 
         initTimeline: ->
-            @closeMenu()
-            @timeline = new Timeline {model: @model.get 'items', app: this}
+            @menu.close()
+            @timeline = new Timeline {
+                model: @model.get 'items'
+                app: @
+            }
             @$content.append @timeline.$el
             @listenTo @timeline, 'timeline-update', @triggerTimelineUpdate
 
         triggerTimelineUpdate: (index) ->
             @trigger 'timeline-update', index
-
-
-        showTimeline: ->
-            @closeMenu()
-            @timeline.fadeIn()
-
-        _isMenuOpened: ->
-            $('body').hasClass('menu-opened')
-
-        closeMenu: ->
-            if @_isMenuOpened()
-                @toggleMenu()
 
     }

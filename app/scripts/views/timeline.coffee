@@ -16,13 +16,15 @@ define [
 
         events: {
             'beforeChange .timeline': '_updateCovers'
-            'click .slick-center': '_viewItem'
-            'click .view-item': '_viewItem'
+            'click .slick-center': 'viewItem'
+            'click .view-item': 'viewItem'
         }
 
         template: _.template template
 
-        initialize: ->
+        initialize: (options) ->
+            @model = options.model
+            @app = options.app
             @render()
 
         render: ->
@@ -71,7 +73,7 @@ define [
             @timeline.slick('slickGoTo', index)
 
         fadeIn: ->
-            @$el.find('.timeline').removeClass 'fade-out'
+            @timeline.removeClass 'fade-out'
 
         _updateCovers: (event, slick, currentSlide, nextSlide) ->
             if currentSlide == nextSlide
@@ -87,9 +89,15 @@ define [
 
             _.defer flagToDefault
 
-        _viewItem: () ->
+        viewItem: () ->
             unless @coversUpdated
-                @$el.find('.timeline').addClass 'fade-out'
-#            TODO
+                @timeline.addClass 'fade-out'
+                @app.header.showReturnLink()
+                @app.header.returnLinkVisility = true;
 
+        show: ->
+            @app.menu.close()
+            @fadeIn()
+            @app.header.hideReturnLink()
+            @app.header.returnLinkVisility = false;
     }

@@ -12,6 +12,10 @@ a {
     }
 }
 
+p, span, div {
+    color: $base-color;
+}
+
 .absolute {
     position: absolute;
     &.top {

@@ -13,8 +13,17 @@ define [
 
         template: _.template(template)
 
+        initialize: (options) ->
+            @app = options.app
+
         render: ->
             @$el.html @template()
+            @$contacts = @$el.find '.contacts'
             @
 
+        whiteContacts: ->
+            @$contacts.addClass 'white'
+
+        unWhiteContacts: ->
+            @$contacts.removeClass 'white'
     }

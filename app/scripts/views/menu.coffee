@@ -14,9 +14,18 @@ define [
 
         template: _.template(template)
 
+        initialize: (options) ->
+            @app = options.app
+
         render: ->
             @$el.html @template()
-#            @$el.append new Footer().render().$el
             @
+
+        _isOpened: ->
+            $('body').hasClass('menu-opened')
+
+        close: ->
+            if @_isOpened()
+                @app.header.toggleMenu()
 
     }
