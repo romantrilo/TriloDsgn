@@ -76,7 +76,6 @@ define [
                 _.delay onOpen, 500
                 _.delay contactOnOpen, 700
 
-
         updateTimeline: (index) ->
             if not @timeline
                 @initTimeline()

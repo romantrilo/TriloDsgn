@@ -51,56 +51,57 @@
                 overflow: hidden;
             }
 
-            .pre-load.outer {
+            .pre-load.welcome {
                 position: absolute;
-                width: 100vw;
                 height: 100vh;
-                background-color: #ffffff;
                 z-index: 100;
+            }
+
+            .pre-load.welcome .inner {
+                margin-top: 48vh;
+            }
+
+            .pre-load.outer {
+                width: 100vw;
+                margin: 0;
+                text-align: center;
                 -webkit-transition: all 0.5s;
                 -moz-transition: all 0.5s;
                 -o-transition: all 0.5s;
                 transition: all 0.5s;
             }
 
-            .pre-load.fade-out {
-                visibility: hidden;
-                opacity: 0;
-            }
-
-            .pre-load.inner {
+            .pre-load .inner {
+                display: inline-block;
                 position: relative;
-                width: 80px;
-                margin: 0 auto;
+                margin-top: 32vh;
             }
 
             .pre-load p {
                 margin: 0;
-                line-height: 100vh;
-                text-align: right;
                 letter-spacing: 0.5em;
                 font-weight: bold;
                 text-transform: uppercase;
             }
 
-            .pre-load.text {
-                position: absolute;
-                top: 0;
-                left: 0;
+            .pre-load .text {
                 color: rgba(175, 175, 175, 0.60);
             }
 
-            .pre-load.background {
+            .pre-load .over {
                 position: absolute;
                 top: 0;
-                left: 0;
-                overflow: hidden;
-                z-index: 5;
                 width: 0;
+                overflow: hidden;
                 color: #333333;
                 white-space: nowrap;
                 -webkit-transition: width 0.2s;
                 transition: width 0.3s;
+            }
+
+            .pre-load.outer.fade-out {
+                visibility: hidden;
+                opacity: 0;
             }
 
             .pace {
@@ -109,19 +110,21 @@
 
         </style>
 
-        <div class="pre-load outer">
-            <div class="pre-load inner">
-                <p class="pre-load background">trilo</p>
-                <p class="pre-load text">trilo</p>
+        <div class="pre-load outer welcome">
+            <div class="inner">
+                <p class="text">trilo</p>
+                <p class="over">trilo</p>
             </div>
         </div>
 
         <script>
-            (function () {
-                var repeatInterval,
+
+            function animatePreLoad (options) {
+                var onWelcome = options && options.onWelcome || false,
+                    repeatInterval,
                     body = document.getElementsByTagName('body')[0],
                     progressElements = document.getElementsByClassName('pace-progress'),
-                    preLoader = document.querySelectorAll('.pre-load.background')[0];
+                    preLoader = document.querySelectorAll('.pre-load .over')[0];
 
                 function watchProgress () {
                     var perCent = progressElements && progressElements[0] && progressElements[0].getAttribute('data-progress-text') || 0;
@@ -129,23 +132,34 @@
                     if (body.classList.contains("pace-done")) {
                         preLoader.style.width = '100%';
                         clearInterval(repeatInterval);
-                        setTimeout(onDownload, 500);
+                        setTimeout(onDownload.bind(null, onWelcome), 500);
                         return;
                     }
 
                     preLoader.style.width = perCent;
                 }
 
-                function onDownload () {
-                    var preLoadContainer = document.getElementsByClassName('outer')[0],
-                        body = document.getElementsByTagName('body')[0];
+                function onDownload (onWelcome) {
+                    if (onWelcome) {
+                        var preLoadContainer = document.getElementsByClassName('outer')[0],
+                            body = document.getElementsByTagName('body')[0];
 
-                    body.className = body.className + ' loader-done';
-                    preLoadContainer.className = preLoadContainer.className + ' fade-out';
+                        body.className = body.className + ' loader-done';
+                        preLoadContainer.className = preLoadContainer.className + ' fade-out';
+                    } else {
+                        var event = new CustomEvent("ajax-load-done", {
+                            "detail": "Ajax request completed"
+                        });
+                        document.dispatchEvent(event);
+                    }
+
                 }
 
-                repeatInterval = setInterval(watchProgress, 50);
-            })();
+                repeatInterval = setInterval(watchProgress, 60);
+            }
+
+            animatePreLoad({onWelcome: true});
+
         </script>
 
         <main>
