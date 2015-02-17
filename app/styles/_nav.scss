@@ -33,7 +33,7 @@ body.loader-done {
 
 .return {
     right: 65px;
-    padding: 22px;
+    padding: $large-font-size;
     opacity: 0;
     visibility: hidden;
     @include transition(all, $base-transition);
@@ -41,11 +41,7 @@ body.loader-done {
         opacity: 1;
         visibility: visible;
     }
-    & p {
-        margin: 0;
-        @include cursor-pointer;
-    }
-    &.white p {
+    &.white a {
         color: $white;
     }
 }

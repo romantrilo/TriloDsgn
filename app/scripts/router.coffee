@@ -40,8 +40,11 @@ define [
             @_updateCurrentTimelineIndex index
 
         showTimeline: ->
-            @app.showTimeline()
-            @updateTimelineUrl(@app.model.get 'currentTimelineItem')
+            if @app.timeline
+                @app.timeline.show()
+                @updateTimelineUrl(@app.model.get 'currentTimelineItem')
+            else
+                @init()
 
         _updateCurrentTimelineIndex: (index) ->
             @app.model.set {'currentTimelineItem': index}
