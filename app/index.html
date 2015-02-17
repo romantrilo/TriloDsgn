@@ -65,6 +65,13 @@
                 width: 100vw;
                 margin: 0;
                 text-align: center;
+                -webkit-transition: all 1s;
+                -moz-transition: all 1s;
+                -o-transition: all 1s;
+                transition: all 1s;
+            }
+
+            .pre-load.outer.welcome {
                 -webkit-transition: all 0.5s;
                 -moz-transition: all 0.5s;
                 -o-transition: all 0.5s;
@@ -79,9 +86,14 @@
 
             .pre-load p {
                 margin: 0;
+                text-transform: uppercase;
+                white-space: nowrap;
+            }
+
+
+            .pre-load.welcome p {
                 letter-spacing: 0.5em;
                 font-weight: bold;
-                text-transform: uppercase;
             }
 
             .pre-load .text {
@@ -94,7 +106,6 @@
                 width: 0;
                 overflow: hidden;
                 color: #333333;
-                white-space: nowrap;
                 -webkit-transition: width 0.2s;
                 transition: width 0.3s;
             }
@@ -121,23 +132,11 @@
 
             function animatePreLoad (options) {
                 var onWelcome = options && options.onWelcome || false,
-                    repeatInterval,
                     body = document.getElementsByTagName('body')[0],
                     progressElements = document.getElementsByClassName('pace-progress'),
-                    preLoader = document.querySelectorAll('.pre-load .over')[0];
-
-                function watchProgress () {
-                    var perCent = progressElements && progressElements[0] && progressElements[0].getAttribute('data-progress-text') || 0;
-
-                    if (body.classList.contains("pace-done")) {
-                        preLoader.style.width = '100%';
-                        clearInterval(repeatInterval);
-                        setTimeout(onDownload.bind(null, onWelcome), 500);
-                        return;
-                    }
-
-                    preLoader.style.width = perCent;
-                }
+                    preLoaders = document.querySelectorAll('.pre-load .over'),
+                    preLoader = preLoaders[preLoaders.length - 1],
+                    repeatInterval;
 
                 function onDownload (onWelcome) {
                     if (onWelcome) {
@@ -153,6 +152,22 @@
                         document.dispatchEvent(event);
                     }
 
+//                    if ($) {
+//                        $('body').removeClass('pace-done');
+//                    }
+                }
+
+                function watchProgress () {
+                    var perCent = progressElements && progressElements[0] && progressElements[0].getAttribute('data-progress-text') || 0;
+
+                    if (body.classList.contains("pace-done")) {
+                        preLoader.style.width = '100%';
+                        clearInterval(repeatInterval);
+                        setTimeout(onDownload.bind(null, onWelcome), 500);
+                        return;
+                    }
+
+                    preLoader.style.width = perCent;
                 }
 
                 repeatInterval = setInterval(watchProgress, 60);

@@ -18,4 +18,8 @@ define [
             @set {'items': items}
             @set {'urls': urls}
 
+        getCurrentTitle: ->
+            index = @get 'currentTimelineItem'
+            @get('items')[index].title
+
     }

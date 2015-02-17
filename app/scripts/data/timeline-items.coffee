@@ -75,7 +75,7 @@ define [], ->
             isProject: false
             date: 'Nov 2014'
             subtitle: 'award'
-            title: 'ui web challenge v'
+            title: 'ui web challenge vi'
             description: 'First Prize, Web Designer Senior'
         }
         {

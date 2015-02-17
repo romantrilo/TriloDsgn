@@ -23,6 +23,7 @@ define [
             @initFooter()
             @initMenu()
             @$content = @$el.find '#content'
+            @$item = @$el.find '#item'
 
         render: ->
             @$el.html @template()
@@ -31,7 +32,7 @@ define [
             @header = new Header {
                 app: @
             }
-            @$el.append @header.render().$el
+            @$el.prepend @header.render().$el
 
         initFooter: ->
             @footer = new Footer {

@@ -2,9 +2,10 @@ define [
 
     'backbone'
     'slick'
+    'views/preloader'
     'text!../templates/timeline.html'
 
-], (Backbone, Slick, template) ->
+], (Backbone, Slick, Preloader, template) ->
 
     'use strict'
 
@@ -31,6 +32,7 @@ define [
             @$el.html @template {items: @model}
             @initCovers()
             @initTimeline()
+            @initPreloader()
             # this is the fix for slick messed up slider on initial load
             $(window).trigger 'resize'
             @
@@ -69,6 +71,12 @@ define [
             @covers = @$el.find '.covers'
             @covers.slick options
 
+        initPreloader: ->
+            @preloader = new Preloader {
+                app: @app
+            }
+            @preloader.render()
+
         update: (index) ->
             @timeline.slick('slickGoTo', index)
 
@@ -90,14 +98,27 @@ define [
             _.defer flagToDefault
 
         viewItem: () ->
+            onOpen = =>
+                @preloader.fadeIn()
+#                download and slide up content
+                setTimeout animatePreLoad, 500
+
             unless @coversUpdated
                 @timeline.addClass 'fade-out'
                 @app.header.showReturnLink()
                 @app.header.returnLinkVisility = true;
+                @preloader.updateText()
+                setTimeout onOpen, 500
 
         show: ->
-            @app.menu.close()
-            @fadeIn()
-            @app.header.hideReturnLink()
-            @app.header.returnLinkVisility = false;
+            onClose = =>
+                @app.menu.close()
+                @fadeIn()
+                @app.header.hideReturnLink()
+                @app.header.returnLinkVisility = false;
+
+            @preloader.fadeOut()
+            setTimeout onClose, 500
+
+
     }

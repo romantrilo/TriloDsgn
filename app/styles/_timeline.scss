@@ -10,14 +10,14 @@ body.loader-done {
 
 .timeline {
     position: relative;
-    margin-top: 30vh;
-    @include translate(0, calc(-30vh - 100%));
+    margin-top: 32vh;
+    @include translate(0, calc(-32vh - 100%));
     @include transition(all $base-transition * 2);
     &.fade-out {
-        -webkit-transform: translateY(calc(-30vh - 100%)) !important;
-        -ms-transform: translateY(calc(-30vh - 100%)) !important;
-        -o-transform: translateY(calc(-30vh - 100%)) !important;
-        transform: translateY(calc(-30vh - 100%)) !important;
+        -webkit-transform: translateY(calc(-32vh - 100%)) !important;
+        -ms-transform: translateY(calc(-32vh - 100%)) !important;
+        -o-transform: translateY(calc(-32vh - 100%)) !important;
+        transform: translateY(calc(-32vh - 100%)) !important;
     }
     & .item {
         @include transition(width, $base-transition * 2);
@@ -76,7 +76,7 @@ body.loader-done {
     @include transition(all, $base-transition * 2);
     .covers {
         //    viewport height left after timeline margin - timeline height - timeline margin-bottom
-        height: calc(70vh - 105px - 30px);
+        height: calc(68vh - 105px - 30px);
         & .slick-list {
             height: 100%;
             & .slick-track {
