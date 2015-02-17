@@ -36,6 +36,10 @@ p, span, div {
     text-transform: uppercase;
 }
 
+.lower {
+    text-transform: lowercase;
+}
+
 .letter-spacing {
     &.small {
         letter-spacing: 0.2em;

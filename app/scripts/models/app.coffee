@@ -20,6 +20,12 @@ define [
 
         getCurrentTitle: ->
             index = @get 'currentTimelineItem'
-            @get('items')[index].title
+            item = @get('items')[index]
+            if item.isProject then item.title else 'about'
+
+
+        getCurrentDescription: ->
+            index = @get 'currentTimelineItem'
+            @get('items')[index].description
 
     }

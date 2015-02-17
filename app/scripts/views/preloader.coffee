@@ -20,12 +20,14 @@ define [
             @$el.html @template()
             @$text = @$el.find '.text'
             @$over = @$el.find '.over'
+            @$descr = @$el.find '.pre-load-description'
             @app.$item.prepend @$el
 
         updateText: () ->
-            text = @app.model.getCurrentTitle()
-            @$text.text text
-            @$over.text text
+            title = @app.model.getCurrentTitle()
+            @$text.text title
+            @$over.text title
+            @$descr.text @app.model.getCurrentDescription()
 
 
         fadeIn: ->
