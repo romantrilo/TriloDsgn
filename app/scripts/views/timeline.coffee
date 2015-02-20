@@ -27,6 +27,7 @@ define [
             @model = options.model
             @app = options.app
             @render()
+            @scrollUpTime = 0
 
         render: ->
             @$el.html @template {items: @model}
@@ -83,6 +84,9 @@ define [
         fadeIn: ->
             @timeline.removeClass 'fade-out'
 
+        fadeOut: ->
+            @timeline.addClass 'fade-out'
+
         _updateCovers: (event, slick, currentSlide, nextSlide) ->
             if currentSlide == nextSlide
                 return
@@ -100,25 +104,66 @@ define [
         viewItem: () ->
             onOpen = =>
                 @preloader.fadeIn()
-#                download and slide up content
+                @loadItem()
                 setTimeout animatePreLoad, 500
+#                on success download, do animations
 
             unless @coversUpdated
-                @timeline.addClass 'fade-out'
+                @fadeOut()
                 @app.header.showReturnLink()
                 @app.header.returnLinkVisility = true;
                 @preloader.updateText()
                 setTimeout onOpen, 500
 
+        loadItem: ->
+            if @app.model.isCurrentProject()
+                currentUrl = @app.model.getCurrentUrl()
+                url = "html/items/#{currentUrl}.html"
+                options = {
+                    success: (html) =>
+                        @app.$itemView.html html
+                    error: =>
+                        @app.show404()
+                }
+                $.ajax url, options
+            else
+                @app.$itemView.html @app.about.el
+
+            $(document).on 'ajax-load-done', @slideItemUp.bind @
+
         show: ->
-            onClose = =>
+            preloaderFadeOut = =>
                 @app.menu.close()
+                @preloader.fadeOut()
+
+            timelineFadeIn = =>
                 @fadeIn()
                 @app.header.hideReturnLink()
                 @app.header.returnLinkVisility = false;
 
-            @preloader.fadeOut()
-            setTimeout onClose, 500
+            @slideItemDown()
+            _.delay preloaderFadeOut, 1000 + @scrollUpTime
+            _.delay timelineFadeIn, 1500 + @scrollUpTime
+
+        slideItemUp: ->
+            @app.$itemView.addClass 'up'
+            $(document).off 'ajax-load-done', @slideItemUp
+
+
+        slideItemDown: ->
+            slide = =>
+                @app.$itemView.removeClass 'up'
+
+            itemTopOffset = @app.$itemWrapper.scrollTop()
+
+            @scrollUpTime = if itemTopOffset == 0 then 0 else itemTopOffset / 2
+
+            @app.$itemWrapper.animate({
+                scrollTop: 0
+            }, @scrollUpTime);
+            _.delay slide, 500 + @scrollUpTime
+
+
 
 
     }

@@ -5,9 +5,10 @@ define [
     'views/header'
     'views/footer'
     'views/menu'
+    'views/about'
     'text!../templates/app.html'
 
-], (Backbone, Timeline, Header, Footer, Menu, template) ->
+], (Backbone, Timeline, Header, Footer, Menu, About, template) ->
 
     'use strict'
 
@@ -22,8 +23,11 @@ define [
             @initHeader()
             @initFooter()
             @initMenu()
+            @initAbout()
             @$content = @$el.find '#content'
-            @$item = @$el.find '#item'
+            @$itemWrapper = @$el.find '#item'
+            @$itemView = @$itemWrapper.find '.item-view'
+
 
         render: ->
             @$el.html @template()
@@ -46,6 +50,12 @@ define [
             }
             @$el.append @menu.render().$el
 
+        initAbout: ->
+            @about = new About {
+                app: @
+            }
+            @about.render()
+
         updateTimeline: (index) ->
             if not @timeline
                 @initTimeline()
@@ -58,6 +68,11 @@ define [
         showContacts: ->
 
         showAbout: ->
+            if @menu._isOpened()
+#                TODO
+            else
+                @app.timeline.viewItem()
+            return
 
         show404: ->
 

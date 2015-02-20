@@ -18,14 +18,22 @@ define [
             @set {'items': items}
             @set {'urls': urls}
 
-        getCurrentTitle: ->
+        getCurrentItem: ->
             index = @get 'currentTimelineItem'
-            item = @get('items')[index]
+            @get('items')[index]
+
+        getCurrentTitle: ->
+            item = @getCurrentItem()
             if item.isProject then item.title else 'about'
 
-
         getCurrentDescription: ->
-            index = @get 'currentTimelineItem'
-            @get('items')[index].description
+            @getCurrentItem().description
+
+        getCurrentUrl: ->
+            index = @get('currentTimelineItem')
+            @get('urls')[index]
+
+        isCurrentProject: ->
+            @getCurrentItem().isProject
 
     }

@@ -146,15 +146,11 @@
                         body.className = body.className + ' loader-done';
                         preLoadContainer.className = preLoadContainer.className + ' fade-out';
                     } else {
-                        var event = new CustomEvent("ajax-load-done", {
+                        var event = new Event("ajax-load-done", {
                             "detail": "Ajax request completed"
                         });
                         document.dispatchEvent(event);
                     }
-
-//                    if ($) {
-//                        $('body').removeClass('pace-done');
-//                    }
                 }
 
                 function watchProgress () {

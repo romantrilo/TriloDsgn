@@ -21,7 +21,7 @@ define [
             @$text = @$el.find '.text'
             @$over = @$el.find '.over'
             @$descr = @$el.find '.pre-load-description'
-            @app.$item.prepend @$el
+            @app.$itemWrapper.prepend @$el
 
         updateText: () ->
             title = @app.model.getCurrentTitle()
@@ -32,14 +32,14 @@ define [
 
         fadeIn: ->
             @$el.removeClass 'fade-out'
-            @app.$item.css 'zIndex', 5
+            @app.$itemWrapper.css 'zIndex', 5
 
         fadeOut: ->
             widthToDefault = =>
                 @$over[0].style.width = 0;
 
             @$el.addClass 'fade-out'
-            @app.$item.css 'zIndex', 0
+            @app.$itemWrapper.css 'zIndex', 0
             setTimeout widthToDefault, 1000
 
     }

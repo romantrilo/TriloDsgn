@@ -3,4 +3,12 @@
     height: 100vh;
     overflow-y: auto;
     z-index: 0;
+    & .item-view {
+        margin: 0 125px;
+        @include translate(0, calc(68vh - 85px));
+        @include transition(all, $base-transition);
+        &.up {
+            @include translate(0, 0);
+        }
+    }
 }
