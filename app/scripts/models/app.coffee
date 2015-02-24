@@ -10,13 +10,12 @@ define [
 
         initialize: (items) ->
 
-            urls = _.map items, (item) ->
+            _.each items, (item) ->
                 url = item.title.replace(/\s+/g, '-').toLowerCase()
                 addition = if item.urlAddition then '-' + item.urlAddition.replace(/\s+/g, '-').toLowerCase() else ''
-                url += addition
+                item.url = url + addition
 
             @set {'items': items}
-            @set {'urls': urls}
 
         getCurrentItem: ->
             index = @get 'currentTimelineItem'
@@ -30,10 +29,12 @@ define [
             @getCurrentItem().description
 
         getCurrentUrl: ->
-            index = @get('currentTimelineItem')
-            @get('urls')[index]
+            @getCurrentItem().url
 
         isCurrentProject: ->
             @getCurrentItem().isProject
+
+        isUrlCurrent: (url) ->
+            url == @getCurrentItem().url
 
     }

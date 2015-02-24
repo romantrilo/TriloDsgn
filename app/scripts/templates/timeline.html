@@ -26,9 +26,12 @@
         <% _.each(items, function(item) { %>
         <div class="cover draggable">
             <div class="content"></div>
-            <p class="view-item absolute left right font regular mid-small upper letter-spacing middle">
-                <span>view <%= item.isProject ? 'casestudy' : 'about'%></span>
-            </p>
+            <a href="#<%= item.isProject ? item.url : 'about' %>"
+               class="view-item absolute left right">
+                <span class="font regular mid-small upper letter-spacing middle">
+                    view <%= item.isProject ? 'casestudy' : 'about'%>
+                </span>
+            </a>
         </div>
         <% }) %>
     </div>

@@ -18,7 +18,7 @@ define [
 
         template: _.template(template)
 
-        initialize: ->
+        initialize: () ->
             @render()
             @initHeader()
             @initFooter()
@@ -67,11 +67,11 @@ define [
 
         showContacts: ->
 
-        showAbout: ->
+        showItem: ->
             if @menu._isOpened()
 #                TODO
             else
-                @app.timeline.viewItem()
+                @timeline.viewItem()
             return
 
         show404: ->

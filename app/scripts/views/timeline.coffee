@@ -18,7 +18,6 @@ define [
         events: {
             'beforeChange .timeline': '_updateCovers'
             'click .slick-center': 'viewItem'
-            'click .view-item': 'viewItem'
         }
 
         template: _.template template
@@ -30,7 +29,9 @@ define [
             @scrollUpTime = 0
 
         render: ->
-            @$el.html @template {items: @model}
+            @$el.html @template {
+                items: @model
+            }
             @initCovers()
             @initTimeline()
             @initPreloader()
@@ -137,13 +138,14 @@ define [
                 @preloader.fadeOut()
 
             timelineFadeIn = =>
+                @app.trigger 'timeline-update'
                 @fadeIn()
                 @app.header.hideReturnLink()
                 @app.header.returnLinkVisility = false;
 
             @slideItemDown()
-            _.delay preloaderFadeOut, 1000 + @scrollUpTime
-            _.delay timelineFadeIn, 1500 + @scrollUpTime
+            _.delay preloaderFadeOut, 500 + @scrollUpTime
+            _.delay timelineFadeIn, 1000 + @scrollUpTime
 
         slideItemUp: ->
             @app.$itemView.addClass 'up'
@@ -161,7 +163,7 @@ define [
             @app.$itemWrapper.animate({
                 scrollTop: 0
             }, @scrollUpTime);
-            _.delay slide, 500 + @scrollUpTime
+            _.delay slide, @scrollUpTime
 
 
 

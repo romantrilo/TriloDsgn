@@ -139,14 +139,22 @@
                     repeatInterval;
 
                 function onDownload (onWelcome) {
+                    var event;
+
                     if (onWelcome) {
                         var preLoadContainer = document.getElementsByClassName('outer')[0],
                             body = document.getElementsByTagName('body')[0];
 
-                        body.className = body.className + ' loader-done';
-                        preLoadContainer.className = preLoadContainer.className + ' fade-out';
+                        preLoadContainer.classList.add('fade-out');
+                        body.classList.add('loader-done');
+
+                        event = new Event("first-load-done", {
+                            "detail": "First load completed"
+                        });
+                        document.dispatchEvent(event);
+
                     } else {
-                        var event = new Event("ajax-load-done", {
+                        event = new Event("ajax-load-done", {
                             "detail": "Ajax request completed"
                         });
                         document.dispatchEvent(event);

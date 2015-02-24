@@ -12,7 +12,9 @@ define [
 
     App = ->
         @start = =>
-            @appView = new AppView {model: new AppModel(Data)}
+            @appView = new AppView {
+                model: new AppModel Data
+            }
             @router = new Router @
             Backbone.history.start()
         return
