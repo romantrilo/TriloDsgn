@@ -34,22 +34,39 @@ define [
 
             _.each @items, addRoute
 
-        init: ->
-            index = @urls.length - 1
-            @updateTimeline @urls[index]
-            @_updateCurrentTimelineIndex index
+        init: (options) ->
+            ignoreScrolling = options and options.ignoreScrolling
+            url = options and options.url
+            showWidthDelay = ->
+                _.delay show, 1000
+
+            show = =>
+                url = if url then url else @urls[@urls.length - 1]
+                @updateTimeline url
+
+            @app.initTimeline()
+            @_updateCurrentTimelineIndex 0
+            unless ignoreScrolling
+                $(document).on 'first-load-done', showWidthDelay
 
         updateTimeline: (url) ->
+            unless @app.timeline
+                @init {url: url}
+                return
+
             url = if url then url.toLowerCase()
-            if @_urlExists(url) or !url
-                index = if url then _.indexOf @urls, url else 0
-                @app.updateTimeline index
+
+            if @_urlExists(url)
+                index = _.indexOf @urls, url
+                indexDelta = Math.abs(@app.model.getCurrentIndex() - index)
+                withCustomSpeed = if indexDelta > 2 then true
+                @app.timeline.update index, withCustomSpeed
                 @_updateCurrentTimelineIndex index
             else
                 @show404()
 
         updateTimelineUrl: (index) ->
-            index = if index then index else @app.model.get 'currentTimelineItem'
+            index = if index or index == 0 then index else @app.model.get 'currentTimelineItem'
             @navigate "timeline/#{@urls[index]}", {trigger: false}
             @_updateCurrentTimelineIndex index
 
@@ -65,8 +82,12 @@ define [
 
         showItem: ->
             updateTimeLine = =>
+                beforeIndex = @app.model.getCurrentIndex()
                 @updateTimeline url
-                _.delay show, 1500
+                afterIndex = @app.model.getCurrentIndex()
+                delay = @app.model.getTimelineSpeed beforeIndex, afterIndex
+                delay += 500
+                _.delay show, delay
 
             updateTimeLimeWithDelay = =>
                 _.delay updateTimeLine, 1500
@@ -78,7 +99,7 @@ define [
             url = Backbone.history.fragment
 
             unless @app.timeline
-                @init()
+                @init {ignoreScrolling: true}
                 if @_urlExists(url)
                     $(document).on 'first-load-done', updateTimeLimeWithDelay
                     return
@@ -101,7 +122,7 @@ define [
                 _.delay show, 1500
 
             unless @app.timeline
-                @init()
+                @init {ignoreScrolling: true}
                 $(document).on 'first-load-done', showWidthDelay
                 return
 

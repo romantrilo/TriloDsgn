@@ -79,8 +79,11 @@ define [
             }
             @preloader.render()
 
-        update: (index) ->
-            @timeline.slick('slickGoTo', index)
+        update: (index, withCustomSpeed) ->
+            if withCustomSpeed
+                @setSpeed index
+            @timeline.slick 'slickGoTo', index
+            return
 
         fadeIn: ->
             @timeline.removeClass 'fade-out'
@@ -89,6 +92,7 @@ define [
             @timeline.addClass 'fade-out'
 
         _updateCovers: (event, slick, currentSlide, nextSlide) ->
+            console.log arguments
             if currentSlide == nextSlide
                 return
 
@@ -169,7 +173,19 @@ define [
             }, @scrollUpTime);
             _.delay slide, @scrollUpTime
 
+        setSpeed: (newIndex) ->
+            speed = @app.model.getSpeedByIndex(newIndex)
 
+            set = (newSpeed) =>
+                @timeline.slick 'slickSetOption', 'speed', newSpeed
+                @covers.slick 'slickSetOption', 'speed', newSpeed
+
+            speedToDefault = =>
+                set 1000
+
+            set speed
+
+            _.delay speedToDefault, speed + 500
 
 
     }

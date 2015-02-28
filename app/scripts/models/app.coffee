@@ -17,8 +17,11 @@ define [
 
             @set {'items': items}
 
+        getCurrentIndex: ->
+            @get 'currentTimelineItem'
+
         getCurrentItem: ->
-            index = @get 'currentTimelineItem'
+            index = @getCurrentIndex()
             @get('items')[index]
 
         getCurrentTitle: ->
@@ -37,5 +40,16 @@ define [
 
         isUrlCurrent: (url) ->
             url == @getCurrentItem().url
+
+        getSpeedByIndex: (index) ->
+            unless index
+                1000
+
+            currentIndex = @getCurrentIndex()
+            @getTimelineSpeed index, currentIndex
+
+        getTimelineSpeed: (indexBefore, indexAfter) ->
+            delta = Math.abs indexBefore - indexAfter
+            delta * 400
 
     }

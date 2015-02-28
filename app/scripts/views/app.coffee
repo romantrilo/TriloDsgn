@@ -56,15 +56,6 @@ define [
             }
             @about.render()
 
-        updateTimeline: (index) ->
-            if not @timeline
-                @initTimeline()
-            if index
-                @timeline.update index
-            else
-                @timeline.update 0
-            return
-
         showContacts: ->
 
         showItem: ->
