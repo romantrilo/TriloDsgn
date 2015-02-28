@@ -68,7 +68,7 @@ define [], ->
                 title: 'Honors & Awards'
                 items: [
                     {
-                        title: 'First prize in nomination&#10;"Web Designer Senior"'
+                        title: 'First prize in nomination <br>"Web Designer Senior"'
                         lines: [
                             'UA Web Challenge VI'
                             'Kyiv, Ukraine'
@@ -76,7 +76,7 @@ define [], ->
                         ]
                     }
                     {
-                        title: 'First prize in nomination&#10;"Web Designer Junior"
+                        title: 'First prize in nomination <br>"Web Designer Junior"
 '
                         lines: [
                             'UA Web Challenge V'
