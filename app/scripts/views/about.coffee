@@ -1,9 +1,10 @@
 define [
 
     'backbone'
+    'data/about-info'
     'text!../templates/about.html'
 
-], (Backbone, template) ->
+], (Backbone, Data, template) ->
 
     'use strict'
 
@@ -15,7 +16,7 @@ define [
             @app = options.app
 
         render: ->
-            @$el.html @template()
+            @$el.html @template(Data)
             @
 
     }

@@ -31,8 +31,15 @@ define [
 
 
         fadeIn: ->
+            if @app.model.isCurrentProject()
+                @$el.removeClass 'about'
+            else
+                @$el.addClass 'about'
+
             @$el.removeClass 'fade-out'
             @app.$itemWrapper.css 'zIndex', 5
+
+            return
 
         fadeOut: ->
             widthToDefault = =>

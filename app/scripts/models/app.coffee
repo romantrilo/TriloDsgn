@@ -26,7 +26,8 @@ define [
             if item.isProject then item.title else 'about'
 
         getCurrentDescription: ->
-            @getCurrentItem().description
+            item = @getCurrentItem()
+            if item.isProject then item.description else 'my story in a few words'
 
         getCurrentUrl: ->
             @getCurrentItem().url

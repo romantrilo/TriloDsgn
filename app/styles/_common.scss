@@ -12,7 +12,7 @@ a {
     }
 }
 
-p, span, div {
+p, span, div, h1, h2, h3, h4, h5, h6 {
     color: $base-color;
 }
 
@@ -64,10 +64,13 @@ p, span, div {
 
 .font {
     &.italic {
-        font-family: CrimsonTextItalic, serif;
+        font-family: CrimsonTextItalic, sans-serif;
     }
     &.regular {
-        font-family: FuturaDemiC, serif;
+        font-family: FuturaDemiC, sans-serif;
+    }
+    &.f-book-c {
+        font-family: FuturaBookC;
     }
     &.small {
         font-size: $small-font-size;
@@ -77,6 +80,9 @@ p, span, div {
     }
     &.base {
         font-size: $base-font-size;
+    }
+    &.mid-base {
+        font-size: $mid-base-font-size;
     }
     &.large {
         font-size: $large-font-size;

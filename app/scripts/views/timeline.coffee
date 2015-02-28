@@ -107,14 +107,18 @@ define [
                 @preloader.fadeIn()
                 @loadItem()
                 setTimeout animatePreLoad, 500
-#                on success download, do animations
 
             unless @coversUpdated
                 @fadeOut()
                 @app.header.showReturnLink()
                 @app.header.returnLinkVisility = true;
                 @preloader.updateText()
+                if @app.model.isCurrentProject()
+                    @app.$itemView.removeClass 'about'
+                else
+                    @app.$itemView.addClass 'about'
                 setTimeout onOpen, 500
+                return
 
         loadItem: ->
             if @app.model.isCurrentProject()

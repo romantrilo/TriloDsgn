@@ -5,10 +5,17 @@
     font-style: normal;
 }
 
-
 @font-face {
     font-family: CrimsonTextItalic;
     src: url('/styles/fonts/CrimsonText-Italic/CrimsonText-Italic.eot?#iefix') format('embedded-opentype'),  url('/styles/fonts/CrimsonText-Italic/CrimsonText-Italic.woff') format('woff'), url('/styles/fonts/CrimsonText-Italic/CrimsonText-Italic.ttf')  format('truetype'), url('/styles/fonts/CrimsonText-Italic/CrimsonText-Italic.svg#CrimsonText-Italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: FuturaBookC;
+    src: url('/styles/fonts/FuturaBookC/FuturaBookC.eot?#iefix') format('embedded-opentype'),  url('/styles/fonts/FuturaBookC/FuturaBookC.woff') format('woff'), url('/styles/fonts/FuturaBookC/FuturaBookC.ttf')  format('truetype'), url('/styles/fonts/FuturaBookC/FuturaBookC.svg#FuturaBookC') format('svg');
     font-weight: normal;
     font-style: normal;
 }

@@ -35,8 +35,9 @@ define [
             _.each @items, addRoute
 
         init: ->
-            @updateTimeline('')
-            @_updateCurrentTimelineIndex 0
+            index = @urls.length - 1
+            @updateTimeline @urls[index]
+            @_updateCurrentTimelineIndex index
 
         updateTimeline: (url) ->
             url = if url then url.toLowerCase()
