@@ -15,7 +15,17 @@
     margin: 0 25px;
     padding-bottom: 20px;
     @include translate(0, calc(68vh - 85px));
-    @include transition(all, $base-transition);
+    -webkit-transition-property: -webkit-transform;
+    -moz-transition-property: -moz-transform;
+    -ms-transition-property: -ms-transform;
+    -o-transition-property: -o-transform;
+    transition-property: transform;
+    -webkit-transition-duration: $base-transition;
+    -moz-transition-duration: $base-transition;
+    -ms-transition-duration: $base-transition;
+    -o-transition-duration: $base-transition;
+    transition-duration: $base-transition;
+
     &.up {
         @include translate(0, 40px);
     }
@@ -28,6 +38,10 @@
 
 .groups {
     display: flex;
+    display: -webkit-box;
+    display: moz-box-flex;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-start;
@@ -86,10 +100,12 @@
     .item-view {
         max-width: 1000px;
         margin: 0 auto;
-        &.about.up {
+        &.about {
             margin-left: calc((100vw - 700px) / 2 + 130px);
             margin-bottom: -90px;
-            @include translate(0, -95px);
+            &.up {
+                @include translate(0, -95px);
+            }
         }
     }
 }
