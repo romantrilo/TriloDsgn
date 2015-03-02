@@ -119,7 +119,9 @@ define [
                 @preloader.updateText()
                 if @app.model.isCurrentProject()
                     @app.$itemView.removeClass 'about'
+                    @app.$itemView.addClass 'project'
                 else
+                    @app.$itemView.removeClass 'project'
                     @app.$itemView.addClass 'about'
                 setTimeout onOpen, 500
                 return

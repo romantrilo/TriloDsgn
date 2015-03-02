@@ -1,28 +1,29 @@
-.pre-load.about {
-    width: calc(100vw - 150px) !important;
-    padding-left: 150px;
-    text-align: left !important;
-}
-
 #item {
     width: 100vw;
     height: 100vh;
     overflow-y: auto;
     z-index: 0;
-    & .item-view {
-        margin: 0 125px;
-        @include translate(0, calc(68vh - 85px));
-        @include transition(all, $base-transition);
-        &.up {
-            @include translate(0, 0);
-        }
-        &.about {
-            margin: 0 125px 0 410px;
-            &.up {
-                @include translate(0, -95px);
-            }
-        }
+}
+
+.pre-load.outer.about {
+    width: calc(100vw - 25px);
+    padding-left: 25px;
+    text-align: left;
+}
+
+.item-view {
+    margin: 0 25px;
+    padding-bottom: 20px;
+    @include translate(0, calc(68vh - 85px));
+    @include transition(all, $base-transition);
+    &.up {
+        @include translate(0, 40px);
     }
+}
+
+.story p {
+    margin: 12px 0;
+    line-height: 24px;
 }
 
 .groups {
@@ -31,37 +32,64 @@
     justify-content: space-between;
     align-items: flex-start;
     & .group {
+        margin-top: 70px;
+        & h2 {
+            margin-bottom: 30px;
+        }
         & .about-item {
-            min-height: 160px;
+            min-height: 150px;
             padding-right: 25px;
             &:last-child {
+                min-height: 0;
                 padding-right: 0;
+            }
+            & h3 {
+                margin-bottom: 10px;
+            }
+            & p {
+                margin: 8px 0;
             }
         }
     }
 }
 
-@media screen and (max-width: $middle-screen-max) {
-    #item .item-view.about {
-        margin: 0 150px;
-        &.up {
-            @include translate(0, 40px);
-        }
+
+@media screen and (min-width: $middle-screen-min) {
+    .pre-load.outer.about {
+        width: calc(100vw - 150px);
+        padding-left: 150px;
     }
 
+    .item-view {
+        margin: 0 150px;
+    }
 }
 
-@media screen and (max-width: $small-screen-max) {
-    .pre-load.about {
-        width: calc(100vw - 25px) !important;
-        padding-left: 25px;
+@media screen and (min-width: $middle-screen-medium) {
+    .pre-load.outer.about {
+        width: calc(100vw - (100vw - 700px) / 2);
+        padding-left: calc((100vw - 700px) / 2);
     }
 
-    #item .item-view.about {
-        margin: 0 25px;
+    .item-view.about {
+        margin: 0 auto;
+        max-width: 700px;
+    }
+}
+
+@media screen and (min-width: $large-screen-min) {
+    .pre-load.outer.about {
+        width: calc(100vw - (100vw - 700px) / 2 - 130px);
+        padding-left: calc((100vw - 700px) / 2 - 130px);
     }
 
-    .groups .group .about-item {
-        min-height: 0;
+    .item-view {
+        max-width: 1000px;
+        margin: 0 auto;
+        &.about.up {
+            margin-left: calc((100vw - 700px) / 2 + 130px);
+            margin-bottom: -90px;
+            @include translate(0, -95px);
+        }
     }
 }
