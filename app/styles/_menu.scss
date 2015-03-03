@@ -40,7 +40,7 @@ body.menu-opened #menu {
             padding-right: $menu-link-font-size / 3.9;
             @include transition(all, $base-transition);
             &:hover {
-                color: $menu-background;
+                color: $base-color;
                 background-color: $white;
             }
         }
