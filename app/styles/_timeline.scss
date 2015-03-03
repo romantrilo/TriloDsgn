@@ -42,7 +42,7 @@ body.loader-done {
         }
     }
     & .item-wrapper {
-        margin-top: $large-font-size + 4;
+        margin-top: $large-font-size + 5;
     }
     & p {
         margin: 0;
@@ -52,7 +52,7 @@ body.loader-done {
         &.subtitle {
             margin-bottom: $small-font-size - 5;
         } &.title {
-            margin-bottom: $small-font-size - 8;
+            margin-bottom: $small-font-size - 7;
         }
         &.title.project {
             margin-bottom: 0;
@@ -94,14 +94,17 @@ body.loader-done {
             & .view-item {
                 top: 40%;
                 display: inline-block;
-                width: 170px;
+                width: 200px;
                 margin: 0 auto;
-                padding: 14px 10px 10px 15px;
                 text-align: center;
                 font-weight: normal;
-                line-height: $base-line-height;
+                line-height: 40px;
                 background-color: $white;
                 @include cursor-pointer;
+                & span {
+                    position: relative;
+                    top: 1px;
+                }
             }
         }
     }
