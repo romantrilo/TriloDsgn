@@ -52,7 +52,7 @@ body.loader-done {
         &.subtitle {
             margin-bottom: 3px;
         } &.title {
-            margin-bottom: 2px;
+            margin-bottom: -1px;
         }
         &.title.project {
             margin-bottom: 0;
@@ -98,12 +98,12 @@ body.loader-done {
                 margin: 0 auto;
                 text-align: center;
                 font-weight: normal;
-                line-height: 40px;
                 background-color: $white;
                 @include cursor-pointer;
                 & span {
                     position: relative;
                     top: 1px;
+                    line-height: 40px;
                 }
             }
         }
