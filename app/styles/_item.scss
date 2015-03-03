@@ -6,25 +6,25 @@
 }
 
 .pre-load.outer.about {
-    width: calc(100vw - 25px);
-    padding-left: 25px;
+    width: calc(100vw - 24px);
+    padding-left: $extra-large-font-size;
     text-align: left;
 }
 
 .item-view {
-    margin: 0 25px;
-    padding-bottom: 20px;
+    margin: 0 $extra-large-font-size;
+    padding-bottom: $extra-large-font-size;
     @include translate(0, calc(68vh - 85px));
     -webkit-transition-property: -webkit-transform;
     -moz-transition-property: -moz-transform;
     -ms-transition-property: -ms-transform;
     -o-transition-property: -o-transform;
     transition-property: transform;
-    -webkit-transition-duration: $base-transition;
-    -moz-transition-duration: $base-transition;
-    -ms-transition-duration: $base-transition;
-    -o-transition-duration: $base-transition;
-    transition-duration: $base-transition;
+    -webkit-transition-duration: $base-transition * 2;
+    -moz-transition-duration: $base-transition * 2;
+    -ms-transition-duration: $base-transition * 2;
+    -o-transition-duration: $base-transition * 2;
+    transition-duration: $base-transition * 2;
 
     &.up {
         @include translate(0, 40px);
@@ -52,7 +52,7 @@
         }
         & .about-item {
             min-height: 150px;
-            padding-right: 25px;
+            padding-right: $extra-large-font-size;
             &:last-child {
                 min-height: 0;
                 padding-right: 0;
@@ -64,6 +64,29 @@
                 margin: 8px 0;
             }
         }
+    }
+}
+
+.trident-wrapper {
+    margin: 130px 0 100px;
+    & img {
+        width: 60px;
+        margin-left: -19px;
+    }
+}
+
+@media screen and (max-width: $small-screen-max) {
+    .group .font {
+       &.mid-small {
+           font-size: $base-font-size;
+       }
+       &.base {
+           font-size: $mid-base-font-size;
+       }
+    }
+
+    .trident-wrapper {
+        margin: 70px 0 0;
     }
 }
 
@@ -93,6 +116,7 @@
 
 @media screen and (min-width: $large-screen-min) {
     .pre-load.outer.about {
+        position: fixed;
         width: calc(100vw - (100vw - 700px) / 2 - 130px);
         padding-left: calc((100vw - 700px) / 2 - 130px);
     }
@@ -101,10 +125,11 @@
         max-width: 1000px;
         margin: 0 auto;
         &.about {
+            margin-top: calc(32vh + 4px);
             margin-left: calc((100vw - 700px) / 2 + 130px);
-            margin-bottom: -90px;
+            @include translate(0, 100vh);
             &.up {
-                @include translate(0, -95px);
+                @include translate(0, 0);
             }
         }
     }

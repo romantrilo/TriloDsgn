@@ -2,6 +2,11 @@
     z-index: 10;
 }
 
+body.menu-opened footer .nav {
+    z-index: 6;
+}
+
+
 .logo, .menu-btn, .key-words, .contacts {
     @include transition(all, $base-transition * 2);
     padding: $large-font-size $extra-large-font-size;
@@ -67,13 +72,20 @@ body.loader-done {
 
 
 @media screen and (max-width: $small-screen-max) {
-    .key-words span, .contacts p{
+    footer .nav {
+        z-index: 0;
+    }
+
+    .key-words span, .contacts p {
         visibility: hidden;
         opacity: 0;
         @include transition(all, $base-transition * 1.5);
         @include transition-delay(0s);
     }
     body.menu-opened {
+        & .nav {
+            z-index: 6;
+        }
         & .key-words span, & .contacts p {
             visibility: visible;
             opacity: 1;
@@ -89,6 +101,10 @@ body.loader-done {
         letter-spacing: 0.4em;
         line-height: 24px;
         text-align: left;
+    }
+
+    .return {
+        right: 50px;
     }
 }
 

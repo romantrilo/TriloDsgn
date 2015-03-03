@@ -24,10 +24,10 @@ define [
             @initFooter()
             @initMenu()
             @initAbout()
+            @$body = $ 'body'
             @$content = @$el.find '#content'
             @$itemWrapper = @$el.find '#item'
             @$itemView = @$itemWrapper.find '.item-view'
-
 
         render: ->
             @$el.html @template()

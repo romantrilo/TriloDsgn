@@ -92,7 +92,6 @@ define [
             @timeline.addClass 'fade-out'
 
         _updateCovers: (event, slick, currentSlide, nextSlide) ->
-            console.log arguments
             if currentSlide == nextSlide
                 return
 
@@ -118,10 +117,8 @@ define [
                 @app.header.returnLinkVisility = true;
                 @preloader.updateText()
                 if @app.model.isCurrentProject()
-                    @app.$itemView.removeClass 'about'
                     @app.$itemView.addClass 'project'
                 else
-                    @app.$itemView.removeClass 'project'
                     @app.$itemView.addClass 'about'
                 setTimeout onOpen, 500
                 return
@@ -143,9 +140,15 @@ define [
             $(document).on 'ajax-load-done', @slideItemUp.bind @
 
         show: ->
+            delay = 0
+
+            hideBlackRectangular = =>
+                @app.$body.removeClass 'about'
+
             preloaderFadeOut = =>
                 @app.menu.close()
                 @preloader.fadeOut()
+                @app.header.$lines.removeClass 'white'
 
             timelineFadeIn = =>
                 @app.trigger 'timeline-update'
@@ -153,13 +156,33 @@ define [
                 @app.header.hideReturnLink()
                 @app.header.returnLinkVisility = false;
 
-            @slideItemDown()
-            _.delay preloaderFadeOut, 500 + @scrollUpTime
-            _.delay timelineFadeIn, 1000 + @scrollUpTime
+            clearItemView = =>
+                @app.$itemView.html ''
+                @app.$body.removeClass 'about'
+                @app.$body.removeClass 'about'
+                @app.$itemView.removeClass 'about'
+                @app.$itemView.removeClass 'project'
+
+            unless @app.model.isCurrentProject()
+                delay = 1000
+                hideBlackRectangular()
+
+            console.log delay
+
+            _.delay @slideItemDown.bind(@), delay
+            _.delay preloaderFadeOut, 500 + delay + @scrollUpTime
+            _.delay timelineFadeIn, 1500 + delay + @scrollUpTime
+            _.delay clearItemView, 1500 + delay + @scrollUpTime
 
         slideItemUp: ->
+            showBlackRectangle = =>
+                @app.$body.addClass 'about'
+
             @app.$itemView.addClass 'up'
             $(document).off 'ajax-load-done', @slideItemUp
+
+            unless @app.model.isCurrentProject()
+                _.delay showBlackRectangle, 1000
 
 
         slideItemDown: ->

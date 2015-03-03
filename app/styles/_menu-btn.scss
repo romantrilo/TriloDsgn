@@ -44,7 +44,7 @@
                     top:0;
                 }
                 &.minus {
-                    background: transparent;
+                    background: transparent !important;
                     @include transition(background 0s);
                 }
                 &.x {
