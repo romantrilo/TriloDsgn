@@ -26,6 +26,14 @@
     -o-transition-duration: $base-transition;
     transition-duration: $base-transition;
 
+    &.about {
+        -webkit-transition-duration: $base-transition * 2;
+        -moz-transition-duration: $base-transition * 2;
+        -ms-transition-duration: $base-transition * 2;
+        -o-transition-duration: $base-transition * 2;
+        transition-duration: $base-transition * 2;
+    }
+
     &.up {
         @include translate(0, 40px);
     }
