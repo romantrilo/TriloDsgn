@@ -170,8 +170,8 @@ define [
             console.log delay
 
             _.delay @slideItemDown.bind(@), delay
-            _.delay preloaderFadeOut, 500 + delay + @scrollUpTime
-            _.delay timelineFadeIn, 1500 + delay + @scrollUpTime
+            _.delay preloaderFadeOut, delay + @scrollUpTime
+            _.delay timelineFadeIn, 1000 + delay + @scrollUpTime
             _.delay clearItemView, 1500 + delay + @scrollUpTime
 
         slideItemUp: ->
