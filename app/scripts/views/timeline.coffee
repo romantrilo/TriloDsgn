@@ -17,6 +17,7 @@ define [
 
         events: {
             'beforeChange .timeline': '_updateCovers'
+            'click .item': '_itemOnClick'
             'click .slick-center': 'viewItem'
         }
 
@@ -43,7 +44,7 @@ define [
             @timeline = @$el.find '.timeline'
             options = {
                 centerMode: true
-                focusOnSelect: true
+#                focusOnSelect: true
                 infinite: false
                 slidesToShow: 3
                 speed: 1000
@@ -91,6 +92,13 @@ define [
         fadeOut: ->
             @timeline.addClass 'fade-out'
 
+        _itemOnClick: (event) ->
+            $targetIndex = $(event.target).closest('.item').data 'slick-index'
+            $currentCenterIndex = @$el.find('.item.slick-center').data 'slick-index'
+
+            if $targetIndex != $currentCenterIndex
+                @timeline.slick 'slickGoTo', $targetIndex
+
         _updateCovers: (event, slick, currentSlide, nextSlide) ->
             if currentSlide == nextSlide
                 return
@@ -133,6 +141,14 @@ define [
                     error: =>
                         @app.show404()
                 }
+
+                window.paceOptions = {
+                    elements: {
+                        selectors: ['.img']
+                    },
+                    startOnPageLoad: false
+                }
+                Pace.restart()
                 $.ajax url, options
             else
                 @app.$itemView.html @app.about.el
@@ -166,8 +182,6 @@ define [
             unless @app.model.isCurrentProject()
                 delay = 1000
                 hideBlackRectangular()
-
-            console.log delay
 
             _.delay @slideItemDown.bind(@), delay
             _.delay preloaderFadeOut, 500 + delay + @scrollUpTime
