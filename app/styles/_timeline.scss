@@ -112,6 +112,11 @@ body.loader-done {
 
 .pre-load-description {
     margin-top: 2px;
+    opacity: 0;
+    @include transition(opacity, $base-transition * 2);
+    &.show {
+        opacity: 1;
+    }
 }
 
 @media screen and (max-width: $small-screen-max) {

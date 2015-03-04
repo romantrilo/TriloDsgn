@@ -85,12 +85,8 @@ define [
                     @scrollTimedOut = false
                     @viewItem()
 
-
-            console.log 'timed out - false'
-
             timeOutScroll = =>
                 @scrollTimedOut = true
-                console.log 'timed out - true'
 
             delay = if @app.model.isCurrentProject() then 1500 else 2500
 
@@ -227,6 +223,7 @@ define [
             showBlackRectangle = =>
                 @app.$body.addClass 'about'
 
+            @preloader.$descr.addClass 'show'
             @app.$itemView.addClass 'up'
             $(document).off 'ajax-load-done', @slideItemUp
 
@@ -235,6 +232,7 @@ define [
 
         slideItemDown: ->
             slide = =>
+                @preloader.$descr.removeClass 'show'
                 @app.$itemView.removeClass 'up'
 
             itemTopOffset = @app.$itemWrapper.scrollTop()
