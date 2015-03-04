@@ -54,6 +54,12 @@ body.loader-done {
 .key-words {
     @include translate(-90px, 80px);
     line-height: $base-line-height;
+    & span {
+        @include transition(color, $base-transition);
+    }
+    &.white span {
+        color: $white;
+    }
 }
 
 .contacts {
@@ -82,6 +88,7 @@ body.loader-done {
         @include transition(all, $base-transition * 1.5);
         @include transition-delay(0s);
     }
+
     body.menu-opened {
         & .nav {
             z-index: 6;

@@ -28,46 +28,48 @@ define [
             @$btn = @$el.find '.lines-button'
             @$lines = @$btn.find('.lines')
             @$logo = @$el.find '.logo h1'
-            @return = @$el.find '.return'
+            @$return = @$el.find '.return'
             @
 
         toggleMenu: () ->
             $body = $ 'body'
             $body.toggleClass 'menu-opened'
 
-            onOpen = =>
+            onOpen1stStage = =>
                 @$lines.addClass 'minus'
                 @$lines.addClass 'x'
                 @hideReturnLink()
 
-            onClose = =>
+            onOpen2ndStage = =>
+                @app.footer.whiteContacts()
+
+            onClose1stStage = =>
                 @$lines.removeClass 'minus'
                 @$lines.removeClass 'close'
 
-            logoOnClose = =>
+            onClose2ndStage = =>
                 @$logo.removeClass 'white'
-
-            contactOnOpen = =>
-                @app.footer.whiteContacts()
+                @app.footer.$keywords.removeClass 'white'
 
             if @$lines.hasClass 'x'
                 @$lines.removeClass 'x'
                 @app.footer.unWhiteContacts()
                 if @app.header.returnLinkVisility
                     @app.header.showReturnLink()
-                _.delay onClose, 500
-                _.delay logoOnClose, 700
+                _.delay onClose1stStage, 500
+                _.delay onClose2ndStage, 700
             else
                 @$logo.addClass 'white'
                 @$lines.addClass 'close'
-                _.delay onOpen, 500
-                _.delay contactOnOpen, 700
+                @app.footer.$keywords.addClass 'white'
+                _.delay onOpen1stStage, 500
+                _.delay onOpen2ndStage, 700
 
         showReturnLink: ->
-            @return.addClass 'visible'
+            @$return.addClass 'visible'
 
         hideReturnLink: ->
-            @return.removeClass 'visible'
+            @$return.removeClass 'visible'
 
         showTimeline: ->
             @app.timeline.show()

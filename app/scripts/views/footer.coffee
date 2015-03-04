@@ -19,6 +19,7 @@ define [
         render: ->
             @$el.html @template()
             @$contacts = @$el.find '.contacts'
+            @$keywords = @$el.find '.key-words'
             @
 
         whiteContacts: ->
