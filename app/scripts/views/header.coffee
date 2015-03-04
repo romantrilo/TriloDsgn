@@ -50,6 +50,7 @@ define [
             onClose2ndStage = =>
                 @$logo.removeClass 'white'
                 @app.footer.$keywords.removeClass 'white'
+                @app.timeline.scrollPossible = true;
 
             if @$lines.hasClass 'x'
                 @$lines.removeClass 'x'
@@ -62,6 +63,7 @@ define [
                 @$logo.addClass 'white'
                 @$lines.addClass 'close'
                 @app.footer.$keywords.addClass 'white'
+                @app.timeline.scrollPossible = false;
                 _.delay onOpen1stStage, 500
                 _.delay onOpen2ndStage, 700
 

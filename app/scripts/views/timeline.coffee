@@ -62,6 +62,41 @@ define [
             }
             @timeline.slick options
 
+            @shown = true
+            @scrollPossible = true
+            @scrollTimedOut = true
+
+            $(window).bind 'mousewheel', @openItemOnScroll.bind @
+
+        openItemOnScroll: (event) ->
+            if !@scrollPossible or !@scrollTimedOut
+                return
+
+            delta = event.originalEvent.wheelDelta
+
+            if delta >= 0
+                if !@shown and @app.$itemWrapper.scrollTop() == 0
+                    @shown = true
+                    @scrollTimedOut = false
+                    @show()
+            else
+                if @shown
+                    @shown = false
+                    @scrollTimedOut = false
+                    @viewItem()
+
+
+            console.log 'timed out - false'
+
+            timeOutScroll = =>
+                @scrollTimedOut = true
+                console.log 'timed out - true'
+
+            delay = if @app.model.isCurrentProject() then 1500 else 2500
+
+            _.delay timeOutScroll, delay
+
+
         initCovers: ->
             options = {
                 infinite: false
@@ -113,7 +148,7 @@ define [
 
             _.defer flagToDefault
 
-        viewItem: () ->
+        viewItem: ->
             onOpen = =>
                 @preloader.fadeIn()
                 @loadItem()
@@ -197,7 +232,6 @@ define [
 
             unless @app.model.isCurrentProject()
                 _.delay showBlackRectangle, 1000
-
 
         slideItemDown: ->
             slide = =>
