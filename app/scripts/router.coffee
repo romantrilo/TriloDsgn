@@ -44,8 +44,10 @@ define [
                 url = if url then url else @urls[@urls.length - 1]
                 @updateTimeline url
 
+            middleIndex = Math.floor(@urls.length / 2)
+
             @app.initTimeline()
-            @_updateCurrentTimelineIndex 0
+            @app.timeline.update middleIndex, false
             unless ignoreScrolling
                 $(document).on 'first-load-done', showWidthDelay
 
