@@ -49,6 +49,9 @@ body.loader-done {
     &.white a {
         color: $white;
     }
+    & a {
+        @include cursor-pointer;
+    }
 }
 
 .key-words {
