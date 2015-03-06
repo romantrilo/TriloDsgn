@@ -18,7 +18,7 @@ define [
         events: {
             'beforeChange .timeline': '_updateCovers'
             'click .item': '_itemOnClick'
-            'click .slick-center': 'viewItem'
+            'click .slick-center': 'triggerCoversLinkClick'
         }
 
         template: _.template template
@@ -44,7 +44,6 @@ define [
             @timeline = @$el.find '.timeline'
             options = {
                 centerMode: true
-#                focusOnSelect: true
                 infinite: false
                 slidesToShow: 3
                 speed: 1000
@@ -67,31 +66,6 @@ define [
             @scrollTimedOut = true
 
             $(window).bind 'mousewheel', @openItemOnScroll.bind @
-
-        openItemOnScroll: (event) ->
-            if !@scrollPossible or !@scrollTimedOut
-                return
-
-            delta = event.originalEvent.wheelDelta
-
-            if delta >= 0
-                if !@shown and @app.$itemWrapper.scrollTop() == 0
-                    @shown = true
-                    @scrollTimedOut = false
-                    @show()
-            else
-                if @shown
-                    @shown = false
-                    @scrollTimedOut = false
-                    @viewItem()
-
-            timeOutScroll = =>
-                @scrollTimedOut = true
-
-            delay = if @app.model.isCurrentProject() then 1500 else 2500
-
-            _.delay timeOutScroll, delay
-
 
         initCovers: ->
             options = {
@@ -122,6 +96,30 @@ define [
 
         fadeOut: ->
             @timeline.addClass 'fade-out'
+
+        openItemOnScroll: (event) ->
+            if !@scrollPossible or !@scrollTimedOut
+                return
+
+            delta = event.originalEvent.wheelDelta
+
+            if delta >= 0
+                if !@shown and @app.$itemWrapper.scrollTop() == 0
+                    @shown = true
+                    @scrollTimedOut = false
+                    @show()
+            else
+                if @shown
+                    @shown = false
+                    @scrollTimedOut = false
+                    @triggerCoversLinkClick()
+
+            timeOutScroll = =>
+                @scrollTimedOut = true
+
+            delay = if @app.model.isCurrentProject() then 1500 else 2500
+
+            _.delay timeOutScroll, delay
 
         _itemOnClick: (event) ->
             $targetIndex = $(event.target).closest('.item').data 'slick-index'
@@ -258,5 +256,7 @@ define [
 
             _.delay speedToDefault, speed + 500
 
+        triggerCoversLinkClick: ->
+            @covers.find('.slick-active').find('a.view-item')[0].click()
 
     }
