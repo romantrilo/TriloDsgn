@@ -36,11 +36,14 @@ define [
             $body.toggleClass 'menu-opened'
 
             onOpen1stStage = =>
+                @app.menu.animateMenuLinks()
+
+            onOpen2ndStage = =>
                 @$lines.addClass 'minus'
                 @$lines.addClass 'x'
                 @hideReturnLink()
 
-            onOpen2ndStage = =>
+            onOpen3rdStage = =>
                 @app.footer.whiteContacts()
 
             onClose1stStage = =>
@@ -52,6 +55,9 @@ define [
                 @app.footer.$keywords.removeClass 'white'
                 @app.timeline.scrollPossible = true;
 
+            onClose3rdStage = =>
+                @app.menu.hideLinks()
+
             if @$lines.hasClass 'x'
                 @$lines.removeClass 'x'
                 @app.footer.unWhiteContacts()
@@ -59,13 +65,15 @@ define [
                     @app.header.showReturnLink()
                 _.delay onClose1stStage, 500
                 _.delay onClose2ndStage, 700
+                _.delay onClose3rdStage, 700
             else
                 @$logo.addClass 'white'
                 @$lines.addClass 'close'
                 @app.footer.$keywords.addClass 'white'
                 @app.timeline.scrollPossible = false;
-                _.delay onOpen1stStage, 500
-                _.delay onOpen2ndStage, 700
+                _.delay onOpen1stStage, 300
+                _.delay onOpen2ndStage, 500
+                _.delay onOpen3rdStage, 700
 
         showReturnLink: ->
             @$return.addClass 'visible'
