@@ -26,41 +26,61 @@ body.menu-opened #menu {
     .menu-wrapper {
         margin: 32vh 150px 0;
         & a {
-            display: inline-block;
-            margin-bottom: 15px;
-            height: 40px;
-            overflow: hidden;
-            text-align: center;
             position: relative;
+            display: inline-block;
+            height: 60px;
+            overflow: hidden;
             @include cursor-pointer;
             & .text {
                 position: absolute;
-                top: -9px;
-                width: inherit;
+                top: 0;
+                overflow: hidden;
+                white-space: nowrap;
                 z-index: 5;
                 & span {
+                    margin-left: 26px;
                     margin-right: -0.2em;
-                    color: transparent;
+                }
+                &.dark {
+                    width: 0;
+                    z-index: 10;
                     &.show {
+                        width: 100%;
+                        @include transition(width, $base-transition);
+                    }
+                    & span {
+                        color: $base-color;
+                    }
+                }
+                &.white {
+                    width: 0;
+                    &.show {
+                        width: 100%;
+                        @include transition(width, $base-transition);
+                    }
+                    &.above {
+                        z-index: 15;
+                    }
+                    & span {
                         color: $white;
                     }
                 }
             }
             &.work-link {
-                width: 267px;
+                width: 260px;
             }
             &.about-link {
-                width: 289px;
+                width: 284px;
             }
             &.contacts-link {
-                width: 373px;
+                width: 410px;
             }
             & .background {
                 position: absolute;
-                top: 0;
+                top: 10px;
                 left: -100%;
                 width: inherit;
-                height: 40px;
+                height: 38px;
                 background: $white;
                 &.show {
                     left: 0;
