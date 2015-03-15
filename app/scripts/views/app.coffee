@@ -26,6 +26,7 @@ define [
             @initAbout()
             @$body = $ 'body'
             @$content = @$el.find '#content'
+            @$blackRec = @$el.find '#black_rec'
             @$itemWrapper = @$el.find '#item'
             @$itemView = @$itemWrapper.find '.item-view'
 
@@ -60,10 +61,20 @@ define [
 
         showItem: ->
             if @menu._isOpened()
-#                TODO
+                @header.$menuBtn.trigger('click');
+                _.delay( =>
+                    @timeline.viewItem()
+                , 1000)
             else
                 @timeline.viewItem()
             return
+
+        showAbout: ->
+            if @menu._isOpened()
+#                TODO
+            else
+#                TODO
+
 
         show404: ->
 

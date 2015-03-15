@@ -118,7 +118,7 @@ define [
 
         showAbout: ->
             show = =>
-                @app.showItem()
+                @app.showAbout()
                 @navigate '#about', {trigger: false}
 
             showWidthDelay = =>

@@ -25,8 +25,8 @@ define [
 
         render: ->
             @$el.html @template()
-            @$btn = @$el.find '.lines-button'
-            @$lines = @$btn.find('.lines')
+            @$menuBtn = @$el.find '.lines-button'
+            @$lines = @$menuBtn.find('.lines')
             @$logo = @$el.find '.logo h1'
             @$return = @$el.find '.return'
             @
@@ -87,6 +87,9 @@ define [
             @$return.removeClass 'visible'
 
         showTimeline: ->
-            @app.timeline.show()
+            if @app.$body.hasClass 'menu-opened'
+                @app.header.$menuBtn.trigger 'click'
+            else
+                @app.timeline.show()
 
     }
