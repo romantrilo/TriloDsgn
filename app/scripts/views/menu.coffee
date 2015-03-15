@@ -26,11 +26,11 @@ define [
             @$links.mouseleave @_onMouseOut.bind(@)
             @
 
-        _isOpened: ->
-            $('body').hasClass('menu-opened')
+        isOpened: ->
+            @app.$body.hasClass('menu-opened')
 
         close: ->
-            if @_isOpened()
+            if @isOpened()
                 @app.header.toggleMenu()
 
         animateMenuLinks: ->

@@ -27,4 +27,10 @@ define [
 
         unWhiteContacts: ->
             @$contacts.removeClass 'white'
+
+        whiteKeyWords: ->
+            @$keywords.addClass 'white'
+
+        unWhiteKeyWords: ->
+            @$keywords.removeClass 'white'
     }

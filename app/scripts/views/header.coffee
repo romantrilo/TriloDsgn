@@ -31,54 +31,72 @@ define [
             @$return = @$el.find '.return'
             @
 
-        toggleMenu: () ->
-            onOpen1stStage = =>
+        toggleMenu: ->
+            if @$lines.hasClass 'x'
+                unless @app.$body.hasClass 'menu-closing'
+                    @_closeMenu()
+            else
+                unless @app.$body.hasClass('menu-opened') or @app.$body.hasClass('menu-closing')
+                    @_openMenu()
+
+        _openMenu: ->
+            @whiteLogo()
+            @menuBtnToX()
+
+            @app.$body.addClass 'menu-opened'
+            @app.footer.whiteKeyWords()
+            @app.timeline.scrollPossible = false;
+
+            _.delay( =>
                 @app.menu.animateMenuLinks()
+            , 300)
 
-            onOpen2ndStage = =>
-                @$lines.addClass 'minus'
-                @$lines.addClass 'x'
+            _.delay( =>
                 @hideReturnLink()
+            , 500)
 
-            onOpen3rdStage = =>
+            _.delay( =>
                 @app.footer.whiteContacts()
+            , 700)
 
-            onClose1stStage = =>
-                @$lines.removeClass 'minus'
-                @$lines.removeClass 'close'
+        _closeMenu: ->
+            @menuBtnToHamburger()
+            @app.footer.unWhiteContacts()
 
-            onClose2ndStage = =>
-                @$logo.removeClass 'white'
-                @app.footer.$keywords.removeClass 'white'
+            @app.$body.removeClass 'menu-opened'
+            @app.$body.addClass 'menu-closing'
+
+            if @app.header.returnLinkVisility
+                @app.header.showReturnLink()
+
+            _.delay( =>
+                @menuBtnToHamburger()
+            , 500)
+
+            _.delay( =>
+                @unWhiteLogo()
+                @app.footer.unWhiteKeyWords()
                 @app.timeline.scrollPossible = true;
+            , 700)
 
-            onClose3rdStage = =>
+            _.delay( =>
                 @app.menu.hideLinks()
                 @app.$body.removeClass 'menu-closing'
+            , 1000)
 
-            if @$lines.hasClass 'x'
-                if @app.$body.hasClass 'menu-closing'
-                    return
-                @app.$body.removeClass 'menu-opened'
-                @app.$body.addClass 'menu-closing'
-                @$lines.removeClass 'x'
-                @app.footer.unWhiteContacts()
-                if @app.header.returnLinkVisility
-                    @app.header.showReturnLink()
-                _.delay onClose1stStage, 500
-                _.delay onClose2ndStage, 700
-                _.delay onClose3rdStage, 700
-            else
-                if @app.$body.hasClass('menu-opened') or @app.$body.hasClass('menu-closing')
-                    return
-                @app.$body.addClass 'menu-opened'
-                @$logo.addClass 'white'
-                @$lines.addClass 'close'
-                @app.footer.$keywords.addClass 'white'
-                @app.timeline.scrollPossible = false;
-                _.delay onOpen1stStage, 300
-                _.delay onOpen2ndStage, 500
-                _.delay onOpen3rdStage, 700
+        menuBtnToX: ->
+            @$lines.addClass 'close'
+            _.delay( =>
+                @$lines.addClass 'minus'
+                @$lines.addClass 'x'
+            , 500)
+
+        menuBtnToHamburger: ->
+            @$lines.removeClass 'x'
+            _.delay( =>
+                @$lines.removeClass 'minus'
+                @$lines.removeClass 'close'
+            , 500)
 
         showReturnLink: ->
             @$return.addClass 'visible'
@@ -91,5 +109,11 @@ define [
                 @app.header.$menuBtn.trigger 'click'
             else
                 @app.timeline.show()
+
+        whiteLogo: ->
+            @$logo.addClass 'white'
+
+        unWhiteLogo: ->
+            @$logo.removeClass 'white'
 
     }

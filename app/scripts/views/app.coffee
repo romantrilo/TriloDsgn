@@ -60,7 +60,7 @@ define [
         showContacts: ->
 
         showItem: ->
-            if @menu._isOpened()
+            if @menu.isOpened()
                 @header.$menuBtn.trigger('click');
                 _.delay( =>
                     @timeline.viewItem()
@@ -70,7 +70,7 @@ define [
             return
 
         showAbout: ->
-            if @menu._isOpened()
+            if @menu.isOpened()
 #                TODO
             else
 #                TODO
