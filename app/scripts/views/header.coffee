@@ -32,9 +32,6 @@ define [
             @
 
         toggleMenu: () ->
-            $body = $ 'body'
-            $body.toggleClass 'menu-opened'
-
             onOpen1stStage = =>
                 @app.menu.animateMenuLinks()
 
@@ -57,8 +54,13 @@ define [
 
             onClose3rdStage = =>
                 @app.menu.hideLinks()
+                @app.$body.removeClass 'menu-closing'
 
             if @$lines.hasClass 'x'
+                if @app.$body.hasClass 'menu-closing'
+                    return
+                @app.$body.removeClass 'menu-opened'
+                @app.$body.addClass 'menu-closing'
                 @$lines.removeClass 'x'
                 @app.footer.unWhiteContacts()
                 if @app.header.returnLinkVisility
@@ -67,6 +69,9 @@ define [
                 _.delay onClose2ndStage, 700
                 _.delay onClose3rdStage, 700
             else
+                if @app.$body.hasClass('menu-opened') or @app.$body.hasClass('menu-closing')
+                    return
+                @app.$body.addClass 'menu-opened'
                 @$logo.addClass 'white'
                 @$lines.addClass 'close'
                 @app.footer.$keywords.addClass 'white'

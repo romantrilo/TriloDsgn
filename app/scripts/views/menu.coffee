@@ -96,7 +96,7 @@ define [
             $background = $target.find('.background')
             $background.addClass 'hide'
             $target.find('.white').addClass 'show'
-#
+
             _.delay ->
                 $target.find('.white').removeClass 'above'
                 $target.find('.dark').removeClass 'show'
