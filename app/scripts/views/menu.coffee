@@ -1,10 +1,9 @@
 define [
 
     'backbone'
-    'views/footer'
     'text!../templates/menu.html'
 
-], (Backbone, Footer, template) ->
+], (Backbone, template) ->
 
     'use strict'
 
