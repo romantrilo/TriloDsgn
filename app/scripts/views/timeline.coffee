@@ -11,10 +11,6 @@ define [
 
     Backbone.View.extend {
 
-        tagName: 'div'
-
-        id: 'timeline'
-
         events: {
             'beforeChange .timeline': '_updateCovers'
             'click .item': '_itemOnClick'
@@ -26,8 +22,9 @@ define [
         initialize: (options) ->
             @model = options.model
             @app = options.app
-            @render()
             @scrollUpTime = 0
+            @$el = @app.$el.find '#timeline'
+            @render()
 
         render: ->
             @$el.html @template {
@@ -150,8 +147,8 @@ define [
 
             unless @coversUpdated
                 @fadeOut()
-                @app.header.showReturnLink()
-                @app.header.returnLinkVisility = true;
+                @app.navs.showReturnLink()
+                @app.navs.returnLinkVisility = true;
                 @preloader.updateText()
                 if @app.model.isCurrentProject()
                     @app.$itemView.addClass 'project'
@@ -193,13 +190,13 @@ define [
             preloaderFadeOut = =>
                 @app.menu.close()
                 @preloader.fadeOut()
-                @app.header.$lines.removeClass 'white'
+                @app.navs.$lines.removeClass 'white'
 
             timelineFadeIn = =>
                 @app.trigger 'timeline-update'
                 @fadeIn()
-                @app.header.hideReturnLink()
-                @app.header.returnLinkVisility = false;
+                @app.navs.hideReturnLink()
+                @app.navs.returnLinkVisility = false;
 
             clearItemView = =>
                 @app.$itemView.html ''

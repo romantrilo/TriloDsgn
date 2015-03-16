@@ -1,10 +1,9 @@
 define [
 
     'backbone'
-    'data/about-info'
-    'text!../templates/about.html'
+    'text!../templates/contacts.html'
 
-], (Backbone, Data, template) ->
+], (Backbone, template) ->
 
     'use strict'
 
@@ -14,11 +13,11 @@ define [
 
         initialize: (options) ->
             @app = options.app
-            @$el = @app.$el.find '#about'
+            @$el = @app.$el.find '#contacts'
             @render()
 
         render: ->
-            @$el.html @template(Data)
+            @$el.html @template()
             @
 
     }

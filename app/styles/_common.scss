@@ -56,12 +56,6 @@ p, span, div, h1, h2, h3, h4, h5, h6 {
     color: $side-color;
 }
 
-#content {
-    width: 100vw;
-    height: 100vh;
-    z-index: 3;
-}
-
 .font {
     &.italic {
         font-family: CrimsonTextItalic, sans-serif;
@@ -111,6 +105,10 @@ p, span, div, h1, h2, h3, h4, h5, h6 {
 }
 
 
-//::-webkit-scrollbar {
-//    display: none;
-//}
+.full-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}

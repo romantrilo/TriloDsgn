@@ -10,14 +10,14 @@ define [
 
     Backbone.View.extend {
 
-        className: 'menu'
-
         template: _.template(template)
 
         initialize: (options) ->
             @app = options.app
-            @counter = 0
+            @$el = @app.$el.find '#menu'
             $(document).on 'menu-link-timeout', @_onMenuLinkTimeout.bind @
+            @counter = 0
+            @render()
 
         render: ->
             @$el.html @template()
@@ -29,14 +29,55 @@ define [
         isOpened: ->
             @app.$body.hasClass('menu-opened')
 
-        close: ->
-            if @isOpened()
-                @app.header.toggleMenu()
+        open: ->
+            @app.navs.whiteLogo()
+            @app.navs.menuBtnToX()
 
-        animateMenuLinks: ->
+            @app.$body.addClass 'menu-opened'
+            @app.navs.whiteKeyWords()
+            @app.timeline.scrollPossible = false;
+
+            _.delay =>
+                @animateLinks()
+            , 300
+
+            _.delay =>
+                @app.navs.hideReturnLink()
+            , 500
+
+            _.delay =>
+                @app.navs.whiteContacts()
+            , 700
+
+        close: ->
+            @app.navs.menuBtnToHamburger()
+            @app.navs.unWhiteContacts()
+
+            @app.$body.removeClass 'menu-opened'
+            @app.$body.addClass 'menu-closing'
+
+            if @app.navs.returnLinkVisility
+                @app.navs.showReturnLink()
+
+            _.delay =>
+                @app.navs.menuBtnToHamburger()
+            , 500
+
+            _.delay =>
+                @app.navs.unWhiteLogo()
+                @app.navs.unWhiteKeyWords()
+                @app.timeline.scrollPossible = true;
+            , 700
+
+            _.delay =>
+                @hideLinks()
+                @app.$body.removeClass 'menu-closing'
+            , 1000
+
+        animateLinks: ->
             _.delay @_animateLink.bind(@), i * 100 for link, i in @$links
 
-        _animateLink: () ->
+        _animateLink: ->
             hideBackground = ->
                 linkText.addClass('show')
                 background.addClass 'hide'

@@ -2,30 +2,30 @@ define [
 
     'backbone'
     'views/timeline'
-    'views/header'
-    'views/footer'
+    'views/navs'
     'views/menu'
     'views/about'
+    'views/contacts'
     'text!../templates/app.html'
 
-], (Backbone, Timeline, Header, Footer, Menu, About, template) ->
+], (Backbone, Timeline, Navs, Menu, About, Contacts, template) ->
 
     'use strict'
 
     Backbone.View.extend {
 
-        el: $ 'main'
-
         template: _.template(template)
 
         initialize: () ->
+            @$el = $ 'main'
             @render()
-            @initHeader()
-            @initFooter()
+            @initElements()
+            @initNavs()
             @initMenu()
             @initAbout()
+
+        initElements: ->
             @$body = $ 'body'
-            @$content = @$el.find '#content'
             @$blackRec = @$el.find '#black_rec'
             @$itemWrapper = @$el.find '#item'
             @$itemView = @$itemWrapper.find '.item-view'
@@ -33,29 +33,36 @@ define [
         render: ->
             @$el.html @template()
 
-        initHeader: ->
-            @header = new Header {
+        initNavs: ->
+            @navs = new Navs {
                 app: @
             }
-            @$el.prepend @header.render().$el
-
-        initFooter: ->
-            @footer = new Footer {
-                app: @
-            }
-            @$el.append @footer.render().$el
 
         initMenu: ->
             @menu = new Menu {
                 app: @
             }
-            @$el.append @menu.render().$el
+
+        initTimeline: ->
+            @menu.close()
+            @timeline = new Timeline {
+                model: @model.get 'items'
+                app: @
+            }
+            @listenTo @timeline, 'timeline-update', @triggerTimelineUpdate
+
+        triggerTimelineUpdate: (index) ->
+            @trigger 'timeline-update', index
 
         initAbout: ->
             @about = new About {
                 app: @
             }
-            @about.render()
+
+        initContacts: ->
+            @contacts = new Contacts {
+                app: @
+            }
 
         showContacts: ->
 
@@ -77,17 +84,5 @@ define [
 
 
         show404: ->
-
-        initTimeline: ->
-            @menu.close()
-            @timeline = new Timeline {
-                model: @model.get 'items'
-                app: @
-            }
-            @$content.append @timeline.$el
-            @listenTo @timeline, 'timeline-update', @triggerTimelineUpdate
-
-        triggerTimelineUpdate: (index) ->
-            @trigger 'timeline-update', index
 
     }

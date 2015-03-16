@@ -1,16 +1,7 @@
 #item {
-    width: 100vw;
-    height: 100vh;
     margin-right: -14px;
     padding-right: 14px;
     overflow-y: auto;
-    z-index: 0;
-}
-
-.pre-load.outer.about {
-    width: calc(100vw - 24px);
-    padding-left: $extra-large-font-size;
-    text-align: left;
 }
 
 .item-view {
@@ -28,119 +19,20 @@
     -o-transition-duration: $base-transition;
     transition-duration: $base-transition;
 
-    &.about {
-        -webkit-transition-duration: $base-transition * 2;
-        -moz-transition-duration: $base-transition * 2;
-        -ms-transition-duration: $base-transition * 2;
-        -o-transition-duration: $base-transition * 2;
-        transition-duration: $base-transition * 2;
-    }
-
     &.up {
         @include translate(0, 40px);
     }
 }
 
-.story p {
-    margin: 12px 0;
-    line-height: 24px;
-}
-
-.groups {
-    display: flex;
-    display: -webkit-box;
-    display: moz-box-flex;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
-    & .group {
-        margin-top: 70px;
-        & h2 {
-            margin-bottom: 30px;
-        }
-        & .about-item {
-            min-height: 150px;
-            padding-right: $extra-large-font-size;
-            &:last-child {
-                min-height: 0;
-                padding-right: 0;
-            }
-            & h3 {
-                margin-bottom: 10px;
-            }
-            & p {
-                margin: 8px 0;
-            }
-        }
-    }
-}
-
-.trident-wrapper {
-    margin: 130px 0 100px;
-    & img {
-        width: 60px;
-        margin-left: -19px;
-    }
-}
-
-@media screen and (max-width: $small-screen-max) {
-    .group .font {
-       &.mid-small {
-           font-size: $base-font-size;
-       }
-       &.base {
-           font-size: $mid-base-font-size;
-       }
-    }
-
-    .trident-wrapper {
-        margin: 70px 0 0;
-    }
-}
-
-
 @media screen and (min-width: $middle-screen-min) {
-    .pre-load.outer.about {
-        width: calc(100vw - 150px);
-        padding-left: 150px;
-    }
-
     .item-view {
         margin: 0 150px;
     }
 }
 
-@media screen and (min-width: $middle-screen-medium) {
-    .pre-load.outer.about {
-        width: calc(100vw - (100vw - 700px) / 2);
-        padding-left: calc((100vw - 700px) / 2);
-    }
-
-    .item-view.about {
-        margin: 0 auto;
-        max-width: 700px;
-    }
-}
-
 @media screen and (min-width: $large-screen-min) {
-    .pre-load.outer.about {
-        position: fixed;
-        width: calc(100vw - (100vw - 700px) / 2 - 130px);
-        padding-left: calc((100vw - 700px) / 2 - 130px);
-    }
-
     .item-view {
         max-width: 1000px;
         margin: 0 auto;
-        &.about {
-            margin-top: calc(32vh + 4px);
-            margin-left: calc((100vw - 700px) / 2 + 130px);
-            @include translate(0, 100vh);
-            &.up {
-                @include translate(0, 0);
-            }
-        }
     }
 }

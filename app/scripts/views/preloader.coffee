@@ -37,7 +37,7 @@ define [
                 @$el.addClass 'about'
 
             @$el.removeClass 'fade-out'
-            @app.$itemWrapper.css 'zIndex', 5
+            @app.$itemWrapper.css 'zIndex', 30
 
             return
 
