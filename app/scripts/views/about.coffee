@@ -21,4 +21,8 @@ define [
             @$el.html @template(Data)
             @
 
+        show: ->
+
+        hide: ->
+
     }

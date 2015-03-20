@@ -19,6 +19,12 @@ body.menu-opened #menu {
             color: $white;
             font-size: 48px;
         }
+        & .dark {
+            display: none;
+        }
+        & .white span {
+            letter-spacing: 0.15em;
+        }
     }
 
 }

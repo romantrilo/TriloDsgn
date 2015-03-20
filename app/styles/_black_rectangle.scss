@@ -4,52 +4,11 @@
     background-color: $base-color;
     @include translate(-100vw, 0);
     @include transition(all, $base-transition * 2);
+    &.menu-opened {
+        @include translate(0, 0);
+    }
+    &.about {
+        @include translate(-100vw, -80vh);
+    }
 }
 
-body.menu-opened #black_rec {
-    @include translate(0, 0);
-}
-
-//body.about {
-//    & #black_rec {
-//        @include translate(0, -80vh);
-//    }
-//    & .return a {
-//        @include transition(color, $base-transition);
-//        color: $white;
-//    }
-//    & .lines-button span {
-//        &,
-//        &:before,
-//        &:after {
-//            @include transition(color, $base-transition);
-//            background: $white !important;
-//        }
-//    }
-//}
-//
-//@media screen and (max-width: $small-screen-max) {
-//    body.about .logo .logo-clickable h1{
-//        @include transition(color, $base-transition);
-//        @include transition-delay($base-transition);
-//        color: white;
-//    }
-//}
-//
-//@media screen and (min-width: $middle-screen-min) {
-//    body.about #black_rec {
-//        @include translate(150px, -80vh);
-//    }
-//}
-//
-//@media screen and (min-width: $middle-screen-medium) {
-//    body.about #black_rec {
-//        @include translate(calc((100vw - 700px) / 2), -80vh);
-//    }
-//}
-//
-//@media screen and (min-width: $large-screen-min) {
-//    body.about #black_rec {
-//        @include translate(calc((100vw - 700px) / 2 + 130px), -80vh);
-//    }
-//}

@@ -33,6 +33,7 @@ define [
             @app.navs.menuBtnToX()
 
             @app.$body.addClass 'menu-opened'
+            @app.$blackRec.addClass 'menu-opened'
             @app.navs.whiteKeyWords()
             @app.timeline.scrollPossible = false;
 
@@ -53,6 +54,7 @@ define [
             @app.navs.unWhiteContacts()
 
             @app.$body.removeClass 'menu-opened'
+            @app.$blackRec.removeClass 'menu-opened'
             @app.$body.addClass 'menu-closing'
 
             if @app.navs.returnLinkVisility

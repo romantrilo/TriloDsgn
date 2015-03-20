@@ -184,9 +184,6 @@ define [
         show: ->
             delay = 0
 
-            hideBlackRectangular = =>
-                @app.$body.removeClass 'about'
-
             preloaderFadeOut = =>
                 @app.menu.close()
                 @preloader.fadeOut()
@@ -205,9 +202,10 @@ define [
                 @app.$itemView.removeClass 'about'
                 @app.$itemView.removeClass 'project'
 
-            unless @app.model.isCurrentProject()
-                delay = 1000
-                hideBlackRectangular()
+            if @app.menu.isOpened()
+                @app.menu.close()
+#                TODO return only if current is timeline, add check for about or contacts
+                return
 
             _.delay @slideItemDown.bind(@), delay
             _.delay preloaderFadeOut, 500 + delay + @scrollUpTime
