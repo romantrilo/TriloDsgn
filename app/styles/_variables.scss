@@ -25,3 +25,5 @@ $middle-screen-min: $small-screen-max + 1;
 $middle-screen-medium: 1000px;
 $middle-screen-max: 1300px;
 $large-screen-min: $middle-screen-max + 1;
+$large-screen-max: 1599px;
+$extra-large-screen-min: $large-screen-max + 1;

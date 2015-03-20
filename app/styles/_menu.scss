@@ -25,7 +25,7 @@ body.menu-opened #menu {
 
 @media screen and (min-width: $middle-screen-min) {
     .menu-wrapper {
-        margin: 32vh 150px 0;
+        margin: 38vh 150px 0;
         & a {
             position: relative;
             display: inline-block;
@@ -91,6 +91,30 @@ body.menu-opened #menu {
                     left: 100%;
                     @include transition(left, $base-transition);
                 }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: $extra-large-screen-min) {
+    .menu-wrapper {
+        & a, & .text span {
+            font-size: 100px;
+        }
+        & a {
+            height: 114px;
+            &.work-link {
+                width: 385px;
+            }
+            &.about-link {
+                width: 418px;
+            }
+            &.contacts-link {
+                width: 621px;
+            }
+            & .background {
+                top: 17px;
+                height: 67px;
             }
         }
     }
