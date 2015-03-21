@@ -50,12 +50,13 @@ define [
             , 700
 
         close: ->
+
             @app.navs.menuBtnToHamburger()
             @app.navs.unWhiteContacts()
 
             @app.$body.removeClass 'menu-opened'
-            @app.$blackRec.removeClass 'menu-opened'
             @app.$body.addClass 'menu-closing'
+            @app.$blackRec.addClass 'menu-closed'
 
             if @app.navs.returnLinkVisility
                 @app.navs.showReturnLink()
@@ -73,6 +74,8 @@ define [
             _.delay =>
                 @hideLinks()
                 @app.$body.removeClass 'menu-closing'
+                @app.$blackRec.removeClass 'menu-opened'
+                @app.$blackRec.removeClass 'menu-closed'
             , 1000
 
         animateLinks: ->

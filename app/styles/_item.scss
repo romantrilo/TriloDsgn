@@ -1,7 +1,5 @@
 #item {
-    margin-right: -14px;
-    padding-right: 14px;
-    overflow-y: auto;
+    @include hide-scroll;
 }
 
 .item-view {

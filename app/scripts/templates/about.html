@@ -1,35 +1,44 @@
-<div class="story font f-book-c mid-base">
-    <p class="side-color">
-        I am a digital designer based in Kyiv, Ukraine.
-    </p>
-    <p class="side-color">
-        I am passionate about minimalist art of 1950s-60s and possibilities of new media.
-        I love enhancing interfaces by adding meaningful transitions and smart interactions,
-        creating positive user experience.
-    </p>
-    <p class="side-color">
-        In each and every project I strive to become better and it is crucially important for me to
-        create innovative design, thereby making the web a better place.
-    </p>
-</div>
-<div class="groups">
-    <% _.each(groups, function (group) { %>
-        <div class="group">
-            <h2 class="font f-book-c mid-small letter-spacing middle upper side-color">
-                <%= group.title %>
-            </h2>
-            <% _.each(group.items, function (item) { %>
+<div class="about-layer">
+    <div class="about-title">
+        <p class="font regular menu upper letter-spacing small">about</p>
+        <div>
+            <p class="font italic base lower side-color">my story in a few words</p>
+        </div>
+    </div>
+    <div class="about-wrapper">
+        <div class="story font f-book-c mid-base">
+            <p class="side-color">
+                I am a digital designer based in Kyiv, Ukraine.
+            </p>
+            <p class="side-color">
+                I am passionate about minimalist art of 1950s-60s and possibilities of new media.
+                I love enhancing interfaces by adding meaningful transitions and smart interactions,
+                creating positive user experience.
+            </p>
+            <p class="side-color">
+                In each and every project I strive to become better and it is crucially important for me to
+                create innovative design, thereby making the web a better place.
+            </p>
+        </div>
+        <div class="groups">
+            <% _.each(groups, function (group) { %>
+            <div class="group">
+                <h2 class="font f-book-c mid-small letter-spacing middle upper side-color">
+                    <%= group.title %>
+                </h2>
+                <% _.each(group.items, function (item) { %>
                 <div class="about-item">
                     <h3 class="font regular base"><%= item.title %></h3>
                     <% _.each(item.lines, function(line) { %>
-                        <p class="font f-book-c base side-color"><%= line %></p>
+                    <p class="font f-book-c base side-color"><%= line %></p>
                     <% }); %>
                 </div>
+                <% }); %>
+            </div>
             <% }); %>
         </div>
-    <% }); %>
+        <div class="trident-wrapper">
+            <img src="images/trident.svg" alt="Ukrainian Trident">
+        </div>
+    </div>
 </div>
-<div class="trident-wrapper">
-    <img src="images/trident.svg" alt="Ukrainian Trident">
-</div>
-

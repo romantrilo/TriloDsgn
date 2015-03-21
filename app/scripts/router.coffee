@@ -129,13 +129,7 @@ define [
                 $(document).on 'first-load-done', showWidthDelay
                 return
 
-            if @app.model.isCurrentProject()
-                @updateTimeline('')
-                showWidthDelay()
-                return
-            else
-               show()
-
+            show()
             return
 
         showContacts: ->

@@ -29,6 +29,7 @@ define [
             @$blackRec = @$el.find '#black_rec'
             @$itemWrapper = @$el.find '#item'
             @$itemView = @$itemWrapper.find '.item-view'
+            @$layers = @$el.find '.layer'
 
         render: ->
             @$el.html @template()
@@ -76,13 +77,11 @@ define [
                 @timeline.viewItem()
             return
 
-        showAbout: ->
-            if @menu.isOpened()
-#                TODO
-            else
-#                TODO
-
-
         show404: ->
+
+        hideAllExcept: ($el) ->
+            @$layers.hide 0
+            $el.show 0
+
 
     }

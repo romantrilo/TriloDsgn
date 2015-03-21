@@ -14,10 +14,9 @@ body.menu-opened #menu {
 
 @media screen and (max-width: $small-screen-max) {
     .menu-wrapper {
-        margin: 30vh $large-font-size 0;
+        margin: 30vh 24px 0;
         & a, & .text span {
             color: $white;
-            font-size: 48px;
         }
         & .dark {
             display: none;
@@ -25,6 +24,10 @@ body.menu-opened #menu {
         & .white span {
             letter-spacing: 0.15em;
         }
+    }
+
+    .menu-wrapper a, .font.menu, .font.menu span {
+        font-size: 48px;
     }
 
 }
@@ -103,25 +106,23 @@ body.menu-opened #menu {
 }
 
 @media screen and (min-width: $extra-large-screen-min) {
-    .menu-wrapper {
-        & a, & .text span {
-            font-size: 100px;
+    .menu-wrapper a {
+        height: 100px;
+        &.work-link {
+            width: 414px;
         }
-        & a {
-            height: 114px;
-            &.work-link {
-                width: 385px;
-            }
-            &.about-link {
-                width: 418px;
-            }
-            &.contacts-link {
-                width: 621px;
-            }
-            & .background {
-                top: 17px;
-                height: 67px;
-            }
+        &.about-link {
+            width: 453px;
         }
+        &.contacts-link {
+            width: 682px;
+        }
+        & .background {
+            top: 17px;
+            height: 67px;
+        }
+    }
+    .menu-wrapper a, .font.menu, .font.menu span {
+        font-size: 100px;
     }
 }

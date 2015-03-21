@@ -87,6 +87,17 @@ body.loader-done {
         }
     }
 
+    body.about {
+        & .key-words span, & .contacts p {
+            visibility: hidden;
+            opacity: 0;
+        }
+    }
+
+    .key-words.hide, .contacts.hide {
+        display: none;
+    }
+
     .contacts {
         right: auto;
         left: 0;
@@ -104,6 +115,10 @@ body.loader-done {
 }
 
 @media screen and (min-width: $middle-screen-min) {
+    body.about .logo h1 {
+        color: $base-color !important;
+    }
+
     body.menu-opened .contacts a:hover {
         color: $base-color;
         background-color: $white;

@@ -36,7 +36,7 @@ define [
         initListeners: ->
             @$menuBtn.click @toggleMenu.bind @
             @$logoClickable.click @showTimeline.bind @
-            @$returnP.click @showTimeline.bind @
+            @$returnP.click @hideCurrentLayer.bind @
 
 
         toggleMenu: ->
@@ -90,4 +90,34 @@ define [
 
         unWhiteKeyWords: ->
             @$keywords.removeClass 'white'
+
+        whiteReturnLink: ->
+            @$return.addClass 'white'
+
+        unWhiteReturnLink: ->
+            @$return.removeClass 'white'
+
+        whiteMenuBtn: ->
+            @$menuBtn.addClass 'white'
+
+        unWhiteMenuBtn: ->
+            @$menuBtn.removeClass 'white'
+
+        hideCurrentLayer: ->
+            if @app.$body.data('layer') == 'about'
+                @app.about.hide()
+                return
+            if @app.$body.data('layer') == 'contacts'
+                @app.contacts.hide()
+                return
+
+        showFooterElements: ->
+            @$keywords.removeClass 'hide'
+            @$contacts.removeClass 'hide'
+
+        hideFooterElements: ->
+            @$keywords.addClass 'hide'
+            @$contacts.addClass 'hide'
+
     }
+

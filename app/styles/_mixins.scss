@@ -18,3 +18,9 @@
 @mixin cursor-dragging {
     cursor: url(../images/cursors/Drag2.png) 14 5, pointer;
 }
+
+@mixin hide-scroll {
+    margin-right: -14px;
+    padding-right: 14px;
+    overflow-y: auto;
+}
