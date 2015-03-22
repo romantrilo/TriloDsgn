@@ -29,31 +29,45 @@ define [
             @app.$body.hasClass('menu-opened')
 
         open: ->
-            @app.navs.whiteLogo()
-            @app.navs.menuBtnToX()
-
-            @app.$body.addClass 'menu-opened'
-            @app.$blackRec.addClass 'menu-opened'
-
-            @app.navs.whiteKeyWords()
-            @app.timeline.scrollPossible = false;
-
-            _.delay =>
-                @animateLinks()
-            , 300
-
-            _.delay =>
-                @app.navs.hideReturnLink()
-            , 500
-
-            _.delay =>
-                @app.navs.whiteContacts()
-            , 700
-
-        close: ->
+            delay = 0
 
             if @app.$body.hasClass 'about'
+                @app.about.hide { onMenuOpen: true }
+                delay = 2000
+
+
+            _.delay =>
+                @app.navs.whiteLogo()
+                @app.navs.menuBtnToX()
+
+                @app.$body.addClass 'menu-opened'
+                @app.$blackRec.addClass 'menu-opened'
+
+                @app.navs.whiteKeyWords()
+                @app.timeline.scrollPossible = false;
+
+                @hideLinks()
+
+                _.delay =>
+                    @animateLinks()
+                , 300
+
+                _.delay =>
+                    @app.navs.hideReturnLink()
+                , 500
+
+                _.delay =>
+                    @app.navs.whiteContacts()
+                , 700
+            , delay
+
+
+        close: ->
+            if document.location.hash == '#about' and @app.timeline
                 @app.about.show()
+                return
+
+            unless @.isOpened()
                 return
 
             @app.navs.menuBtnToHamburger()

@@ -62,8 +62,12 @@ define [
                 , 1000
             else
                 @app.$blackRec.addClass 'about-start'
-                @app.timeline.fadeOut()
+
+                if @app.timeline
+                    @app.timeline.fadeOut()
+
                 showAboutDelay = 2000
+
                 _.delay =>
                     @app.$blackRec.addClass 'center'
                 , 1000
@@ -71,7 +75,7 @@ define [
             _.delay showAbout, showAboutDelay
             return
 
-        hide: ->
+        hide: (options) ->
             @$groups.removeClass 'up'
 
             _.delay =>
@@ -90,12 +94,13 @@ define [
                 @app.timeline.$el.show 0
                 @app.$itemWrapper.show 0
                 @$el.hide 0
-                @app.$blackRec.addClass 'hide'
-                _.delay =>
-                    @app.navs.unWhiteMenuBtn()
-                    @app.navs.unWhiteLogo()
-                    @app.navs.unWhiteContacts()
-                , 500
+                unless options && options.onMenuOpen
+                    @app.$blackRec.addClass 'hide'
+                    _.delay =>
+                        @app.navs.unWhiteMenuBtn()
+                        @app.navs.unWhiteLogo()
+                        @app.navs.unWhiteContacts()
+                    , 500
             , 2000
 
             _.delay =>

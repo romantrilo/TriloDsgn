@@ -130,7 +130,6 @@ define [
                 return
 
             show()
-            return
 
         showContacts: ->
             @app.showContacts()
