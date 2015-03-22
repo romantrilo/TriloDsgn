@@ -43,7 +43,7 @@ define [
                 @app.navs.whiteMenuBtn()
 
                 if menuOpened
-                    @app.menu.$el.hide 500
+                    @app.menu.$el.hide 600
 
                 _.delay =>
                     @$groups.addClass 'up'
@@ -76,19 +76,23 @@ define [
             return
 
         hide: (options) ->
-            @$groups.removeClass 'up'
+            @scrollTop()
+
+            _.delay =>
+                @$groups.removeClass 'up'
+            , @scrollUpTime
 
             _.delay =>
                 @app.$body.removeClass 'about'
                 @app.$blackRec.addClass 'center'
                 @app.$blackRec.removeClass 'about'
                 @app.navs.hideReturnLink()
-            , 1000
+            , 1000 + @scrollUpTime
 
             _.delay =>
                 @app.navs.whiteLogo()
                 @app.navs.whiteContacts()
-            , 1500
+            , 1500 + @scrollUpTime
 
             _.delay =>
                 @app.timeline.$el.show 0
@@ -101,12 +105,27 @@ define [
                         @app.navs.unWhiteLogo()
                         @app.navs.unWhiteContacts()
                     , 500
-            , 2000
+            , 2000 + @scrollUpTime
 
             _.delay =>
                 @app.$blackRec.removeClass 'center'
                 @app.$blackRec.removeClass 'hide'
-            , 3000
+            , 3000 + @scrollUpTime
 
             return
+
+
+        scrollTop: ->
+            slide = =>
+                @$groups.removeClass 'up'
+
+            itemTopOffset = @$el.scrollTop()
+
+            @scrollUpTime = if itemTopOffset == 0 then 0 else itemTopOffset
+
+            @$el.animate({
+                scrollTop: 0
+            }, @scrollUpTime);
+
+            _.delay slide, @scrollUpTime
     }

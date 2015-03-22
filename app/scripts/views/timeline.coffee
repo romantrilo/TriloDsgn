@@ -62,7 +62,7 @@ define [
             @scrollPossible = true
             @scrollTimedOut = true
 
-            $(window).bind 'mousewheel', @openItemOnScroll.bind @
+            $(window).bind 'mousewheel', @onScroll.bind @
 
         initCovers: ->
             options = {
@@ -94,14 +94,16 @@ define [
         fadeOut: ->
             @timeline.addClass 'fade-out'
 
-        openItemOnScroll: (event) ->
+        onScroll: (event) ->
             if !@scrollPossible or !@scrollTimedOut
                 return
 
             delta = event.originalEvent.wheelDelta
 
             if delta >= 0
-                if !@shown and @app.$itemWrapper.scrollTop() == 0
+                element = if @app.$body.hasClass 'about' then @app.about.$el else @app.$itemWrapper
+
+                if !@shown and element.scrollTop() == 0
                     @shown = true
                     @scrollTimedOut = false
                     @show()
@@ -208,8 +210,8 @@ define [
                 @app.about.hide()
                 delay = 2250
 
-            if isAbout or isContacts
-                @scrollUpTime = 0
+            if isAbout
+                @scrollUpTime = @app.about.scrollUpTime
             else
                 _.delay @slideItemDown.bind(@), delay
                 _.delay preloaderFadeOut, 500 + delay + @scrollUpTime
@@ -235,11 +237,12 @@ define [
 
             itemTopOffset = @app.$itemWrapper.scrollTop()
 
-            @scrollUpTime = if itemTopOffset == 0 then 0 else itemTopOffset / 2
+            @scrollUpTime = if itemTopOffset == 0 then 0 else itemTopOffset
 
             @app.$itemWrapper.animate({
                 scrollTop: 0
             }, @scrollUpTime);
+
             _.delay slide, @scrollUpTime
 
         setSpeed: (newIndex) ->
