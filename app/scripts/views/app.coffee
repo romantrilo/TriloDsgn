@@ -69,9 +69,6 @@ define [
                 app: @
             }
 
-        showContacts: ->
-
-
         showItem: ->
             if @menu.isOpened()
                 @header.$menuBtn.trigger('click');

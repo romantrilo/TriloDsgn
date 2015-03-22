@@ -20,4 +20,19 @@ define [
             @$el.html @template()
             @
 
+        show: ->
+            delay = 0
+
+            @app.timeline.scrollPossible = false
+
+            if @app.menu.isOpened()
+                @app.menu.close()
+                delay = 1000
+
+            _.delay =>
+                @app.timeline.$el.hide 0
+                @app.$itemWrapper.hide 0
+                @$el.show 0
+            , delay
+
     }

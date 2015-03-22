@@ -22,7 +22,7 @@ define [
             '': 'init'
             'work': 'showTimeline'
             'timeline/:item': 'updateTimeline'
-            'contact': 'showContacts'
+            'contacts': 'showContacts'
             'about': 'showAbout'
             '*404': 'show404'
         }
@@ -132,7 +132,19 @@ define [
             show()
 
         showContacts: ->
-            @app.showContacts()
+            show = =>
+                @app.contacts.show()
+
+            showWidthDelay = =>
+                _.delay show, 1500
+
+            unless @app.timeline
+                @init {ignoreScrolling: true}
+                $(document).on 'first-load-done', showWidthDelay
+                return
+
+            show()
+
 
         show404: ->
             console.log '404 has been reached'

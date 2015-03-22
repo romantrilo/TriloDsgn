@@ -32,26 +32,6 @@ p, span, div, h1, h2, h3, h4, h5, h6 {
     }
 }
 
-.upper {
-    text-transform: uppercase;
-}
-
-.lower {
-    text-transform: lowercase;
-}
-
-.letter-spacing {
-    &.small {
-        letter-spacing: 0.2em;
-    }
-    &.middle {
-        letter-spacing: 0.3em;
-    }
-    &.wide {
-        letter-spacing: 0.4em;
-    }
-}
-
 .side-color {
     color: $side-color;
 }

@@ -72,7 +72,7 @@ body.loader-done {
 
 
 @media screen and (max-width: $small-screen-max) {
-    .key-words span, .contacts p {
+    .key-words, .contacts {
         visibility: hidden;
         opacity: 0;
         z-index: 0;
@@ -81,9 +81,10 @@ body.loader-done {
     }
 
     body.menu-opened {
-        & .key-words span, & .contacts p {
+        & .key-words, & .contacts {
             visibility: visible;
             opacity: 1;
+            z-index: 80;
         }
     }
 
