@@ -34,6 +34,7 @@ define [
 
             @app.$body.addClass 'menu-opened'
             @app.$blackRec.addClass 'menu-opened'
+
             @app.navs.whiteKeyWords()
             @app.timeline.scrollPossible = false;
 
@@ -50,6 +51,10 @@ define [
             , 700
 
         close: ->
+
+            if @app.$body.hasClass 'about'
+                @app.about.show()
+                return
 
             @app.navs.menuBtnToHamburger()
             @app.navs.unWhiteContacts()

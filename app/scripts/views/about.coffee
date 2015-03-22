@@ -28,19 +28,22 @@ define [
 
             showAbout = =>
                 @app.$blackRec.addClass 'about'
-                @app.hideAllExcept @$el
+
+                @app.timeline.$el.hide 0
+                @app.$itemWrapper.hide 0
+                @$el.show 0
+
                 @app.navs.unWhiteKeyWords()
                 @app.navs.unWhiteContacts()
                 @app.navs.hideFooterElements()
 
-                _.delay =>
-                    @app.navs.showReturnLink()
-                    @app.navs.whiteReturnLink()
-                    @app.navs.menuBtnToHamburger()
-                    @app.navs.whiteMenuBtn()
-                    if menuOpened
-                        @app.menu.$el.hide 250
-                , 500
+                @app.navs.showReturnLink()
+                @app.navs.whiteReturnLink()
+                @app.navs.menuBtnToHamburger()
+                @app.navs.whiteMenuBtn()
+
+                if menuOpened
+                    @app.menu.$el.hide 500
 
                 _.delay =>
                     @$groups.addClass 'up'
@@ -49,10 +52,13 @@ define [
                 , 1000
 
             @app.$body.addClass 'about'
+
             if menuOpened
                 _.delay =>
                     @app.$blackRec.removeClass 'menu-opened'
                     @app.$body.removeClass 'menu-opened'
+                    @app.menu.$el.show 0
+                    @app.timeline.fadeOut()
                 , 1000
             else
                 @app.$blackRec.addClass 'about-start'
@@ -62,8 +68,6 @@ define [
                     @app.$blackRec.addClass 'center'
                 , 1000
 
-
-
             _.delay showAbout, showAboutDelay
             return
 
@@ -72,6 +76,7 @@ define [
 
             _.delay =>
                 @app.$body.removeClass 'about'
+                @app.$blackRec.addClass 'center'
                 @app.$blackRec.removeClass 'about'
                 @app.navs.hideReturnLink()
             , 1000
@@ -82,7 +87,9 @@ define [
             , 1500
 
             _.delay =>
-                @app.hideAllExcept @app.timeline.$el
+                @app.timeline.$el.show 0
+                @app.$itemWrapper.show 0
+                @$el.hide 0
                 @app.$blackRec.addClass 'hide'
                 _.delay =>
                     @app.navs.unWhiteMenuBtn()
@@ -92,7 +99,8 @@ define [
             , 2000
 
             _.delay =>
-                @app.$blackRec.removeClass()
+                @app.$blackRec.removeClass 'center'
+                @app.$blackRec.removeClass 'hide'
             , 3000
 
             return

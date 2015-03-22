@@ -79,9 +79,4 @@ define [
 
         show404: ->
 
-        hideAllExcept: ($el) ->
-            @$layers.hide 0
-            $el.show 0
-
-
     }
