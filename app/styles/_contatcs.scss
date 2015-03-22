@@ -21,6 +21,7 @@
             margin-top: 5px;
             & a {
                 color: $white;
+                letter-spacing: 0.2em;
             }
         }
         &:last-child {
@@ -72,11 +73,11 @@
     }
 
     .contacts-wrapper {
-        margin-left: 50px;
+        margin-left: 110px;
     }
 
     .contacts-desktop {
-        margin-top: 65px;
+        margin-top: 55px;
     }
 }
 

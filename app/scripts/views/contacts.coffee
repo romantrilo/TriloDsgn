@@ -32,6 +32,7 @@ define [
             _.delay =>
                 @app.timeline.$el.hide 0
                 @app.$itemWrapper.hide 0
+                @app.$blackRec.addClass 'contacts-active'
                 @$el.show 0
             , delay
 
