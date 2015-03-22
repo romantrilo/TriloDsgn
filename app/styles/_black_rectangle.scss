@@ -24,6 +24,9 @@
         @include transition(all, $base-transition * 2);
         @include transition-timing-function(ease-out);
     }
+    &.hide {
+        opacity: 0;
+    }
 }
 
 @media screen and (min-width: $middle-screen-min) {

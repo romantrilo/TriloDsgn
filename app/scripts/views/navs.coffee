@@ -27,7 +27,6 @@ define [
             @$menuBtn = @app.$el.find '.lines-button'
             @$lines = @$menuBtn.find('.lines')
             @$logo = @app.$el.find '.logo h1'
-            @$logoClickable = @app.$el.find '.logo-clickable'
             @$return = @app.$el.find '.return'
             @$returnP = @app.$el.find '.return p'
             @$contacts = @app.$el.find '.contacts'
@@ -35,9 +34,6 @@ define [
 
         initListeners: ->
             @$menuBtn.click @toggleMenu.bind @
-            @$logoClickable.click @showTimeline.bind @
-            @$returnP.click @hideCurrentLayer.bind @
-
 
         toggleMenu: ->
             if @$lines.hasClass 'x'
@@ -102,14 +98,6 @@ define [
 
         unWhiteMenuBtn: ->
             @$menuBtn.removeClass 'white'
-
-        hideCurrentLayer: ->
-            if @app.$body.data('layer') == 'about'
-                @app.about.hide()
-                return
-            if @app.$body.data('layer') == 'contacts'
-                @app.contacts.hide()
-                return
 
         showFooterElements: ->
             @$keywords.removeClass 'hide'

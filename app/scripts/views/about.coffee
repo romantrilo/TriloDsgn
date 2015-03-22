@@ -28,7 +28,6 @@ define [
 
             showAbout = =>
                 @app.$blackRec.addClass 'about'
-                console.time '1'
                 @app.hideAllExcept @$el
                 @app.navs.unWhiteKeyWords()
                 @app.navs.unWhiteContacts()
@@ -47,13 +46,13 @@ define [
                     @$groups.addClass 'up'
                     @app.$blackRec.removeClass 'menu-opened'
                     @app.$blackRec.removeClass 'about-start'
-                    @app.$blackRec.removeClass 'center'
                 , 1000
 
             @app.$body.addClass 'about'
             if menuOpened
                 _.delay =>
                     @app.$blackRec.removeClass 'menu-opened'
+                    @app.$body.removeClass 'menu-opened'
                 , 1000
             else
                 @app.$blackRec.addClass 'about-start'
@@ -61,7 +60,6 @@ define [
                 showAboutDelay = 2000
                 _.delay =>
                     @app.$blackRec.addClass 'center'
-                    console.time '1'
                 , 1000
 
 
@@ -70,6 +68,32 @@ define [
             return
 
         hide: ->
-            @app.$body.removeClass 'about'
+            @$groups.removeClass 'up'
 
+            _.delay =>
+                @app.$body.removeClass 'about'
+                @app.$blackRec.removeClass 'about'
+                @app.navs.hideReturnLink()
+            , 1000
+
+            _.delay =>
+                @app.navs.whiteLogo()
+                @app.navs.whiteContacts()
+            , 1500
+
+            _.delay =>
+                @app.hideAllExcept @app.timeline.$el
+                @app.$blackRec.addClass 'hide'
+                _.delay =>
+                    @app.navs.unWhiteMenuBtn()
+                    @app.navs.unWhiteLogo()
+                    @app.navs.unWhiteContacts()
+                , 500
+            , 2000
+
+            _.delay =>
+                @app.$blackRec.removeClass()
+            , 3000
+
+            return
     }

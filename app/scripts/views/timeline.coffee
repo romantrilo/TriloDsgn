@@ -183,6 +183,8 @@ define [
 
         show: ->
             delay = 0
+            isAbout = @app.$body.hasClass 'about'
+            isContacts = @app.$body.hasClass 'contacts'
 
             preloaderFadeOut = =>
                 @app.menu.close()
@@ -202,13 +204,16 @@ define [
                 @app.$itemView.removeClass 'about'
                 @app.$itemView.removeClass 'project'
 
-            if @app.menu.isOpened()
-                @app.menu.close()
-#                TODO return only if current is timeline, add check for about or contacts
-                return
+            if isAbout
+                @app.about.hide()
+                delay = 2250
 
-            _.delay @slideItemDown.bind(@), delay
-            _.delay preloaderFadeOut, 500 + delay + @scrollUpTime
+            if isAbout or isContacts
+                @scrollUpTime = 0
+            else
+                _.delay @slideItemDown.bind(@), delay
+                _.delay preloaderFadeOut, 500 + delay + @scrollUpTime
+
             _.delay timelineFadeIn, 1000 + delay + @scrollUpTime
             _.delay clearItemView, 1500 + delay + @scrollUpTime
 
