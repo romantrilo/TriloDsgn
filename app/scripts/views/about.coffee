@@ -49,6 +49,7 @@ define [
                     @$groups.addClass 'up'
                     @app.$blackRec.removeClass 'menu-opened'
                     @app.$blackRec.removeClass 'about-start'
+                    @app.timeline.scrollPossible = true;
                 , 1000
 
             @app.$body.addClass 'about'
