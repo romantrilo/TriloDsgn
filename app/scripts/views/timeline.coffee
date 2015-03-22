@@ -208,7 +208,7 @@ define [
 
             if isAbout
                 @app.about.hide()
-                delay = 2250
+                delay = 1750
 
             if isAbout
                 @scrollUpTime = @app.about.scrollUpTime

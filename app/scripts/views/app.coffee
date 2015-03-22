@@ -23,6 +23,7 @@ define [
             @initNavs()
             @initMenu()
             @initAbout()
+            @initContacts()
 
         initElements: ->
             @$body = $ 'body'
@@ -45,11 +46,14 @@ define [
             }
 
         initTimeline: ->
-            @menu.close()
+            if @menu.isOpened()
+                @menu.close()
+
             @timeline = new Timeline {
                 model: @model.get 'items'
                 app: @
             }
+
             @listenTo @timeline, 'timeline-update', @triggerTimelineUpdate
 
         triggerTimelineUpdate: (index) ->
@@ -66,6 +70,7 @@ define [
             }
 
         showContacts: ->
+
 
         showItem: ->
             if @menu.isOpened()

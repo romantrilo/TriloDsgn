@@ -88,12 +88,12 @@ define [
                 @app.$blackRec.addClass 'center'
                 @app.$blackRec.removeClass 'about'
                 @app.navs.hideReturnLink()
-            , 1000 + @scrollUpTime
+            , 500 + @scrollUpTime
 
             _.delay =>
                 @app.navs.whiteLogo()
                 @app.navs.whiteContacts()
-            , 1500 + @scrollUpTime
+            , 1000 + @scrollUpTime
 
             _.delay =>
                 @app.timeline.$el.show 0
@@ -106,12 +106,12 @@ define [
                         @app.navs.unWhiteLogo()
                         @app.navs.unWhiteContacts()
                     , 500
-            , 2000 + @scrollUpTime
+            , 1500 + @scrollUpTime
 
             _.delay =>
                 @app.$blackRec.removeClass 'center'
                 @app.$blackRec.removeClass 'hide'
-            , 3000 + @scrollUpTime
+            , 2500 + @scrollUpTime
 
             return
 

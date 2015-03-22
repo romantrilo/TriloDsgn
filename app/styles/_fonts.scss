@@ -1,3 +1,39 @@
+.font {
+    &.italic {
+        font-family: CrimsonTextItalic, sans-serif;
+    }
+    &.regular {
+        font-family: FuturaDemiC, sans-serif;
+    }
+    &.f-book-c {
+        font-family: FuturaBookC;
+    }
+    &.small {
+        font-size: $small-font-size;
+    }
+    &.mid-small {
+        font-size: $mid-small-font-size;
+    }
+    &.base {
+        font-size: $base-font-size;
+    }
+    &.mid-base {
+        font-size: $mid-base-font-size;
+    }
+    &.large {
+        font-size: $large-font-size;
+    }
+    &.extra-large {
+        font-size: $extra-large-font-size;
+    }
+    &.menu {
+        font-size: $menu-link-font-size;
+    }
+    &.white {
+        color: $white;
+    }
+}
+
 @font-face {
     font-family: FuturaDemiC;
     src: url('/styles/fonts/FuturaDemiC/FuturaDemiC.eot?#iefix') format('embedded-opentype'), url('/styles/fonts/FuturaDemiC/FuturaDemiC.woff') format('woff'), url('/styles/fonts/FuturaDemiC/FuturaDemiC.ttf')  format('truetype'), url('/styles/fonts/FuturaDemiC/FuturaDemiC.svg#FuturaDemiC') format('svg');

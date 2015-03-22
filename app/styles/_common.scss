@@ -56,39 +56,6 @@ p, span, div, h1, h2, h3, h4, h5, h6 {
     color: $side-color;
 }
 
-.font {
-    &.italic {
-        font-family: CrimsonTextItalic, sans-serif;
-    }
-    &.regular {
-        font-family: FuturaDemiC, sans-serif;
-    }
-    &.f-book-c {
-        font-family: FuturaBookC;
-    }
-    &.small {
-        font-size: $small-font-size;
-    }
-    &.mid-small {
-        font-size: $mid-small-font-size;
-    }
-    &.base {
-        font-size: $base-font-size;
-    }
-    &.mid-base {
-        font-size: $mid-base-font-size;
-    }
-    &.large {
-        font-size: $large-font-size;
-    }
-    &.extra-large {
-        font-size: $extra-large-font-size;
-    }
-    &.menu {
-        font-size: $menu-link-font-size;
-    }
-}
-
 .draggable {
     /* fallback if grab cursor is unsupported */
     cursor: move;
