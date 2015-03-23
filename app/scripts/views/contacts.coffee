@@ -15,6 +15,7 @@ define [
             @app = options.app
             @$el = @app.$el.find '#contacts'
             @render()
+            @$arrow = @$el.find '.arrow'
 
         render: ->
             @$el.html @template()
@@ -34,6 +35,8 @@ define [
                 @app.$itemWrapper.hide 0
                 @app.$blackRec.addClass 'contacts-active'
                 @$el.show 0
+                @$arrow.addClass 'mobile-moving'
+                @$arrow.addClass 'right'
             , delay
 
     }

@@ -37,6 +37,119 @@
     }
 }
 
+@-moz-keyframes move {
+    0% {
+        @include translate(0, 0);
+    }
+    12.5% {
+        @include translate(5px, 0);
+    }
+    25% {
+        @include translate(10px, 0);
+    }
+    37.5% {
+        @include translate(15px, 0);
+    }
+    50% {
+        @include translate(20px, 0);
+    }
+    62.5% {
+        @include translate(15px, 0);
+    }
+    75% {
+        @include translate(10px, 0);
+    }
+    87.5% {
+        @include translate(5px, 0);
+    }
+    100% {
+        @include translate(0, 0);
+    }
+}
+
+@-webkit-keyframes move {
+    0% {
+        @include translate(0, 0);
+    }
+    12.5% {
+        @include translate(5px, 0);
+    }
+    25% {
+        @include translate(10px, 0);
+    }
+    37.5% {
+        @include translate(15px, 0);
+    }
+    50% {
+        @include translate(20px, 0);
+    }
+    62.5% {
+        @include translate(15px, 0);
+    }
+    75% {
+        @include translate(10px, 0);
+    }
+    87.5% {
+        @include translate(5px, 0);
+    }
+    100% {
+        @include translate(0, 0);
+    }
+}
+
+@keyframes move {
+    0% {
+        @include translate(0, 0);
+    }
+    12.5% {
+        @include translate(5px, 0);
+    }
+    25% {
+        @include translate(10px, 0);
+    }
+    37.5% {
+        @include translate(15px, 0);
+    }
+    50% {
+        @include translate(20px, 0);
+    }
+    62.5% {
+        @include translate(15px, 0);
+    }
+    75% {
+        @include translate(10px, 0);
+    }
+    87.5% {
+        @include translate(5px, 0);
+    }
+    100% {
+        @include translate(0, 0);
+    }
+}
+
+.email-wrapper {
+    display: block;
+    & > div, & .arrow > div {
+        display: inline-block;
+    }
+}
+
+.arrow-body {
+    width: 75px;
+    border-top: 1px solid $white;
+    position: relative;
+    top: -3px;
+    right: -11.5px;
+}
+
+.arrow-angles {
+    width: 6px;
+    height: 6px;
+    border-top: 1px solid $white;
+    border-right: 1px solid $white;
+    @include rotate(45deg);
+}
+
 @media screen and (max-width: $small-screen-max) {
     .contacts-title {
         margin-top: calc(32vh + 76px);
@@ -51,6 +164,10 @@
 
     .contacts-desktop {
         display: none;
+    }
+
+    .arrow.mobile-moving {
+        @include animation(move 8s infinite linear);
     }
 }
 
@@ -78,6 +195,16 @@
 
     .contacts-desktop {
         margin-top: 55px;
+    }
+
+    .arrow {
+        @include transition(all, $base-transition * 2);
+        &.right {
+            @include translate(30px, 0);
+        }
+        &:hover {
+            @include translate(60px, 0);
+        }
     }
 }
 
