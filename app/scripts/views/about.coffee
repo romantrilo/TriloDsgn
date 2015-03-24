@@ -45,6 +45,8 @@ define [
                 if menuOpened
                     @app.menu.$el.hide 600
 
+                @app.timeline.slideItemDown()
+
                 _.delay =>
                     @$groups.addClass 'up'
                     @app.$blackRec.removeClass 'menu-opened'
