@@ -32,7 +32,25 @@ define [
 
             unless menuOpened
                 @app.timeline.fadeOut()
-                delay = 1000
+                @app.$blackRec.addClass 'left-bottom'
+
+                _.delay =>
+                    @app.$blackRec.addClass 'center'
+                    @app.navs.unWhiteKeyWords()
+                , 1000
+
+                _.delay =>
+                    @app.navs.whiteLogo()
+                    @app.navs.whiteMenuBtn()
+                    @app.navs.showReturnLink()
+                    @app.navs.whiteReturnLink()
+                    @app.navs.whiteContacts()
+                , 1900
+
+                _.delay =>
+
+
+                delay = 2300
 
             _.delay =>
                 @app.timeline.$el.hide 0
@@ -40,15 +58,15 @@ define [
                 @$el.show 0
 
                 @app.$blackRec.addClass 'contacts-active'
-                @app.navs.showReturnLink()
+                @app.navs.unWhiteReturnLink()
+                @app.navs.unWhiteKeyWords()
+                @app.navs.unWhiteContacts()
+                @app.navs.unWhiteLogo()
+                @app.navs.unWhiteMenuBtn()
 
                 if menuOpened
                     @app.$body.removeClass 'menu-opened'
-                    @app.navs.unWhiteLogo()
-                    @app.navs.unWhiteMenuBtn()
                     @app.navs.menuBtnToHamburger()
-                    @app.navs.unWhiteKeyWords()
-                    @app.navs.unWhiteContacts()
 
                 _.delay =>
                     @$emailBackground.addClass 'show'

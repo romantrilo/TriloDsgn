@@ -50,7 +50,7 @@ define [
                 _.delay =>
                     @$groups.addClass 'up'
                     @app.$blackRec.removeClass 'menu-opened'
-                    @app.$blackRec.removeClass 'about-start'
+                    @app.$blackRec.removeClass 'left-bottom'
                     @app.timeline.scrollPossible = true;
                 , 1000
 
@@ -64,7 +64,7 @@ define [
                     @app.timeline.fadeOut()
                 , 1000
             else
-                @app.$blackRec.addClass 'about-start'
+                @app.$blackRec.addClass 'left-bottom'
 
                 if @app.timeline
                     @app.timeline.fadeOut()

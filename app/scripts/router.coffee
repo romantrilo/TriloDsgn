@@ -134,6 +134,7 @@ define [
         showContacts: ->
             show = =>
                 @app.contacts.show()
+                @navigate '#contacts', {trigger: false}
 
             showWidthDelay = =>
                 _.delay show, 1500
