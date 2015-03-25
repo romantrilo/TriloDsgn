@@ -35,7 +35,7 @@ define [
                 @app.$blackRec.addClass 'left-bottom'
 
                 _.delay =>
-                    @app.$blackRec.addClass 'center'
+                    @app.$blackRec.addClass 'center-ease'
                     @app.navs.unWhiteKeyWords()
                 , 1000
 
@@ -45,12 +45,9 @@ define [
                     @app.navs.showReturnLink()
                     @app.navs.whiteReturnLink()
                     @app.navs.whiteContacts()
-                , 1900
+                , 1800
 
-                _.delay =>
-
-
-                delay = 2300
+                delay = 2200
 
             _.delay =>
                 @app.timeline.$el.hide 0
