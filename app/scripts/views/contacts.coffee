@@ -16,6 +16,7 @@ define [
             @$el = @app.$el.find '#contacts'
             @render()
             @$arrow = @$el.find '.arrow'
+            @$email = @$el.find '.email'
 
         render: ->
             @$el.html @template()
@@ -37,6 +38,11 @@ define [
                 @$el.show 0
                 @$arrow.addClass 'mobile-moving'
                 @$arrow.addClass 'right'
+                @$email.find('.background').addClass 'show'
+                _.delay =>
+                    span = @$email.find 'span'
+                    span.addClass 'show'
+                , 700
             , delay
 
     }

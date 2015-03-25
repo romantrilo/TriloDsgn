@@ -37,30 +37,36 @@
     }
 }
 
+.email {
+    position: relative;
+    overflow: hidden;
+    & span {
+        opacity: 0;
+        padding: 0 20px;
+        &.show {
+            opacity: 1;
+        }
+    }
+    & .background {
+        width: 200px;
+        height: 18px;
+        position: absolute;
+        top: 0;
+        left: -100%;
+        background-color: $white;
+        @include transition(left, $base-transition * 4);
+        &.show {
+            left: 100%;
+        }
+    }
+}
+
 @-moz-keyframes move {
     0% {
         @include translate(0, 0);
     }
-    12.5% {
-        @include translate(5px, 0);
-    }
-    25% {
-        @include translate(10px, 0);
-    }
-    37.5% {
-        @include translate(15px, 0);
-    }
     50% {
         @include translate(20px, 0);
-    }
-    62.5% {
-        @include translate(15px, 0);
-    }
-    75% {
-        @include translate(10px, 0);
-    }
-    87.5% {
-        @include translate(5px, 0);
     }
     100% {
         @include translate(0, 0);
@@ -71,26 +77,8 @@
     0% {
         @include translate(0, 0);
     }
-    12.5% {
-        @include translate(5px, 0);
-    }
-    25% {
-        @include translate(10px, 0);
-    }
-    37.5% {
-        @include translate(15px, 0);
-    }
     50% {
         @include translate(20px, 0);
-    }
-    62.5% {
-        @include translate(15px, 0);
-    }
-    75% {
-        @include translate(10px, 0);
-    }
-    87.5% {
-        @include translate(5px, 0);
     }
     100% {
         @include translate(0, 0);
@@ -101,26 +89,8 @@
     0% {
         @include translate(0, 0);
     }
-    12.5% {
-        @include translate(5px, 0);
-    }
-    25% {
-        @include translate(10px, 0);
-    }
-    37.5% {
-        @include translate(15px, 0);
-    }
     50% {
         @include translate(20px, 0);
-    }
-    62.5% {
-        @include translate(15px, 0);
-    }
-    75% {
-        @include translate(10px, 0);
-    }
-    87.5% {
-        @include translate(5px, 0);
     }
     100% {
         @include translate(0, 0);
@@ -131,6 +101,7 @@
     display: block;
     & > div, & .arrow > div {
         display: inline-block;
+        vertical-align: middle;
     }
 }
 
@@ -138,7 +109,6 @@
     width: 75px;
     border-top: 1px solid $white;
     position: relative;
-    top: -3px;
     right: -11.5px;
 }
 
@@ -160,6 +130,14 @@
 
     .email-wrapper {
         margin-top: 40px;
+    }
+
+    .email {
+        margin-left: -20px;
+    }
+
+    .arrow {
+        margin-left: -10px;
     }
 
     .contacts-desktop {
@@ -187,11 +165,11 @@
 
     .email-wrapper {
         width: calc(100vw - 690px);
-        padding: 27px 0 27px 40px;
+        padding: 27px 20px;
         position: relative;
         top: -7px;
         & span {
-            @include transition(color, $base-transition * 2);
+            @include transition(color $base-transition * 2, opacity 0);
         }
         @include cursor-pointer;
         &:hover {
@@ -235,8 +213,8 @@
     }
 
     .email-wrapper {
-        width: calc(100vw - 970px);
-        padding: 43px 0 43px 50px;
+        width: calc(100vw - 975px);
+        padding: 43px 30px;
         top: -4px;
     }
 
