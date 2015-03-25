@@ -25,25 +25,42 @@ define [
             @
 
         show: ->
+            menuOpened = @app.menu.isOpened()
             delay = 0
 
             @app.timeline.scrollPossible = false
 
-            if @app.menu.isOpened()
-                @app.menu.close()
+            unless menuOpened
+                @app.timeline.fadeOut()
                 delay = 1000
 
             _.delay =>
                 @app.timeline.$el.hide 0
                 @app.$itemWrapper.hide 0
-                @app.$blackRec.addClass 'contacts-active'
                 @$el.show 0
-                @$arrow.addClass 'mobile-moving'
-                @$arrow.addClass 'right'
-                @$emailBackground.addClass 'show'
+
+                @app.$blackRec.addClass 'contacts-active'
+                @app.navs.showReturnLink()
+
+                if menuOpened
+                    @app.$body.removeClass 'menu-opened'
+                    @app.navs.unWhiteLogo()
+                    @app.navs.unWhiteMenuBtn()
+                    @app.navs.menuBtnToHamburger()
+                    @app.navs.unWhiteKeyWords()
+                    @app.navs.unWhiteContacts()
+
+                _.delay =>
+                    @$emailBackground.addClass 'show'
+                    @app.menu.$el.hide 500
+                    @$arrow.addClass 'mobile-moving'
+                    @$arrow.addClass 'show'
+                , 1000
+
                 _.delay =>
                     @$emailText.addClass 'show'
-                , 500
+                    @$arrow.addClass 'right'
+                , 1500
             , delay
 
     }

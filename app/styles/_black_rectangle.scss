@@ -24,6 +24,9 @@
         @include transition(all, $base-transition * 2);
         @include transition-timing-function(ease-out);
     }
+    &.contacts-active {
+        @include transition(all, $base-transition * 2);
+    }
     &.hide {
         opacity: 0;
     }
