@@ -54,7 +54,7 @@
         top: 0;
         left: -100%;
         background-color: $white;
-        @include transition(left, $base-transition * 4);
+        @include transition(left, $base-transition * 3);
         &.show {
             left: 100%;
         }
@@ -120,7 +120,7 @@
     @include rotate(45deg);
 }
 
-@media screen and (max-width: $small-screen-max) {
+@media screen and (max-width: $middle-screen-medium) {
     .contacts-title {
         margin-top: calc(32vh + 76px);
         & p {
@@ -200,7 +200,7 @@
     }
 
     .arrow {
-        @include transition(all, $base-transition * 2);
+        @include transition(all, $base-transition * 2.5);
         &.right {
             @include translate(30px, 0);
         }
