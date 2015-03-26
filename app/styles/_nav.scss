@@ -1,5 +1,5 @@
 .logo, .menu-btn, .key-words, .contacts {
-    @include transition(all, $base-transition * 2);
+    @include transition(all $base-transition * 2);
     padding: $large-font-size $extra-large-font-size;
 }
 
@@ -15,7 +15,7 @@ body.loader-done {
         @include cursor-pointer;
         & h1 {
             margin: 0;
-            @include transition(color, $base-transition / 2);
+            @include transition(color $base-transition / 2);
             &.white {
                 color: $white;
             }
@@ -32,7 +32,7 @@ body.loader-done {
     padding: $large-font-size;
     opacity: 0;
     visibility: hidden;
-    @include transition(all, $base-transition);
+    @include transition(all $base-transition);
     &.visible {
         opacity: 1;
         visibility: visible;
@@ -49,7 +49,7 @@ body.loader-done {
     @include translate(-90px, 80px);
     line-height: $base-line-height;
     & span {
-        @include transition(color, $base-transition);
+        @include transition(color $base-transition);
     }
     &.white span {
         color: $white;
@@ -64,7 +64,7 @@ body.loader-done {
     & p {
         margin: 0;
         a {
-            @include transition(color, $base-transition);
+            @include transition(color $base-transition);
             @include cursor-pointer;
         }
     }
@@ -76,7 +76,7 @@ body.loader-done {
         visibility: hidden;
         opacity: 0;
         z-index: 0;
-        @include transition(all, $base-transition * 1.5);
+        @include transition(all $base-transition * 1.5);
         @include transition-delay(0s);
     }
 

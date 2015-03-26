@@ -5,7 +5,7 @@
     width: 0;
     height: 100vh;
     overflow: hidden;
-    @include transition(width, $base-transition * 2);
+    @include transition(width $base-transition * 2);
 }
 
 body.menu-opened #menu {
@@ -56,7 +56,7 @@ body.menu-opened #menu {
                     z-index: 10;
                     &.show {
                         width: 100%;
-                        @include transition(width, $base-transition);
+                        @include transition(width $base-transition);
                     }
                     & span {
                         color: $base-color;
@@ -66,7 +66,7 @@ body.menu-opened #menu {
                     width: 0;
                     &.show {
                         width: 100%;
-                        @include transition(width, $base-transition);
+                        @include transition(width $base-transition);
                     }
                     &.above {
                         z-index: 15;
@@ -94,11 +94,11 @@ body.menu-opened #menu {
                 background: $white;
                 &.show {
                     left: 0;
-                    @include transition(left, $base-transition);
+                    @include transition(left $base-transition);
                 }
                 &.hide {
                     left: 100%;
-                    @include transition(left, $base-transition);
+                    @include transition(left $base-transition);
                 }
             }
         }

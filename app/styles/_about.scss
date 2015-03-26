@@ -26,7 +26,7 @@
     justify-content: space-between;
     align-items: flex-start;
     @include translate(0, 100%);
-    @include transition(all, $base-transition * 2);
+    @include transition(all $base-transition * 2);
     &.up {
         @include translate(0, 0);
     }

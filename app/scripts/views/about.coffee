@@ -31,6 +31,7 @@ define [
 
                 @app.timeline.$el.hide 0
                 @app.$itemWrapper.hide 0
+                @app.contacts.$el.hide 0
                 @$el.show 0
 
                 @app.navs.unWhiteKeyWords()

@@ -3,6 +3,10 @@
     display: none;
     padding: $extra-large-font-size;
     box-sizing: border-box;
+    &.hide {
+        opacity: 0;
+        @include transition(opacity $base-transition);
+    }
 }
 
 .contacts-title p {
@@ -54,7 +58,7 @@
         top: 0;
         left: -100%;
         background-color: $white;
-        @include transition(left, $base-transition * 3);
+        @include transition(left $base-transition * 3);
         &.show {
             left: 100%;
         }
@@ -191,7 +195,7 @@
         margin-left: 40px;
         & a {
             @include cursor-pointer;
-            @include transition(all, $base-transition * 2);
+            @include transition(all $base-transition * 2);
             &:hover {
                 color: $white;
                 background-color: $base-color;
@@ -203,11 +207,11 @@
         opacity: 0;
         &.show {
             opacity: 1;
-            @include transition(opacity, $base-transition);
+            @include transition(opacity $base-transition);
         }
         &.right {
             @include translate(30px, 0);
-            @include transition(all, $base-transition * 2.5);
+            @include transition(all $base-transition * 2.5);
         }
     }
 }

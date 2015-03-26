@@ -29,6 +29,7 @@ define [
             delay = 0
 
             @app.timeline.scrollPossible = false
+            @app.$body.addClass 'contacts-active'
 
             unless menuOpened
                 @app.timeline.fadeOut()
@@ -42,7 +43,6 @@ define [
                 _.delay =>
                     @app.navs.whiteLogo()
                     @app.navs.whiteMenuBtn()
-                    @app.navs.showReturnLink()
                     @app.navs.whiteReturnLink()
                     @app.navs.whiteContacts()
                 , 1800
@@ -50,8 +50,13 @@ define [
                 delay = 2200
 
             _.delay =>
+                @app.navs.showReturnLink()
+            , 1800
+
+            _.delay =>
                 @app.timeline.$el.hide 0
                 @app.$itemWrapper.hide 0
+                @app.about.$el.hide 0
                 @$el.show 0
 
                 @app.$blackRec.addClass 'contacts-active'
@@ -63,13 +68,15 @@ define [
 
                 if menuOpened
                     @app.$body.removeClass 'menu-opened'
+                    @app.$blackRec.removeClass 'menu-opened'
                     @app.navs.menuBtnToHamburger()
+                    @app.timeline.fadeOut()
 
                 _.delay =>
                     @$emailBackground.addClass 'show'
-                    @app.menu.$el.hide 500
-                    @$arrow.addClass 'mobile-moving'
                     @$arrow.addClass 'show'
+                    @$arrow.addClass 'mobile-moving'
+                    @app.menu.$el.hide 500
                 , 1000
 
                 _.delay =>
@@ -77,5 +84,48 @@ define [
                     @$arrow.addClass 'right'
                 , 1500
             , delay
+
+        hide: ->
+            @app.timeline.scrollPossible = true
+            @app.$blackRec.addClass 'center-ease'
+            @app.$blackRec.removeClass 'contacts-active'
+
+            _.delay =>
+                @$el.addClass 'hide'
+                @app.navs.hideReturnLink()
+                @app.navs.whiteLogo()
+                @app.navs.whiteMenuBtn()
+                @app.navs.whiteReturnLink()
+                @app.navs.whiteContacts()
+            , 800
+
+            _.delay =>
+                @app.$body.removeClass 'contacts-active'
+                @$el.hide 0
+                @app.timeline.$el.show 0
+                @app.$itemWrapper.show 0
+                @app.menu.$el.show 0
+                @app.$blackRec.addClass 'hide'
+            , 1000
+
+            _.delay =>
+                @app.navs.unWhiteReturnLink()
+                @app.navs.unWhiteKeyWords()
+                @app.navs.unWhiteContacts()
+                @app.navs.unWhiteLogo()
+                @app.navs.unWhiteMenuBtn()
+            , 1300
+
+            _.delay =>
+                @app.$blackRec.removeClass 'center-ease'
+                @app.$blackRec.removeClass 'left-bottom'
+                @app.$blackRec.removeClass 'hide'
+                @$el.removeClass 'hide'
+                @$arrow.removeClass 'show'
+                @$arrow.removeClass 'mobile-moving'
+                @$arrow.removeClass 'right'
+                @$emailText.removeClass 'show'
+                @$emailBackground.removeClass 'show'
+            , 2000
 
     }

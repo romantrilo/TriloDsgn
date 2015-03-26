@@ -109,10 +109,11 @@ define [
             backgroundToDefault = ->
                 background.removeClass 'show'
                 background.removeClass 'hide'
+                $link.addClass 'hover-allowed'
 
-            link = @$links.eq @counter
-            linkText = link.find('.text').filter '.white'
-            background = link.find('.background')
+            $link = @$links.eq @counter
+            linkText = $link.find('.text').filter '.white'
+            background = $link.find('.background')
 
             background.addClass 'show'
             _.delay hideBackground, 600
@@ -124,11 +125,13 @@ define [
 
         hideLinks: ->
             @$links.find('.text').filter('.white').removeClass 'show'
+            @$links.removeClass 'hover-allowed'
 
         _onMouseEnter: (event) ->
             $target = $ event.target.closest 'a'
+            $background = $target.find('.background')
 
-            if $target.data 'mouse-entered'
+            if $target.data('mouse-entered') or !$target.hasClass('hover-allowed')
                 return
 
             $target.data 'mouse-entered', true
@@ -136,7 +139,7 @@ define [
             $target.data 'timed-out', false
 
             $target.find('.dark').addClass 'show'
-            $target.find('.background').addClass 'show'
+            $background.addClass 'show'
 
             _.delay ->
                 $target.find('.white').removeClass 'show'

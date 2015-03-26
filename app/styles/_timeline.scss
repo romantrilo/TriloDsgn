@@ -20,7 +20,7 @@ body.loader-done {
         transform: translateY(calc(-32vh - 100%)) !important;
     }
     & .item {
-        @include transition(width, $base-transition * 2);
+        @include transition(width $base-transition * 2);
     }
     & .subtitle {
         text-transform: capitalize;
@@ -73,7 +73,7 @@ body.loader-done {
 
 .covers-wrapper {
     @include translate(0, 100%);
-    @include transition(all, $base-transition * 2);
+    @include transition(all $base-transition * 2);
     .covers {
         //    viewport height left after timeline margin - timeline height - timeline margin-bottom
         height: calc(68vh - 105px - 30px);
@@ -113,7 +113,7 @@ body.loader-done {
 .pre-load-description {
     margin-top: 2px;
     opacity: 0;
-    @include transition(opacity, $base-transition * 2);
+    @include transition(opacity $base-transition * 2);
     &.show {
         opacity: 1;
     }

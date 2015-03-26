@@ -11,7 +11,7 @@
         background: none;
         border: none;
         @include cursor-pointer;
-        @include transition(all, $base-transition, linear);
+        @include transition(all $base-transition, linear);
         &.white .lines, &.white .lines:before, &.white .lines:after {
             background-color: $white;
         }

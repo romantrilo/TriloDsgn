@@ -186,7 +186,7 @@ define [
         show: ->
             delay = 0
             isAbout = @app.$body.hasClass 'about'
-            isContacts = @app.$body.hasClass 'contacts'
+            isContacts = @app.$body.hasClass 'contacts-active'
 
             preloaderFadeOut = =>
                 @app.menu.close()
@@ -201,18 +201,18 @@ define [
 
             clearItemView = =>
                 @app.$itemView.html ''
-                @app.$body.removeClass 'about'
-                @app.$body.removeClass 'about'
-                @app.$itemView.removeClass 'about'
                 @app.$itemView.removeClass 'project'
 
             if isAbout
                 @app.about.hide()
-                delay = 1750
-
-            if isAbout
                 @scrollUpTime = @app.about.scrollUpTime
-            else
+                delay = 1750
+            else if isContacts
+                @app.contacts.hide()
+                @scrollUpTime = 0
+                delay = 1300
+
+            unless isAbout or isContacts
                 _.delay @slideItemDown.bind(@), delay
                 _.delay preloaderFadeOut, 500 + delay + @scrollUpTime
 
