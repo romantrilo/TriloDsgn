@@ -16,6 +16,8 @@ define [
             @items = @app.model.get('items')
             @urls = _.map @items, getUrls
             @listenTo @app, 'timeline-update', @updateTimelineUrl
+            @listenTo @app, 'open-about', @showAbout
+            @listenTo @app, 'open-contacts', @showContacts
             @initProjectRoutes()
 
         routes: {

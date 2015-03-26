@@ -17,13 +17,23 @@ define [
             $(document).on 'menu-link-timeout', @_onMenuLinkTimeout.bind @
             @counter = 0
             @render()
+            @$links = @$el.find('.menu-wrapper').find 'a'
+            @initListeners()
 
         render: ->
             @$el.html @template()
-            @$links = @$el.find('.menu-wrapper').find 'a'
+            @
+
+        initListeners: ->
             @$links.mouseenter @_onMouseEnter.bind(@)
             @$links.mouseleave @_onMouseOut.bind(@)
-            @
+            @$links.eq(1).click (event) =>
+                @app.trigger 'open-about'
+                event.preventDefault()
+
+            @$links.eq(2).click (event) =>
+                @app.trigger 'open-contacts'
+                event.preventDefault()
 
         isOpened: ->
             @app.$body.hasClass('menu-opened')
