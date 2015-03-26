@@ -210,7 +210,7 @@ define [
             else if isContacts
                 @app.contacts.hide()
                 @scrollUpTime = 0
-                delay = 1300
+                delay = 1100
 
             unless isAbout or isContacts
                 _.delay @slideItemDown.bind(@), delay

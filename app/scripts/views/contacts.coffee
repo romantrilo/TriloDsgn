@@ -85,13 +85,13 @@ define [
                 , 1500
             , delay
 
-        hide: ->
+        hide: (options) ->
             @app.timeline.scrollPossible = true
             @app.$blackRec.addClass 'center-ease'
             @app.$blackRec.removeClass 'contacts-active'
+            @$el.addClass 'hide'
 
             _.delay =>
-                @$el.addClass 'hide'
                 @app.navs.hideReturnLink()
                 @app.navs.whiteLogo()
                 @app.navs.whiteMenuBtn()
@@ -105,16 +105,16 @@ define [
                 @app.timeline.$el.show 0
                 @app.$itemWrapper.show 0
                 @app.menu.$el.show 0
-                @app.$blackRec.addClass 'hide'
+                unless options && options.onMenuOpen
+                    @app.$blackRec.addClass 'hide'
+                    _.delay =>
+                        @app.navs.unWhiteReturnLink()
+                        @app.navs.unWhiteKeyWords()
+                        @app.navs.unWhiteContacts()
+                        @app.navs.unWhiteLogo()
+                        @app.navs.unWhiteMenuBtn()
+                    , 250
             , 1000
-
-            _.delay =>
-                @app.navs.unWhiteReturnLink()
-                @app.navs.unWhiteKeyWords()
-                @app.navs.unWhiteContacts()
-                @app.navs.unWhiteLogo()
-                @app.navs.unWhiteMenuBtn()
-            , 1300
 
             _.delay =>
                 @app.$blackRec.removeClass 'center-ease'

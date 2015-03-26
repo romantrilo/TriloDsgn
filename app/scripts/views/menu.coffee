@@ -29,17 +29,19 @@ define [
             @app.$body.hasClass('menu-opened')
 
         open: ->
-            delay = 0
+            overallDelay = 0
 
             if @app.$body.hasClass 'about'
                 @app.about.hide { onMenuOpen: true }
-                delay = 2000
+                overallDelay = 2000
+            else if @app.$body.hasClass 'contacts-active'
+                @app.contacts.hide { onMenuOpen: true }
+                overallDelay = 1500
 
+            @app.navs.menuBtnToX()
 
             _.delay =>
                 @app.navs.whiteLogo()
-                @app.navs.menuBtnToX()
-
                 @app.$body.addClass 'menu-opened'
                 @app.$blackRec.addClass 'menu-opened'
 
@@ -59,18 +61,22 @@ define [
                 _.delay =>
                     @app.navs.whiteContacts()
                 , 700
-            , delay
+            , overallDelay
 
 
         close: ->
             if document.location.hash == '#about' and @app.timeline
                 @app.about.show()
                 return
+            else if document.location.hash == '#contacts' and @app.timeline
+                @app.contacts.show()
+                return
 
-            unless @.isOpened()
+            unless @isOpened()
                 return
 
             @app.navs.menuBtnToHamburger()
+            @app.navs.unWhiteMenuBtn()
             @app.navs.unWhiteContacts()
 
             @app.$body.removeClass 'menu-opened'
