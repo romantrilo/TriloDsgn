@@ -28,7 +28,7 @@
         @include transition-timing-function(ease-in-out);
     }
     &.about {
-        @include translate(0, -80vh);
+        @include translate(0, calc(-100vh + 32vh));
         @include transition(all $base-transition * 2);
         @include transition-timing-function(ease-out);
     }
@@ -51,7 +51,7 @@
 @media screen and (min-width: $middle-screen-min) {
     #black_rec {
         &.about {
-            @include translate(175px, -80vh);
+            @include translate(175px, calc(-100vh + 38vh));
         }
 
     }
@@ -67,7 +67,7 @@
 @media screen and (min-width: $large-screen-min) {
     #black_rec {
         &.about {
-            @include translate(475px, -80vh);
+            @include translate(475px, calc(-100vh + 38vh));
         }
 
     }
@@ -76,7 +76,7 @@
 @media screen and (min-width: $extra-large-screen-min) {
     #black_rec {
         &.about {
-            @include translate(691px, -80vh);
+            @include translate(691px, calc(-100vh + 38vh + 40px));
         }
         &.contacts-active {
             @include translate(890px, calc(38vh + 262px));

@@ -26,6 +26,7 @@ define [
 
         show: ->
             isMenuOpened = @app.menu.isOpened()
+            isMobile = window.innerWidth < 1000
             delay = 0
 
             @app.timeline.scrollPossible = false

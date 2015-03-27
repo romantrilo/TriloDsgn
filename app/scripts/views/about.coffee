@@ -109,6 +109,7 @@ define [
                         @app.navs.unWhiteMenuBtn()
                         @app.navs.unWhiteLogo()
                         @app.navs.unWhiteContacts()
+                        $(window).trigger 'resize'
                     , 500
             , 1500 + @scrollUpTime
 
