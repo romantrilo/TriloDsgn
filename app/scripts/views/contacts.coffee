@@ -25,13 +25,15 @@ define [
             @
 
         show: ->
-            menuOpened = @app.menu.isOpened()
+            isMenuOpened = @app.menu.isOpened()
             delay = 0
 
             @app.timeline.scrollPossible = false
             @app.$body.addClass 'contacts-active'
 
-            unless menuOpened
+            if isMenuOpened
+                @app.navs.menuBtnToHamburger()
+            else
                 @app.timeline.fadeOut()
                 @app.$blackRec.addClass 'left-bottom'
 
@@ -66,23 +68,24 @@ define [
                 @app.navs.unWhiteLogo()
                 @app.navs.unWhiteMenuBtn()
 
-                if menuOpened
-                    @app.$body.removeClass 'menu-opened'
-                    @app.$blackRec.removeClass 'menu-opened'
-                    @app.navs.menuBtnToHamburger()
-                    @app.timeline.fadeOut()
-
                 _.delay =>
                     @$emailBackground.addClass 'show'
                     @$arrow.addClass 'show'
                     @$arrow.addClass 'mobile-moving'
-                    @app.menu.$el.hide 500
                 , 1000
 
                 _.delay =>
                     @$emailText.addClass 'show'
                     @$arrow.addClass 'right'
+                    @app.menu.$el.hide 0
                 , 1500
+
+                if isMenuOpened
+                    _.delay =>
+                        @app.$body.removeClass 'menu-opened'
+                        @app.$blackRec.removeClass 'menu-opened'
+                        @app.timeline.fadeOut()
+                    , 2000
             , delay
 
         hide: (options) ->

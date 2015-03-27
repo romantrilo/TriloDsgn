@@ -36,7 +36,6 @@ define [
 
                 @app.navs.unWhiteKeyWords()
                 @app.navs.unWhiteContacts()
-                @app.navs.hideFooterElements()
 
                 @app.navs.showReturnLink()
                 @app.navs.whiteReturnLink()
@@ -44,7 +43,9 @@ define [
                 @app.navs.whiteMenuBtn()
 
                 if menuOpened
-                    @app.menu.$el.hide 600
+                    _.delay =>
+                        @app.menu.$el.hide 1000
+                    , 1000
 
                 @app.timeline.slideItemDown()
 
@@ -63,7 +64,7 @@ define [
                     @app.$body.removeClass 'menu-opened'
                     @app.menu.$el.show 0
                     @app.timeline.fadeOut()
-                , 1000
+                , 2500
             else
                 @app.$blackRec.addClass 'left-bottom'
 

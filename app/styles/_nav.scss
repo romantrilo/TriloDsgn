@@ -93,6 +93,10 @@ body.loader-done {
             visibility: hidden;
             opacity: 0;
         }
+        & .logo h1 {
+            color: $white;
+            @include transition(color $base-transition $base-transition * 3.5);
+        }
     }
 
     .key-words.hide, .contacts.hide {
