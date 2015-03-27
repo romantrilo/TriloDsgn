@@ -39,8 +39,6 @@ define [
         init: (options) ->
             ignoreScrolling = options and options.ignoreScrolling
             url = options and options.url
-            showWidthDelay = ->
-                _.delay show, 1000
 
             show = =>
                 url = if url then url else @urls[@urls.length - 1]
@@ -51,7 +49,7 @@ define [
             @app.initTimeline()
             @app.timeline.update middleIndex, false
             unless ignoreScrolling
-                $(document).on 'first-load-done', showWidthDelay
+                $(document).on 'first-load-done', show
 
         updateTimeline: (url) ->
             unless @app.timeline
