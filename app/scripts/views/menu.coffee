@@ -28,12 +28,19 @@ define [
             @$links.mouseenter @_onMouseEnter.bind(@)
             @$links.mouseleave @_onMouseOut.bind(@)
             @$links.eq(1).click (event) =>
-                @app.trigger 'open-about'
-                event.preventDefault()
+                onClick(event, 1)
 
             @$links.eq(2).click (event) =>
-                @app.trigger 'open-contacts'
+                onClick(event, 2)
+
+            onClick = (event, index) =>
                 event.preventDefault()
+                @makeLinkBlack(index)
+
+                if index == 1
+                    @app.trigger 'open-about'
+                else
+                    @app.trigger 'open-contacts'
 
         isOpened: ->
             @app.$body.hasClass('menu-opened')
@@ -77,9 +84,11 @@ define [
         close: ->
             if document.location.hash == '#about' and @app.timeline
                 @app.about.show()
+                @makeLinkBlack(1)
                 return
             else if document.location.hash == '#contacts' and @app.timeline
                 @app.contacts.show()
+                @makeLinkBlack(2)
                 return
 
             unless @isOpened()
@@ -197,4 +206,12 @@ define [
                 fakeEvent = {}
                 fakeEvent.target = $link[0]
                 @_onMouseOut(fakeEvent, true)
+
+        makeLinkBlack: (index) ->
+            $text = @$links.eq(index).find('.white').find('span')
+            $text.addClass 'black'
+
+            _.delay =>
+                $text.removeClass 'black'
+            , 3000
     }

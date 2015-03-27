@@ -99,10 +99,6 @@ body.loader-done {
         }
     }
 
-    .key-words.hide, .contacts.hide {
-        display: none;
-    }
-
     .contacts {
         right: auto;
         left: 0;
@@ -116,6 +112,12 @@ body.loader-done {
 
     .return {
         right: 50px;
+    }
+}
+
+@media screen and (max-width: $middle-screen-medium) {
+    .key-words.hide, .contacts.hide {
+        display: none;
     }
 }
 

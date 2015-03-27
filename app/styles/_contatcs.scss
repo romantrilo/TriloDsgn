@@ -47,20 +47,9 @@
     & span {
         opacity: 0;
         padding: 0 20px;
+        @include transition(all $base-transition * 2);
         &.show {
             opacity: 1;
-        }
-    }
-    & .background {
-        width: 200px;
-        height: 18px;
-        position: absolute;
-        top: 0;
-        left: -100%;
-        background-color: $white;
-        @include transition(left $base-transition * 3);
-        &.show {
-            left: 100%;
         }
     }
 }
@@ -109,19 +98,29 @@
     }
 }
 
+.arrow {
+    opacity: 0;
+    &.show {
+        opacity: 1;
+        @include transition(opacity $base-transition);
+    }
+}
+
 .arrow-body {
     width: 75px;
-    border-top: 1px solid $white;
+    border-top: 1px solid $side-color;
     position: relative;
     right: -11.5px;
+    @include transition(all $base-transition * 2);
 }
 
 .arrow-angles {
     width: 6px;
     height: 6px;
-    border-top: 1px solid $white;
-    border-right: 1px solid $white;
+    border-top: 1px solid $side-color;
+    border-right: 1px solid $side-color;
     @include rotate(45deg);
+    @include transition(all $base-transition * 2);
 }
 
 @media screen and (max-width: $middle-screen-medium) {
@@ -172,9 +171,6 @@
         padding: 27px 20px;
         position: relative;
         top: -7px;
-        & span {
-            @include transition(color $base-transition * 2, opacity 0);
-        }
         @include cursor-pointer;
         &:hover {
             & span {
@@ -182,6 +178,13 @@
             }
             & .arrow {
                 @include translate(60px, 0);
+            }
+            & .arrow-body {
+                border-top-color: $white;
+            }
+            & .arrow-angles {
+                border-top-color: $white;
+                border-right-color: $white;
             }
         }
     }
@@ -203,16 +206,9 @@
         }
     }
 
-    .arrow {
-        opacity: 0;
-        &.show {
-            opacity: 1;
-            @include transition(opacity $base-transition);
-        }
-        &.right {
+    .arrow.right {
             @include translate(30px, 0);
             @include transition(all $base-transition * 2.5);
-        }
     }
 }
 

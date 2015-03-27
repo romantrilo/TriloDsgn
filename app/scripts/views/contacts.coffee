@@ -17,7 +17,6 @@ define [
             @render()
             @$arrow = @$el.find '.arrow'
             @$email = @$el.find '.email'
-            @$emailBackground = @$email.find '.background'
             @$emailText = @$email.find 'span'
 
         render: ->
@@ -36,7 +35,7 @@ define [
                 @app.navs.menuBtnToHamburger()
             else
                 @app.timeline.fadeOut()
-                @app.$blackRec.addClass 'left-bottom'
+                @app.$blackRec.addClass 'bottom'
 
                 _.delay =>
                     @app.$blackRec.addClass 'center-ease'
@@ -60,26 +59,32 @@ define [
                 @app.timeline.$el.hide 0
                 @app.$itemWrapper.hide 0
                 @app.about.$el.hide 0
-                @$el.show 0
 
-                @app.$blackRec.addClass 'contacts-active'
-                @app.navs.unWhiteReturnLink()
-                @app.navs.unWhiteKeyWords()
-                @app.navs.unWhiteContacts()
-                @app.navs.unWhiteLogo()
-                @app.navs.unWhiteMenuBtn()
+                if isMobile
+                    @app.$blackRec.addClass 'bottom'
+                    mobileDelay = 1000
 
                 _.delay =>
-                    @$emailBackground.addClass 'show'
-                    @$arrow.addClass 'show'
-                    @$arrow.addClass 'mobile-moving'
-                , 1000
+                    @$el.show 0
+                    @app.navs.hideFooterElements()
+                    @app.navs.unWhiteReturnLink()
+                    @app.navs.unWhiteKeyWords()
+                    @app.navs.unWhiteContacts()
+                    @app.navs.unWhiteLogo()
+                    @app.navs.unWhiteMenuBtn()
+                    @app.$blackRec.addClass 'contacts-active'
 
-                _.delay =>
-                    @$emailText.addClass 'show'
-                    @$arrow.addClass 'right'
-                    @app.menu.$el.hide 0
-                , 1500
+                    _.delay =>
+                        @$emailText.addClass 'show'
+                        @$arrow.addClass 'show'
+                        @$arrow.addClass 'mobile-moving'
+                    , 1000
+
+                    _.delay =>
+                        @$arrow.addClass 'right'
+                        @app.menu.$el.hide 0
+                    , 1500
+                , mobileDelay
 
                 if isMenuOpened
                     _.delay =>
@@ -109,6 +114,8 @@ define [
                 @app.timeline.$el.show 0
                 @app.$itemWrapper.show 0
                 @app.menu.$el.show 0
+                @app.navs.showFooterElements()
+                $(window).trigger 'resize'
                 unless options && options.onMenuOpen
                     @app.$blackRec.addClass 'hide'
                     _.delay =>
@@ -122,14 +129,13 @@ define [
 
             _.delay =>
                 @app.$blackRec.removeClass 'center-ease'
-                @app.$blackRec.removeClass 'left-bottom'
+                @app.$blackRec.removeClass 'bottom'
                 @app.$blackRec.removeClass 'hide'
                 @$el.removeClass 'hide'
                 @$arrow.removeClass 'show'
                 @$arrow.removeClass 'mobile-moving'
                 @$arrow.removeClass 'right'
                 @$emailText.removeClass 'show'
-                @$emailBackground.removeClass 'show'
             , 2000
 
     }
