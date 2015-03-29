@@ -25,6 +25,7 @@ define [
         show: ->
             showAboutDelay = 0
             menuOpened = @app.menu.isOpened()
+            isMobile = window.innerWidth < 768
 
             showAbout = =>
                 @app.$blackRec.addClass 'about'
@@ -34,9 +35,13 @@ define [
                 @app.contacts.$el.hide 0
                 @$el.show 0
 
+                if isMobile
+                    @app.navs.whiteLogo()
+                else
+                    @app.navs.unWhiteLogo()
+
                 @app.navs.unWhiteKeyWords()
                 @app.navs.unWhiteContacts()
-
                 @app.navs.showReturnLink()
                 @app.navs.whiteReturnLink()
                 @app.navs.menuBtnToHamburger()
@@ -97,7 +102,7 @@ define [
             _.delay =>
                 @app.navs.whiteLogo()
                 @app.navs.whiteContacts()
-            , 1000 + @scrollUpTime
+            , 1300 + @scrollUpTime
 
             _.delay =>
                 @app.timeline.$el.show 0
@@ -105,12 +110,10 @@ define [
                 @$el.hide 0
                 unless options && options.onMenuOpen
                     @app.$blackRec.addClass 'hide'
-                    _.delay =>
-                        @app.navs.unWhiteMenuBtn()
-                        @app.navs.unWhiteLogo()
-                        @app.navs.unWhiteContacts()
-                        $(window).trigger 'resize'
-                    , 500
+                    @app.navs.unWhiteMenuBtn()
+                    @app.navs.unWhiteLogo()
+                    @app.navs.unWhiteContacts()
+                    $(window).trigger 'resize'
             , 1500 + @scrollUpTime
 
             _.delay =>

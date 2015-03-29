@@ -68,3 +68,11 @@
         }
     }
 }
+
+@media screen and (min-width: $middle-screen-min) {
+
+    .menu-btn .lines-button:hover .lines.close.x:after {
+        @include rotate(315deg);
+    }
+
+}
