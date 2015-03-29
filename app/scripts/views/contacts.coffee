@@ -114,8 +114,8 @@ define [
                 @app.timeline.$el.show 0
                 @app.$itemWrapper.show 0
                 @app.menu.$el.show 0
+                @app.timeline.reInitSliders()
                 @app.navs.showFooterElements()
-                $(window).trigger 'resize'
                 unless options && options.onMenuOpen
                     @app.$blackRec.addClass 'hide'
                     _.delay =>
@@ -124,7 +124,8 @@ define [
                         @app.navs.unWhiteContacts()
                         @app.navs.unWhiteLogo()
                         @app.navs.unWhiteMenuBtn()
-                    , 250
+                        $(window).trigger 'resize'
+                    , 100
             , 1000
 
             _.delay =>

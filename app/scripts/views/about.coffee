@@ -108,12 +108,12 @@ define [
                 @app.timeline.$el.show 0
                 @app.$itemWrapper.show 0
                 @$el.hide 0
+                @app.timeline.reInitSliders()
                 unless options && options.onMenuOpen
                     @app.$blackRec.addClass 'hide'
                     @app.navs.unWhiteMenuBtn()
                     @app.navs.unWhiteLogo()
                     @app.navs.unWhiteContacts()
-                    $(window).trigger 'resize'
             , 1500 + @scrollUpTime
 
             _.delay =>

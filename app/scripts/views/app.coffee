@@ -71,7 +71,7 @@ define [
 
         showItem: ->
             if @menu.isOpened()
-                @header.$menuBtn.trigger('click');
+                @menu.close()
                 _.delay( =>
                     @timeline.viewItem()
                 , 1000)

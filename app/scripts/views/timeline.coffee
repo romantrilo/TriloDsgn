@@ -82,9 +82,10 @@ define [
             }
             @preloader.render()
 
-        update: (index, withCustomSpeed) ->
+        update: (index, withCustomSpeed, specifiedSpeed) ->
             if withCustomSpeed
-                @setSpeed index
+                @setSpeed index, specifiedSpeed
+
             @timeline.slick 'slickGoTo', index
             return
 
@@ -152,11 +153,9 @@ define [
                 @app.navs.showReturnLink()
                 @app.navs.returnLinkVisility = true;
                 @preloader.updateText()
-                if @app.model.isCurrentProject()
-                    @app.$itemView.addClass 'project'
-                else
-                    @app.$itemView.addClass 'about'
-                setTimeout onOpen, 500
+                @app.$body.addClass 'project'
+                @app.$itemView.addClass 'project'
+                _.delay onOpen, 500
                 return
 
         loadItem: ->
@@ -220,20 +219,15 @@ define [
             _.delay clearItemView, 1500 + delay + @scrollUpTime
 
         slideItemUp: ->
-            showBlackRectangle = =>
-                @app.$body.addClass 'about'
-
             @preloader.$descr.addClass 'show'
             @app.$itemView.addClass 'up'
             $(document).off 'ajax-load-done', @slideItemUp
-
-            unless @app.model.isCurrentProject()
-                _.delay showBlackRectangle, 1000
 
         slideItemDown: ->
             slide = =>
                 @preloader.$descr.removeClass 'show'
                 @app.$itemView.removeClass 'up'
+                @app.$body.removeClass 'project'
 
             itemTopOffset = @app.$itemWrapper.scrollTop()
 
@@ -245,8 +239,8 @@ define [
 
             _.delay slide, @scrollUpTime
 
-        setSpeed: (newIndex) ->
-            speed = @app.model.getSpeedByIndex(newIndex)
+        setSpeed: (newIndex, specifiedSpeed) ->
+            speed = if specifiedSpeed then specifiedSpeed else @app.model.getSpeedByIndex(newIndex)
 
             set = (newSpeed) =>
                 @timeline.slick 'slickSetOption', 'speed', newSpeed
@@ -262,4 +256,11 @@ define [
         triggerCoversLinkClick: ->
             @covers.find('.slick-active').find('a.view-item')[0].click()
 
+        reInitSliders: ->
+            @slideItemDown()
+            @timeline.slick 'unslick'
+            @covers.slick 'unslick'
+            @initTimeline()
+            @initCovers()
+            @update @app.model.getCurrentIndex(), false, 0
     }

@@ -56,16 +56,40 @@ define [
                 @init {url: url}
                 return
 
-            url = if url then url.toLowerCase()
+            delay = 0
 
-            if @_urlExists(url)
-                index = _.indexOf @urls, url
-                indexDelta = Math.abs(@app.model.getCurrentIndex() - index)
-                withCustomSpeed = if indexDelta > 2 then true
-                @app.timeline.update index, withCustomSpeed
-                @_updateCurrentTimelineIndex index
-            else
-                @show404()
+            if @app.menu.isOpened()
+                @app.menu.close()
+                delay = 1000
+
+            _.delay =>
+                if @app.$body.hasClass 'about'
+                    @app.about.hide()
+                    _.delay =>
+                        @app.timeline.show()
+                    , 1500
+                    return
+                else if @app.$body.hasClass 'contacts-active'
+                    @app.contacts.hide()
+                    _.delay =>
+                        @app.timeline.show()
+                    , 1000
+                    return
+                else if @app.$body.hasClass 'project'
+                    @showTimeline()
+                    return
+
+                url = if url then url.toLowerCase()
+
+                if @_urlExists(url)
+                    index = _.indexOf @urls, url
+                    indexDelta = Math.abs(@app.model.getCurrentIndex() - index)
+                    withCustomSpeed = if indexDelta > 2 then true
+                    @app.timeline.update index, withCustomSpeed
+                    @_updateCurrentTimelineIndex index
+                else
+                    @show404()
+            , delay
 
         updateTimelineUrl: (index) ->
             index = if index or index == 0 then index else @app.model.get 'currentTimelineItem'
