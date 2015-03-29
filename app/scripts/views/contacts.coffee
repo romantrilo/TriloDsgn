@@ -53,7 +53,7 @@ define [
 
             _.delay =>
                 @app.navs.showReturnLink()
-            , 1800
+            , 500
 
             _.delay =>
                 @app.timeline.$el.hide 0
@@ -95,6 +95,8 @@ define [
             , delay
 
         hide: (options) ->
+            onMenuOpened = options && options.onMenuOpen
+
             @app.timeline.scrollPossible = true
             @app.$blackRec.addClass 'center-ease'
             @app.$blackRec.removeClass 'contacts-active'
@@ -114,9 +116,9 @@ define [
                 @app.timeline.$el.show 0
                 @app.$itemWrapper.show 0
                 @app.menu.$el.show 0
-                @app.timeline.reInitSliders()
+                @app.timeline.reInitSliders(onMenuOpened)
                 @app.navs.showFooterElements()
-                unless options && options.onMenuOpen
+                unless onMenuOpened
                     @app.$blackRec.addClass 'hide'
                     _.delay =>
                         @app.navs.unWhiteReturnLink()

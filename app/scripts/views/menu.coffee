@@ -50,19 +50,18 @@ define [
 
             if @app.$body.hasClass 'about'
                 @app.about.hide { onMenuOpen: true }
-                overallDelay = 2000
+                overallDelay = 1500
             else if @app.$body.hasClass 'contacts-active'
                 @app.contacts.hide { onMenuOpen: true }
-                overallDelay = 1500
+                overallDelay = 1000
 
             @app.navs.menuBtnToX()
 
             _.delay =>
                 @app.navs.whiteLogo()
+                @app.navs.whiteKeyWords()
                 @app.$body.addClass 'menu-opened'
                 @app.$blackRec.addClass 'menu-opened'
-
-                @app.navs.whiteKeyWords()
                 @app.timeline.scrollPossible = false;
 
                 @hideLinks()

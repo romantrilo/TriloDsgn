@@ -256,11 +256,13 @@ define [
         triggerCoversLinkClick: ->
             @covers.find('.slick-active').find('a.view-item')[0].click()
 
-        reInitSliders: ->
+        reInitSliders: (onMenuOpened) ->
             @slideItemDown()
             @timeline.slick 'unslick'
             @covers.slick 'unslick'
             @initTimeline()
             @initCovers()
             @update @app.model.getCurrentIndex(), false, 0
+            if onMenuOpened
+                @fadeIn()
     }

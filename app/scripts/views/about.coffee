@@ -86,6 +86,7 @@ define [
             return
 
         hide: (options) ->
+            onMenuOpen = options && options.onMenuOpen
             @scrollTop()
 
             _.delay =>
@@ -108,8 +109,8 @@ define [
                 @app.timeline.$el.show 0
                 @app.$itemWrapper.show 0
                 @$el.hide 0
-                @app.timeline.reInitSliders()
-                unless options && options.onMenuOpen
+                @app.timeline.reInitSliders(onMenuOpen)
+                unless onMenuOpen
                     @app.$blackRec.addClass 'hide'
                     @app.navs.unWhiteMenuBtn()
                     @app.navs.unWhiteLogo()
