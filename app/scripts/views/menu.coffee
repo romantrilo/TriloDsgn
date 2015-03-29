@@ -152,7 +152,7 @@ define [
             @$links.removeClass 'hover-allowed'
 
         _onMouseEnter: (event) ->
-            $target = $ event.target.closest 'a'
+            $target = $ event.currentTarget
             $background = $target.find('.background')
 
             if $target.data('mouse-entered') or !$target.hasClass('hover-allowed')
@@ -175,7 +175,7 @@ define [
             , 600
 
         _onMouseOut: (event, onTimeout) ->
-            $target = $ event.target.closest 'a'
+            $target = $ event.currentTarget
 
             unless $target.data 'timed-out'
                 $target.data 'mouse-left', true
@@ -203,7 +203,7 @@ define [
             $link.data 'timed-out', true
             if $link.data 'mouse-left'
                 fakeEvent = {}
-                fakeEvent.target = $link[0]
+                fakeEvent.currentTarget = $link[0]
                 @_onMouseOut(fakeEvent, true)
 
         makeLinkBlack: (index) ->
