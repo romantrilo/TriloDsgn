@@ -42,9 +42,15 @@
     }
 }
 
-@media screen and (max-width: $middle-screen-medium) {
+@media screen and (max-width: $small-screen-max) {
     #black_rec.contacts-active {
         @include translate(0, calc(32vh + 175px));
+    }
+}
+
+@media screen and (min-width: $middle-screen-min) and (max-width: $middle-screen-medium) {
+    #black_rec.contacts-active {
+        @include translate(0, calc(38vh + 235px));
     }
 }
 
