@@ -265,4 +265,14 @@ define [
             @update @app.model.getCurrentIndex(), false, 0
             if onMenuOpened
                 @fadeIn()
+
+        toDefault: ->
+            @preloader.fadeOut()
+            @slideItemDown()
+            @fadeIn()
+
+            _.delay =>
+                @app.$itemView.html ''
+                @app.$itemView.removeClass 'project'
+            , 1500
     }

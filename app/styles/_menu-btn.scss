@@ -73,20 +73,19 @@
 
     .menu-btn .lines-button {
         & .lines.close.x:before {
-            @include transition(all $base-transition / 1.5 $base-transition / 1.5);
+            @include transition(all $base-transition);
         }
 
         & .lines.close.x:after {
-            @include transition(all $base-transition / 1.5);
+            @include transition(all $base-transition $base-transition / 3);
         }
 
         &:hover {
+            & .lines.close.x:before {
+                @include rotate(405deg);
+            }
             & .lines.close.x:after {
                 @include rotate(135deg);
-            }
-
-            & .lines.close.x:before {
-                @include rotate(225deg);
             }
         }
     }

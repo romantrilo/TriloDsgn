@@ -52,7 +52,7 @@ define [
                         @app.menu.$el.hide 1000
                     , 1000
 
-                @app.timeline.slideItemDown()
+                @app.timeline.toDefault()
 
                 _.delay =>
                     @$groups.addClass 'up'

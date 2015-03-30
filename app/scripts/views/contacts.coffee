@@ -83,6 +83,7 @@ define [
                     _.delay =>
                         @$arrow.addClass 'right'
                         @app.menu.$el.hide 0
+                        @app.timeline.toDefault()
                     , 1500
                 , mobileDelay
 
