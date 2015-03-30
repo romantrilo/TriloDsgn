@@ -269,7 +269,7 @@ define [
         toDefault: ->
             @preloader.fadeOut()
             @slideItemDown()
-            @fadeIn()
+            @fadeOut()
 
             _.delay =>
                 @app.$itemView.html ''
