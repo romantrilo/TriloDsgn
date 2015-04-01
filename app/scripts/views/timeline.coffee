@@ -203,10 +203,12 @@ define [
                 @app.$itemView.removeClass 'project'
 
             if isAbout
+                @toDefault()
                 @app.about.hide()
                 @scrollUpTime = @app.about.scrollUpTime
                 delay = 1750
             else if isContacts
+                @toDefault()
                 @app.contacts.hide()
                 @scrollUpTime = 0
                 delay = 1100
