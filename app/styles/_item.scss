@@ -1,5 +1,6 @@
 #item {
     @include hide-scroll;
+    overflow-x: hidden;
 }
 
 .item-view {

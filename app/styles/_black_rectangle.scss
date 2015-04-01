@@ -65,7 +65,7 @@
 
 @media screen and (min-width: $middle-screen-medium) {
     #black_rec.contacts-active {
-        @include translate(620px, calc(38vh + 150px));
+        @include translate(620px, calc(38vh + 147px));
         height: 74px;
     }
 }
@@ -85,7 +85,7 @@
             @include translate(691px, calc(-100vh + 38vh + 40px));
         }
         &.contacts-active {
-            @include translate(890px, calc(38vh + 262px));
+            @include translate(890px, calc(38vh + 259px));
             height: 106px;
         }
 
