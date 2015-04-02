@@ -88,17 +88,17 @@ body.menu-opened #menu {
             & .background {
                 position: absolute;
                 top: 14px;
-                left: -100%;
                 width: inherit;
                 height: 38px;
                 background: $white;
+                @include translate(-100%, 0);
                 &.show {
-                    left: 0;
-                    @include transition(left $base-transition);
+                    @include translate(0, 0);
+                    @include transition(all $base-transition);
                 }
                 &.hide {
-                    left: 100%;
-                    @include transition(left $base-transition);
+                    @include translate(100%, 0);
+                    @include transition(all $base-transition);
                 }
             }
         }

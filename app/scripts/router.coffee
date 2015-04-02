@@ -91,9 +91,10 @@ define [
                     @show404()
             , delay
 
-        updateTimelineUrl: (index) ->
+        updateTimelineUrl: (index, trigger) ->
+            trigger = if trigger then true else false
             index = if index or index == 0 then index else @app.model.get 'currentTimelineItem'
-            @navigate "timeline/#{@urls[index]}", {trigger: false}
+            @navigate "timeline/#{@urls[index]}", {trigger: trigger}
             @_updateCurrentTimelineIndex index
 
         showTimeline: ->
@@ -110,13 +111,12 @@ define [
             updateTimeLine = =>
                 beforeIndex = @app.model.getCurrentIndex()
                 @updateTimeline url
-                afterIndex = @app.model.getCurrentIndex()
-                delay = @app.model.getTimelineSpeed beforeIndex, afterIndex
-                delay += 500
-                _.delay show, delay
-
-            updateTimeLimeWithDelay = =>
-                _.delay updateTimeLine, 1500
+                _.defer =>
+                    afterIndex = @app.model.getCurrentIndex()
+                    delay = @app.model.getTimelineSpeed beforeIndex, afterIndex
+                    delay = if delay > 1000 then delay else 1000
+                    delay += 200
+                    _.delay show, delay
 
             show = =>
                 @navigate url, {trigger: false}
@@ -127,16 +127,24 @@ define [
             unless @app.timeline
                 @init {ignoreScrolling: true}
                 if @_urlExists(url)
-                    $(document).on 'first-load-done', updateTimeLimeWithDelay
+                    $(document).on 'first-load-done', updateTimeLine
                     return
 
-            if @_urlExists(url)
-                if @app.model.isUrlCurrent(url)
-                    @app.showItem()
-                else
-                    updateTimeLine()
-            else
+            unless @_urlExists(url)
                 @show404()
+                return
+
+            if @app.model.isUrlCurrent(url)
+                if @app.$body.hasClass('about') or @app.$body.hasClass('contacts-active')
+                    @showTimeline()
+                    viewDelay = if @app.$body.hasClass('about') then 4000 else 3200
+                    _.delay =>
+                        @navigate url, {trigger: true}
+                    , viewDelay
+                else
+                    @app.showItem()
+            else
+                updateTimeLine()
 
             return
 

@@ -24,6 +24,7 @@ define [
 
         show: ->
             showAboutDelay = 0
+            onContactsHideDelay = 0
             menuOpened = @app.menu.isOpened()
             isMobile = window.innerWidth < 768
 
@@ -49,8 +50,8 @@ define [
 
                 if menuOpened
                     _.delay =>
-                        @app.menu.$el.hide 1000
-                    , 1000
+                        @app.menu.$el.hide 500
+                    , 500
 
                 @app.timeline.toDefault()
 
@@ -78,11 +79,15 @@ define [
 
                 showAboutDelay = 2000
 
+                if @app.$body.hasClass 'contacts-active'
+                    @app.contacts.hide()
+                    onContactsHideDelay = 1500
+
                 _.delay =>
                     @app.$blackRec.addClass 'center'
-                , 1000
+                , 1000 + onContactsHideDelay
 
-            _.delay showAbout, showAboutDelay
+            _.delay showAbout, showAboutDelay + onContactsHideDelay
             return
 
         hide: (options) ->

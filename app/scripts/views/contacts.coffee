@@ -25,6 +25,7 @@ define [
 
         show: ->
             isMenuOpened = @app.menu.isOpened()
+            aboutCloseDelay = 0
             isMobile = window.innerWidth < 1000
             delay = 0
 
@@ -33,27 +34,33 @@ define [
 
             if isMenuOpened
                 @app.navs.menuBtnToHamburger()
-            else
-                @app.timeline.fadeOut()
-                @app.$blackRec.addClass 'bottom'
+            else if @app.$body.hasClass 'about'
+                @app.about.hide()
+                aboutCloseDelay = 1000
+
+            unless isMenuOpened
+                _.delay =>
+                    @app.timeline.fadeOut()
+                    @app.$blackRec.addClass 'bottom'
+                , aboutCloseDelay
 
                 _.delay =>
                     @app.$blackRec.addClass 'center-ease'
                     @app.navs.unWhiteKeyWords()
-                , 1000
+                , 1000 + aboutCloseDelay
 
                 _.delay =>
                     @app.navs.whiteLogo()
                     @app.navs.whiteMenuBtn()
                     @app.navs.whiteReturnLink()
                     @app.navs.whiteContacts()
-                , 1800
+                , 1800 + aboutCloseDelay
 
-                delay = 2200
+                delay = 2200 + aboutCloseDelay
 
             _.delay =>
                 @app.navs.showReturnLink()
-            , 500
+            , 500 + aboutCloseDelay
 
             _.delay =>
                 @app.timeline.$el.hide 0
@@ -78,11 +85,11 @@ define [
                         @$emailText.addClass 'show'
                         @$arrow.addClass 'show'
                         @$arrow.addClass 'mobile-moving'
+                        @app.menu.$el.hide 0
                     , 1000
 
                     _.delay =>
                         @$arrow.addClass 'right'
-                        @app.menu.$el.hide 0
                         @app.timeline.toDefault()
                     , 1500
                 , mobileDelay
@@ -93,7 +100,7 @@ define [
                         @app.$blackRec.removeClass 'menu-opened'
                         @app.timeline.fadeOut()
                     , 2000
-            , delay
+            , delay + aboutCloseDelay
 
         hide: (options) ->
             onMenuOpened = options && options.onMenuOpen
