@@ -23,6 +23,7 @@ define [
             @model = options.model
             @app = options.app
             @scrollUpTime = 0
+            @triggerOnChange = true
             @$el = @app.$el.find '#timeline'
             @render()
 
@@ -86,7 +87,14 @@ define [
             if withCustomSpeed
                 @setSpeed index, specifiedSpeed
 
+            if specifiedSpeed == 0
+                @triggerOnChange = false
+
             @timeline.slick 'slickGoTo', index
+
+            if specifiedSpeed == 0
+                @triggerOnChange = true
+
             return
 
         fadeIn: ->
@@ -133,7 +141,9 @@ define [
                 return
 
             @covers.slick 'slickGoTo', nextSlide
-            @trigger 'timeline-update', nextSlide
+
+            if @triggerOnChange
+                @trigger 'timeline-update', nextSlide
 
             @coversUpdated = true
 
