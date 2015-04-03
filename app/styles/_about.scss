@@ -60,6 +60,19 @@
     }
 }
 
+@media screen and (max-width: $small-screen-mid) {
+    .groups .group {
+        margin-top: 45px;
+        & .about-item {
+            min-height: 0;
+            margin-bottom: 25px;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
 @media screen and (max-width: $small-screen-max) {
     .about-title {
         padding-left: 24px;
