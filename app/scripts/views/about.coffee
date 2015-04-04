@@ -17,6 +17,7 @@ define [
             @$el = @app.$el.find '#about'
             @render()
             @$groups = @$el.find '.groups'
+            @$h1 = @$el.find 'h1'
 
         render: ->
             @$el.html @template(Data)
@@ -27,6 +28,8 @@ define [
             onContactsHideDelay = 0
             menuOpened = @app.menu.isOpened()
             isMobile = window.innerWidth < 768
+
+            @$h1.show 0
 
             showAbout = =>
                 @app.$blackRec.addClass 'about'
@@ -92,6 +95,8 @@ define [
 
         hide: (options) ->
             onMenuOpen = options && options.onMenuOpen
+
+            @$h1.hide 0
             @scrollTop()
 
             _.delay =>

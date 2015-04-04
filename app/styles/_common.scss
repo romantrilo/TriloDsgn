@@ -9,6 +9,12 @@
     padding: 0.2em 0;
 }
 
+h1.out {
+    position: absolute;
+    top: -9999px;
+    display: none;
+}
+
 a {
     text-decoration: none;
     &, &:visited {

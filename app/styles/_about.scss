@@ -17,13 +17,14 @@
 }
 
 .groups {
-    display: flex;
-    display: -webkit-box;
-    display: moz-box-flex;
     display: -ms-flexbox;
     display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
+    -webkit-justify-content: space-between;
     justify-content: space-between;
+    -webkit-align-items: flex-start;
     align-items: flex-start;
     @include translate(0, 100%);
     @include transition(all $base-transition * 2);

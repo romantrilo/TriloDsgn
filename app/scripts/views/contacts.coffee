@@ -15,6 +15,7 @@ define [
             @app = options.app
             @$el = @app.$el.find '#contacts'
             @render()
+            @$h1 = @$el.find 'h1'
             @$arrow = @$el.find '.arrow'
             @$email = @$el.find '.email'
             @$emailText = @$email.find 'span'
@@ -29,6 +30,7 @@ define [
             isMobile = window.innerWidth < 1000
             delay = 0
 
+            @$h1.show 0
             @app.timeline.scrollPossible = false
             @app.$body.addClass 'contacts-active'
 
@@ -105,6 +107,7 @@ define [
         hide: (options) ->
             onMenuOpened = options && options.onMenuOpen
 
+            @$h1.hide 0
             @app.timeline.scrollPossible = true
             @app.$blackRec.addClass 'center-ease'
             @app.$blackRec.removeClass 'contacts-active'
