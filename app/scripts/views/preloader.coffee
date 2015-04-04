@@ -26,6 +26,7 @@ define [
 
         updateText: () ->
             title = @app.model.getCurrentTitle()
+            @app.updateTitle title.toUpperCase()
             @$h1.text title.toUpperCase()
             @$text.text title
             @$over.text title
@@ -36,7 +37,6 @@ define [
             @$h1.show 0
             @$el.removeClass 'fade-out'
             @app.$itemWrapper.css 'zIndex', 30
-
             return
 
         fadeOut: ->

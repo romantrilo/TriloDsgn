@@ -150,6 +150,7 @@ define [
 
         showAbout: ->
             show = =>
+                @app.updateTitle 'About'
                 @app.about.show()
                 @navigate '#about', {trigger: false}
 
@@ -165,6 +166,7 @@ define [
 
         showContacts: ->
             show = =>
+                @app.updateTitle 'Contacts'
                 @app.contacts.show()
                 @navigate '#contacts', {trigger: false}
 

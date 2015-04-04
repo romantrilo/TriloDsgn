@@ -27,13 +27,21 @@ define [
 
         initElements: ->
             @$body = $ 'body'
+            @$title = $ 'title'
             @$blackRec = @$el.find '#black_rec'
             @$itemWrapper = @$el.find '#item'
             @$itemView = @$itemWrapper.find '.item-view'
             @$layers = @$el.find '.layer'
+            @titleBeginning = 'Roman Trilo | '
 
         render: ->
             @$el.html @template()
+
+        updateTitle: (str) ->
+            @$title.text @titleBeginning + str
+
+        titleToDefault: ->
+            @$title.text @titleBeginning + 'Clear Web Design'
 
         initNavs: ->
             @navs = new Navs {

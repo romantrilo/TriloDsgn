@@ -205,6 +205,7 @@ define [
             timelineFadeIn = =>
                 @app.trigger 'timeline-update'
                 @fadeIn()
+                @app.titleToDefault()
                 @app.navs.hideReturnLink()
                 @app.navs.returnLinkVisility = false;
 
