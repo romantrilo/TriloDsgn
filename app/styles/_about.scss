@@ -3,6 +3,14 @@
     @include hide-scroll;
 }
 
+.about-layer {
+    position: relative;
+    & address {
+        position: absolute;
+        font-style: normal;
+    }
+}
+
 .about-wrapper {
     max-width: 645px;
 }
@@ -100,14 +108,38 @@
         }
     }
 
+    .about-layer {
+        & address {
+            left: 24px;
+            bottom: 200px;
+            & span {
+                display: block;
+            }
+        }
+    }
+
     .trident-wrapper {
-        margin: 70px 0 0;
+        margin: 200px 0 0;
     }
 }
 
 @media screen and (min-width: $middle-screen-min) {
     .about-layer {
         margin: 0 176px;
+        & address {
+            right: -150px;
+            top: -55px;
+            & a {
+                display: inline-block;
+                margin-left: 7px;
+                @include cursor-pointer;
+                //@include transition(all $base-transition);
+                //&:hover {
+                //    background-color: $base-color;
+                //    color: $white;
+                //}
+            }
+        }
     }
 
     .about-title {
@@ -130,6 +162,14 @@
     }
 }
 
+@media screen and (min-width: $large-screen-mid) {
+    .about-layer address {
+        position: fixed;
+        top: calc(38vh + 24px);
+        right: 24px;
+    }
+}
+
 
 @media screen and (min-width:  $extra-large-screen-min) {
     .about-title {
@@ -140,5 +180,9 @@
         margin-left: 515px;
         margin-top: calc(38vh + 133px);
         top: 10px;
+    }
+
+    .about-layer address {
+        top: calc(38vh + 64px);
     }
 }
