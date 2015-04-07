@@ -110,7 +110,12 @@ define [
             delta = event.originalEvent.wheelDelta
 
             if delta >= 0
-                element = if @app.$body.hasClass 'about' then @app.about.$el else @app.$itemWrapper
+                if @app.$body.hasClass 'project'
+                    element = @app.$itemWrapper
+                else if  @app.$body.hasClass 'about'
+                    element = @app.about.$el
+                else
+                    return
 
                 if !@shown and element.scrollTop() == 0
                     @shown = true
@@ -161,6 +166,7 @@ define [
             unless @coversUpdated
                 @fadeOut()
                 @app.navs.showReturnLink()
+                @app.navs.unWhiteReturnLink()
                 @app.navs.returnLinkVisility = true;
                 @preloader.updateText()
                 @app.$body.addClass 'project'
